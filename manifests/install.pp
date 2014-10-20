@@ -41,12 +41,12 @@ class dariahshibboleth::install (
       mode   => '0755',
     }
 
-    file { '/opt/dariahshibboleth/403.html':
+    file { '/opt/dariahshibboleth/accessdenied.html':
       ensure  => directory,
       owner   => root,
       group   => root,
       mode    => '0644',
-      source  => 'puppet:///modules/dariahshibboleth/opt/dariahshibboleth/403.html',
+      source  => 'puppet:///modules/dariahshibboleth/opt/dariahshibboleth/accessdenied.html',
       require => File['/opt/dariahshibboleth'],
     }
 

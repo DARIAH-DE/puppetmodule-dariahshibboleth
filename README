@@ -50,6 +50,13 @@ Redirect seeother /shibboleth /Shibboleth.sso/Metadata
 ```
 or provide your own file (e.g. for additional AssertionConsumerService entries) at that URL.
 
+you can also use the custom access denied-page:
+```
+Alias /accessdenied.html /opt/dariahshibboleth/accessdenied.html
+ErrorDocument 401 /accessdenied.html 
+ErrorDocument 403 /accessdenied.html 
+```
+
 ##Limitations
 
 Tested on Debian 7.4/7.6 and on Ubuntu 14.04.
