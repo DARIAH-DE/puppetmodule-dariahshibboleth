@@ -1,0 +1,60 @@
+#dariahshibboleth
+
+##Overview
+
+Provides the puppet configuration for Shibboleth.
+
+##Module Description
+
+The module provides Shibboleth Service Provider setup.
+
+The module requires the following modules to be also present:
+* [puppetlabs/apt](https://forge.puppetlabs.com/puppetlabs/apt)
+* [puppetlabs/concat](https://forge.puppetlabs.com/puppetlabs/concat)
+* [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib)
+* [nanliu/staging](https://forge.puppetlabs.com/nanliu/staging)
+
+## Setup
+
+Install the module to modules/dariahshibboleth.
+
+##Usage
+
+You only need to include the main `dariahshibboleth` class in your manifest.
+All options can be enabled from hiera.
+
+###Shibboleth options
+
+Shibbleth is installed, if the class is loaded, and not disabled via
+```
+dariahshiboleth::enable: false
+```
+You can also provide ssl-keys and additional metadata, see the module for details.
+
+If you want to use Shibboleth with apache, using the `puppetlabs/apache` module, you might need this:
+
+```
+$mod_shibd_so = $::apache::apache_version ?
+{
+  '2.4'   => 'mod_shib_24.so',
+  default => 'mod_shib_22.so',
+}
+::apache::mod { 'shib2':
+  id  => 'mod_shib',
+  lib => $mod_shibd_so,
+}
+```
+Also don't forget to
+```
+Redirect seeother /shibboleth /Shibboleth.sso/Metadata
+```
+or provide your own file (e.g. for additional AssertionConsumerService entries) at that URL.
+
+##Limitations
+
+Tested on Debian 7.4/7.6 and on Ubuntu 14.04.
+Relies on `apt`!
+
+
+
+
