@@ -91,8 +91,7 @@ class dariahshibboleth::config (
         notify  => Service['shibd'],
       }
       staging::deploy { 'ds4b.tgz':
-
-        source  => 'puppet:///modules/dariahshibboleth/opt/dariahcommon/ds4b.tgz',
+        source  => 'puppet:///modules/dariahshibboleth/opt/dariahshibboleth/ds4b.tgz',
         target  => '/var/www',
         creates => '/var/www/ds4b',
         require => Package['shibboleth'],
