@@ -42,11 +42,17 @@
             helpLocation="/about.html"
             styleSheet="/shibboleth-sp/main.css"/>
         
-      <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Test-metadata.xml"
-         backingFilePath="DFN-AAI-Test-metadata.xml" reloadInterval="7200">
-        <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-        <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
-      </MetadataProvider>
+        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Basic-metadata.xml"
+              backingFilePath="DFN-AAI-Basic-metadata.xml" reloadInterval="3600">
+          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
+        </MetadataProvider>
+
+        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-eduGAIN-metadata.xml"
+              backingFilePath="DFN-AAI-eduGAIN-metadata.xml" reloadInterval="3600">
+          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/> 
+        </MetadataProvider>
 
         <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
         
