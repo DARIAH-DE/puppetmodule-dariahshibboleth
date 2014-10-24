@@ -8,12 +8,6 @@ Provides the puppet configuration for Shibboleth.
 
 The module provides Shibboleth Service Provider setup.
 
-The module requires the following modules to be also present:
-* [puppetlabs/apt](https://forge.puppetlabs.com/puppetlabs/apt)
-* [puppetlabs/concat](https://forge.puppetlabs.com/puppetlabs/concat)
-* [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib)
-* [nanliu/staging](https://forge.puppetlabs.com/nanliu/staging)
-
 ## Setup
 
 Install the module to modules/dariahshibboleth.
