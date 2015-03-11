@@ -13,6 +13,8 @@ class dariahshibboleth::metadata (
     SetEnv isMemberOf \"${dariahshibboleth::fakedisMemberOf}\"
     SetEnv sn \"${dariahshibboleth::fakedlast}\"
     SetEnv REMOTE_USER \"${dariahshibboleth::fakedfirst}${dariahshibboleth::fakedlast}@dariah.local\"
+    SetEnv Shib-Session-Index \"_11223344556677889900aabbccddeeff\"
+    SetEnv Shib-Session-ID \"_11223344556677889900aabbccddeeff\"
   "
 
   if $dariahshibboleth::extend_MetadataGenerator {
