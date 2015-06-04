@@ -6,6 +6,7 @@
 #
 class dariahshibboleth (
     $enable             = true,
+    $hostname           = $::fqdn,
     $key                = '',
     $cert               = '',
     $fakeshib           = false,
@@ -22,10 +23,6 @@ class dariahshibboleth (
   include 'dariahshibboleth::install'
   include 'dariahshibboleth::config'
   include 'dariahshibboleth::metadata'
-
-
-
-
 
 
 }
