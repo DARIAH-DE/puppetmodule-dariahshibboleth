@@ -40,9 +40,21 @@ $mod_shibd_so = $::apache::apache_version ?
 ```
 Also don't forget to
 ```
-Redirect seeother /shibboleth /Shibboleth.sso/Metadata
+Alias /shibboleth /var/www/ShibbolethMetadata.xml
 ```
-or provide your own file (e.g. for additional AssertionConsumerService entries) at that URL.
+and add your metadata values to hiera:
+```
+dariahshibboleth::MetaData:
+  UIInfo_DisplayName_de: 'MY Service'
+  UIInfo_Description_de: 'Beschreibung meines Dienstes'
+  UIInfo_Description_en: 'Description of my service'
+  UIInfo_InformationURL_en: 'http://www.web.site'
+  ContactPerson_support_GivenName: 'support'
+  Organization_OrganizationName_en: 'MyOrg'
+  Organization_OrganizationDisplayName_en: 'My Organisation'
+  Organization_OrganizationURL_en: 'http://www.my.org'
+
+```
 
 you can also use the custom access denied-page:
 ```
@@ -55,7 +67,5 @@ ErrorDocument 403 /accessdenied.html
 
 Tested on Debian 7.4/7.6 and on Ubuntu 14.04.
 Relies on `apt`!
-
-
 
 

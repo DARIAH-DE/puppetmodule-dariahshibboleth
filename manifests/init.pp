@@ -14,9 +14,7 @@ class dariahshibboleth (
     $fakedlast          = '',
     $fakedmail          = '',
     $fakedisMemberOf    = '',
-    $custommetadatafile = '',
     $federation         = '',
-    $extend_MetadataGenerator = false,
   ) {
 
 
