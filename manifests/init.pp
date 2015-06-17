@@ -9,6 +9,8 @@ class dariahshibboleth (
     $hostname           = $::fqdn,
     $IdP_entityID       = 'https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth',
     $IdP_LOGINURL       = 'https://ldap-dariah.esc.rzg.mpg.de/Shibboleth.sso/Login',
+    $handlerURL_prefix  = '',
+    $discoveryURL       = "https://${::fqdn}/ds4b",
     $key                = '',
     $cert               = '',
     $fakeshib           = false,

@@ -13,13 +13,14 @@
 
     <ApplicationDefaults entityID="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/shibboleth"
                          REMOTE_USER="eppn persistent-id targeted-id"
-                         <% if scope.lookupvar('::dariahshibboleth::federation') != '' %>sessionHook="/Shibboleth.sso/AttrChecker"<%end %>>
+                         <% if scope.lookupvar('::dariahshibboleth::federation') != '' %>sessionHook="<%= scope.lookupvar('::dariahshibboleth::handlerURL_prefix') %>/Shibboleth.sso/AttrChecker"<%end %>>
 
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
-                  checkAddress="false" handlerSSL="true" cookieProps="; path=/; secure; HttpOnly">
+                  checkAddress="false" handlerSSL="true" cookieProps="https"
+                  handlerURL="<%= scope.lookupvar('::dariahshibboleth::handlerURL_prefix') %>/Shibboleth.sso">
 
 <% if scope.lookupvar('::dariahshibboleth::federation') != '' -%>
-            <SSO discoveryProtocol="SAMLDS" discoveryURL="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/ds4b">
+            <SSO discoveryProtocol="SAMLDS" discoveryURL="<%= scope.lookupvar('::dariahshibboleth::discoveryURL') %>">
               SAML2 
             </SSO>
 <% else -%>
@@ -41,7 +42,7 @@
 <% if scope.lookupvar('::dariahshibboleth::federation') != '' -%>
             <Handler type="AttributeChecker" Location="/AttrChecker" 
                      template="attrChecker.html" 
-                     attributes="eppn mail givenName" 
+                     attributes="eppn mail givenName sn" 
                      flushSession="true"/>
 <% end -%>
 

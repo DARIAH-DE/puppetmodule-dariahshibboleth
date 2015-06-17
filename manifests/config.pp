@@ -9,8 +9,6 @@ class dariahshibboleth::config (
 
   if $dariahshibboleth::enable {
 
-    $templateschooserstring = pick($dariahshibboleth::federation,'dariahidp')
-    
     file { '/etc/shibboleth/attribute-map.xml':
       ensure  => present,
       owner   => root,
