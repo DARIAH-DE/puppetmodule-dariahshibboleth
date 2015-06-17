@@ -7,6 +7,8 @@
 class dariahshibboleth (
     $enable             = true,
     $hostname           = $::fqdn,
+    $IdP_entityID       = 'https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth',
+    $IdP_LOGINURL       = 'https://ldap-dariah.esc.rzg.mpg.de/Shibboleth.sso/Login',
     $key                = '',
     $cert               = '',
     $fakeshib           = false,

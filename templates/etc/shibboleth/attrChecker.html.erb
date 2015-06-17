@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html 
-	PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
-	"DTD/xhtml1-strict.dtd">
-	
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta http-equiv="refresh" content="5; URL=https://ldap-dariah.esc.rzg.mpg.de/Shibboleth.sso/Login?target=/secure/UserAttributesCompletion.php%3ForiginalURL%3D<shibmlp target/>&entityID=<shibmlp entityID/>"/>
-	<link rel="stylesheet" type="text/css" href="<shibmlp styleSheet/>" />
-	<title>Insufficient Information</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<% if scope.lookupvar('::dariahshibboleth::federation') != '' -%>
+  <meta http-equiv="refresh" content="5; URL=<%= scope.lookupvar('::dariahshibboleth::IdP_LOGINURL') %>?target=/secure/UserAttributesCompletion.php%3ForiginalURL%3D<shibmlp target/>&entityID=<shibmlp entityID/>"/>
+<% end -%>
+  <link rel="stylesheet" type="text/css" href="<shibmlp styleSheet/>" />
+  <title>Insufficient Information</title>
 </head>
 
 <body>

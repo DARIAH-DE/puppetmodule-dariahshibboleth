@@ -66,18 +66,18 @@
         
     </afp:AttributeFilterPolicy>
 
-
-    <!-- deny every attribute except those from the Dariah IdP -->
+<% if scope.lookupvar('::dariahshibboleth::federation') != '' -%>
+    <!-- deny every attribute except those from our IdP -->
     <afp:AttributeFilterPolicy>
         <!-- This policy is in effect in all cases. -->
         <afp:PolicyRequirementRule xsi:type="NOT">
-            <Rule xsi:type="basic:AttributeIssuerString" value="https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth" />
+            <Rule xsi:type="basic:AttributeIssuerString" value="<%= scope.lookupvar('::dariahshibboleth::IdP_entityID') %>" />
         </afp:PolicyRequirementRule>
 
         <afp:AttributeRule attributeID="*">
             <afp:DenyValueRule xsi:type="ANY"/>
         </afp:AttributeRule>
     </afp:AttributeFilterPolicy>
-
+<% end -%>
 
 </afp:AttributeFilterPolicyGroup>

@@ -11,17 +11,12 @@ class dariahshibboleth::config (
 
     $templateschooserstring = pick($dariahshibboleth::federation,'dariahidp')
     
-    $shibboleth2_xml_erb  = pick($dariahshibboleth::customshibboleth2xmltemplate,"dariahshibboleth/etc/shibboleth/shibboleth2.xml_${templateschooserstring}.erb")
-    $attrChecker_html     = "puppet:///modules/dariahshibboleth/etc/shibboleth/attrChecker_${templateschooserstring}.html"
-    $attribute_map_xml    = 'puppet:///modules/dariahshibboleth/etc/shibboleth/attribute-map.xml'
-    $attribute_policy_xml = "puppet:///modules/dariahshibboleth/etc/shibboleth/attribute-policy_${templateschooserstring}.xml"
-
     file { '/etc/shibboleth/attribute-map.xml':
       ensure  => present,
       owner   => root,
       group   => root,
       mode    => '0644',
-      source  => $attribute_map_xml,
+      content => template('dariahshibboleth/etc/shibboleth/attribute-map.xml.erb'),
       require => Package['shibboleth'],
       notify  => Service['shibd'],
     }
@@ -31,7 +26,7 @@ class dariahshibboleth::config (
       owner   => root,
       group   => root,
       mode    => '0644',
-      source  => $attribute_policy_xml,
+      content => template('dariahshibboleth/etc/shibboleth/attribute-policy.xml.erb'),
       require => Package['shibboleth'],
       notify  => Service['shibd'],
     }
@@ -41,7 +36,7 @@ class dariahshibboleth::config (
       owner   => root,
       group   => root,
       mode    => '0644',
-      content => template($shibboleth2_xml_erb),
+      content => template('dariahshibboleth/etc/shibboleth/shibboleth2.xml.erb'),
       require => Package['shibboleth'],
       notify  => Service['shibd'],
     }
@@ -51,7 +46,7 @@ class dariahshibboleth::config (
       owner   => root,
       group   => root,
       mode    => '0644',
-      source  => $attrChecker_html,
+      content => template('dariahshibboleth/etc/shibboleth/attrChecker.html.erb'),
       require => Package['shibboleth'],
     }
     
