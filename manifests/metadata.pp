@@ -43,7 +43,7 @@ class dariahshibboleth::metadata (
 
   if $dariahshibboleth::enable {
 
-    file {'/var/etc/shibboleth/sp-metadata.xml':
+    file {'/etc/shibboleth/sp-metadata.xml':
       ensure  => present,
       owner   => root,
       group   => root,
