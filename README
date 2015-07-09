@@ -38,11 +38,15 @@ $mod_shibd_so = $::apache::apache_version ?
   lib => $mod_shibd_so,
 }
 ```
-Also don't forget to
+Also, the module create the SP's metadata in
+```
+/etc/shibboleth/sp-metadata.xml
+```
+You will probably copy that to your webroot and serve it:
 ```
 Alias /shibboleth /var/www/ShibbolethMetadata.xml
 ```
-and add your metadata values to hiera:
+to customize the metadata, add your values to hiera:
 ```
 dariahshibboleth::MetaData:
   UIInfo_DisplayName_de: 'MY Service'
@@ -67,5 +71,4 @@ ErrorDocument 403 /accessdenied.html
 
 Tested on Debian 7.4/7.6 and on Ubuntu 14.04.
 Relies on `apt`!
-
 
