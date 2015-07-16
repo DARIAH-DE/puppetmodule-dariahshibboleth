@@ -28,9 +28,9 @@ class dariahshibboleth::metadata (
   $md_iu_de = pick($shibd_metadata_hash['UIInfo_InformationURL_de'],$shibd_metadata_hash['UIInfo_InformationURL_en'],'http://www.dariah.eu')
   $md_iu_en = pick($shibd_metadata_hash['UIInfo_InformationURL_en'],$shibd_metadata_hash['UIInfo_InformationURL_de'],'http://www.dariah.eu')
   $md_t_gn = pick($shibd_metadata_hash['ContactPerson_technical_GivenName'],$shibd_metadata_hash['ContactPerson_support_GivenName'],'DARIAH Support')
-  $md_t_em = pick($shibd_metadata_hash['ContactPerson_technical_EmailAddress'],$shibd_metadata_hash['ContactPerson_support_EmailAddress'],$dariahcommon::adminmail)
+  $md_t_em = pick($shibd_metadata_hash['ContactPerson_technical_EmailAddress'],$shibd_metadata_hash['ContactPerson_support_EmailAddress'],$dariahcommon::adminmail,'root@localhost')
   $md_s_gn = pick($shibd_metadata_hash['ContactPerson_support_GivenName'],$shibd_metadata_hash['ContactPerson_technical_GivenName'],'DARIAH Support')
-  $md_s_em = pick($shibd_metadata_hash['ContactPerson_support_EmailAddress'],$shibd_metadata_hash['ContactPerson_technical_EmailAddress'],$dariahcommon::adminmail)
+  $md_s_em = pick($shibd_metadata_hash['ContactPerson_support_EmailAddress'],$shibd_metadata_hash['ContactPerson_technical_EmailAddress'],$dariahcommon::adminmail,'root@localhost')
 
   $ACS_Hosts = pick($shibd_metadata_hash['ACS_Hosts'],[])
 
