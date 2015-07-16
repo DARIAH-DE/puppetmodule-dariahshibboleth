@@ -1,0 +1,23 @@
+{
+  "name": "dariah-dariahshibboleth",
+  "version": "0.0.2",
+  "author": "Carsten Thiel",
+  "license": "Apache-2.0",
+  "summary": "DARIAH-DE puppet module configuring shibboleth SP",
+  "source": "https://projects.gwdg.de/projects/dariah-puppetmodule-shibboleth/repository",
+  "project_page": "https://projects.gwdg.de/projects/dariah-puppetmodule-shibboleth",
+  "issues_url": "https://projects.gwdg.de/projects/dariah-puppetmodule-shibboleth/issues",
+  "tags": ["dariah", "shibboleth","sso"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem": "Ubuntu",
+    "operatingsystemrelease": [ "14.04", "12.04" ]
+    }
+   ],
+  "dependencies": [
+    { "name": "puppetlabs/apt", "version_requirement": ">=1.8.0" },
+    { "name": "puppetlabs/concat", "version_requirement": ">=1.2.3" },
+    { "name": "puppetlabs/stdlib", "version_requirement": ">=4.6.0" }
+  ]
+}
+

@@ -5,10 +5,9 @@
 # DFN Test-AAI is supported through dariahshibboleth::federation: 'dfntestaai'
 #
 class dariahshibboleth (
-    $enable             = true,
     $hostname           = $::fqdn,
-    $IdP_entityID       = 'https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth',
-    $IdP_LOGINURL       = 'https://ldap-dariah.esc.rzg.mpg.de/Shibboleth.sso/Login',
+    $IdP_entityID       = $dariahshibboleth::params::IdP_entityID,
+    $IdP_LOGINURL       = $dariahshibboleth::params::IdP_LOGINURL,
     $handlerURL_prefix  = '',
     $discoveryURL       = "https://${::fqdn}/ds4b",
     $key                = '',
@@ -18,14 +17,19 @@ class dariahshibboleth (
     $fakedlast          = '',
     $fakedmail          = '',
     $fakedisMemberOf    = '',
-    $federation         = '',
-  ) {
+    $federation         = $dariahshibboleth::params::federation,
+  ) inherits dariahshibboleth::params {
 
 
-  include 'dariahshibboleth::install'
-  include 'dariahshibboleth::config'
-  include 'dariahshibboleth::metadata'
-
+  class { 'dariahshibboleth::install':
+  }->
+  class { 'dariahshibboleth::config':
+    cert       => $cert,
+    key        => $key,
+    federation => $federation,
+  }~>
+  class { 'dariahshibboleth::service':
+  }
 
 }
 
