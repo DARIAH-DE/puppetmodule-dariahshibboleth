@@ -19,7 +19,6 @@ class dariahshibboleth::install (
       include_src => false,
       key         => '294E37D154156E00FB96D7AA26C3C46915B76742',
       key_source  => 'http://pkg.switch.ch/switchaai/SWITCHaai-swdistrib.asc',
-      before      => Package['shibboleth'],
     }
   }
 
@@ -60,15 +59,13 @@ baseurl=http://download.opensuse.org/repositories/security:/shibboleth/openSUSE_
     owner  => root,
     group  => root,
     mode   => '0755',
-  }
-
+  }->
   file { '/opt/dariahshibboleth/accessdenied.html':
     ensure  => directory,
     owner   => root,
     group   => root,
     mode    => '0644',
     source  => 'puppet:///modules/dariahshibboleth/opt/dariahshibboleth/accessdenied.html',
-    require => File['/opt/dariahshibboleth'],
   }
 
 }

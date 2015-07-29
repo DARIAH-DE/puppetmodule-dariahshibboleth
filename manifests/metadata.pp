@@ -41,28 +41,16 @@ class dariahshibboleth::metadata (
     $shibbolethcert = ''
   }
 
-  if $dariahshibboleth::enable {
-
-    file {'/etc/shibboleth/sp-metadata.xml':
-      ensure  => present,
-      owner   => root,
-      group   => root,
-      mode    => '0644',
-      content => template('dariahshibboleth/etc/shibboleth/sp-metadata.xml.erb'),
-      require => Package['shibboleth'],
-    }
-
-    file { '/etc/shibboleth/dariah-idp-metadata.xml':
-      ensure  => present,
-      owner   => root,
-      group   => root,
-      mode    => '0644',
-      source  => 'puppet:///modules/dariahshibboleth/etc/shibboleth/dariah-idp-metadata.xml',
-      require => Package['shibboleth'],
-      notify  => Service['shibd'],
-    }
-
+  file { '/etc/shibboleth/dariah-idp-metadata.xml':
+    ensure  => present,
+    owner   => root,
+    group   => root,
+    mode    => '0644',
+    source  => 'puppet:///modules/dariahshibboleth/etc/shibboleth/dariah-idp-metadata.xml',
+    require => Package['shibboleth'],
+    notify  => Service['shibd'],
   }
+
 }
 
 

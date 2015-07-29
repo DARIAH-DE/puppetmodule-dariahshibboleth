@@ -18,15 +18,17 @@ class dariahshibboleth (
     $fakedmail          = '',
     $fakedisMemberOf    = '',
     $federation         = $dariahshibboleth::params::federation,
+    $edugain_enabled    = false,
   ) inherits dariahshibboleth::params {
 
 
   class { 'dariahshibboleth::install':
   }->
   class { 'dariahshibboleth::config':
-    cert       => $cert,
-    key        => $key,
-    federation => $federation,
+    cert            => $cert,
+    key             => $key,
+    federation      => $federation,
+    edugain_enabled => $edugain_enabled,
   }~>
   class { 'dariahshibboleth::service':
   }

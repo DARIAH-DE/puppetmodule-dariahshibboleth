@@ -3,10 +3,11 @@
 # Class providing Shibboleth configuration
 #
 class dariahshibboleth::config (
-  $federation = undef,
-  $cert       = undef,
-  $key        = undef,
-  ) inherits dariahshibboleth::params {
+  $federation      = undef,
+  $edugain_enabled = undef,
+  $cert            = undef,
+  $key             = undef,
+) inherits dariahshibboleth::params {
 
   include 'dariahshibboleth::metadata'
 
@@ -62,21 +63,20 @@ class dariahshibboleth::config (
     }
   }
 
-  if $federation {
+  file { '/etc/shibboleth/dfn-aai.pem':
+    ensure => present,
+    owner  => '_shibd',
+    group  => 'root',
+    mode   => '0644',
+    source => 'puppet:///modules/dariahshibboleth/etc/shibboleth/dfn-aai.pem',
+  }
 
-    file { '/etc/shibboleth/dfn-aai.pem':
-      ensure => present,
-      owner  => '_shibd',
-      group  => 'root',
-      mode   => '0644',
-      source => 'puppet:///modules/dariahshibboleth/etc/shibboleth/dfn-aai.pem',
-    }
+  if $federation {
     staging::deploy { 'ds4b.tgz':
       source  => 'puppet:///modules/dariahshibboleth/opt/dariahshibboleth/ds4b.tgz',
       target  => '/var/www',
       creates => '/var/www/ds4b',
     }
-
   }
 
 }

@@ -52,21 +52,7 @@
             helpLocation="/about.html"
             styleSheet="/shibboleth-sp/main.css"/>
 
-<% if scope.lookupvar('::dariahshibboleth::federation') == 'dfnbasicaai' -%>
-
-        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Basic-metadata.xml"
-                          backingFilePath="DFN-AAI-Basic-metadata.xml" reloadInterval="3600">
-          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
-        </MetadataProvider>
-
-        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-eduGAIN-metadata.xml"
-                          backingFilePath="DFN-AAI-eduGAIN-metadata.xml" reloadInterval="3600">
-          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/> 
-        </MetadataProvider>
-
-<% elsif scope.lookupvar('::dariahshibboleth::federation') == 'dfntestaai' -%>
+<% if scope.lookupvar('::dariahshibboleth::federation') == 'dfntestaai' -%>
 
         <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Test-metadata.xml"
                           backingFilePath="DFN-AAI-Test-metadata.xml" reloadInterval="7200">
@@ -75,7 +61,27 @@
         </MetadataProvider>
 
 <% else -%>
-        <MetadataProvider type="XML" file="dariah-idp-metadata.xml"/>
+
+        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Basic-metadata.xml"
+                          backingFilePath="DFN-AAI-Basic-metadata.xml" reloadInterval="3600">
+          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
+    <% if scope.lookupvar('::dariahshibboleth::federation') == '' -%>
+          <MetadataFilter type="Whitelist">
+            <Include><%= scope.lookupvar('::dariahshibboleth::IdP_entityID') %></Include>
+          </MetadataFilter>
+    <% end -%>
+        </MetadataProvider>
+
+    <% if scope.lookupvar('::dariahshibboleth::edugain_enabled') -%>
+
+        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-eduGAIN-metadata.xml"
+                          backingFilePath="DFN-AAI-eduGAIN-metadata.xml" reloadInterval="3600">
+          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/> 
+        </MetadataProvider>
+
+    <% end -%>
 
 <% end -%>
 
