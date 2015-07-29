@@ -6,10 +6,10 @@
 #
 class dariahshibboleth (
     $hostname           = $::fqdn,
-    $IdP_entityID       = $dariahshibboleth::params::IdP_entityID,
-    $IdP_LOGINURL       = $dariahshibboleth::params::IdP_LOGINURL,
-    $handlerURL_prefix  = '',
-    $discoveryURL       = "https://${::fqdn}/ds4b",
+    $idp_entityid       = $dariahshibboleth::params::idp_entityid,
+    $idp_loginurl       = $dariahshibboleth::params::idp_loginurl,
+    $handlerurl_prefix  = '',
+    $discoveryurl       = "https://${::fqdn}/ds4b",
     $key                = '',
     $cert               = '',
     $fakeshib           = false,
@@ -17,18 +17,22 @@ class dariahshibboleth (
     $fakedlast          = '',
     $fakedmail          = '',
     $fakedisMemberOf    = '',
-    $federation         = $dariahshibboleth::params::federation,
-    $edugain_enabled    = false,
+    $dfn_metadata       = $dariahshibboleth::params::dfn_metadata,
+    $federation_enabled = $dariahshibboleth::params::federation_enabled,
+    $edugain_enabled    = $dariahshibboleth::params::edugain_enabled,
   ) inherits dariahshibboleth::params {
 
 
   class { 'dariahshibboleth::install':
   }->
   class { 'dariahshibboleth::config':
-    cert            => $cert,
-    key             => $key,
-    federation      => $federation,
-    edugain_enabled => $edugain_enabled,
+    hostname           => $hostname,
+    idp_entityid       => $idp_entityid,
+    cert               => $cert,
+    key                => $key,
+    dfn_metadata       => $dfn_metadata,
+    federation_enabled => $federation_enabled,
+    edugain_enabled    => $edugain_enabled,
   }~>
   class { 'dariahshibboleth::service':
   }

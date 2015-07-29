@@ -4,10 +4,12 @@
 #
 class dariahshibboleth::params {
 
-  $IdP_entityID = 'https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth'
-  $IdP_LOGINURL = 'https://ldap-dariah.esc.rzg.mpg.de/Shibboleth.sso/Login'
+  $idp_entityid = 'https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth'
+  $idp_loginurl = 'https://ldap-dariah.esc.rzg.mpg.de/Shibboleth.sso/Login'
 
-  $federation   = undef
+  $dfn_metadata       = 'Basic'
+  $federation_enabled = false
+  $edugain_enabled    = false
 
   $fakeshibdata = "
     SetEnv cn \"${dariahshibboleth::fakedfirst} ${dariahshibboleth::fakedlast}\"
