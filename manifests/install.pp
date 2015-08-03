@@ -18,6 +18,7 @@ class dariahshibboleth::install (
         include_src => false,
         key         => '294E37D154156E00FB96D7AA26C3C46915B76742',
         key_source  => 'http://pkg.switch.ch/switchaai/SWITCHaai-swdistrib.asc',
+        before      => Package['shibboleth'],
       }
     }
     default: {

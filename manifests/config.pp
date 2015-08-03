@@ -16,6 +16,7 @@ class dariahshibboleth::config (
   $cert               = undef,
   $key                = undef,
   $dfn_metadata       = undef,
+  $mail_contact       = undef,
 ) inherits dariahshibboleth::params {
 
   file { '/etc/shibboleth/attribute-map.xml':

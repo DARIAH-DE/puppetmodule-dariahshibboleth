@@ -11,6 +11,7 @@
 # @param idp_entityid The enityID of the IdP to use.
 # @param idp_loginurl
 # @param key The shibboleth SP's key.
+# @param mail_contact The contact mail address for metadata.
 #
 class dariahshibboleth (
     $hostname           = $::fqdn,
@@ -24,6 +25,7 @@ class dariahshibboleth (
     $federation_enabled = $dariahshibboleth::params::federation_enabled,
     $edugain_enabled    = $dariahshibboleth::params::edugain_enabled,
     $fakeshibdata       = $dariahshibboleth::params::fakeshibdata,
+    $mail_contact       = $dariahshibboleth::params::mail_contact,
   ) inherits dariahshibboleth::params {
 
 
@@ -37,6 +39,7 @@ class dariahshibboleth (
     dfn_metadata       => $dfn_metadata,
     federation_enabled => $federation_enabled,
     edugain_enabled    => $edugain_enabled,
+    mail_contact       => $mail_contact,
   }~>
   class { 'dariahshibboleth::service':
   }
