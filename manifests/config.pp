@@ -1,6 +1,12 @@
-# == Class dariahshibboleth::config
+# This private class configures the shibboleth SP.
 #
-# Class providing Shibboleth configuration
+# @param dfn_metadata The DFN metadata set to use.
+# @param cert The shibboleth SP's key.
+# @param edugain_enabled Enables the use of eduGain metafederation.
+# @param federation_enabled Enables the use of federation metadata.
+# @param hostname The hostname to use in building the SP metadata.
+# @param idp_entityid The enityID of the IdP to use.
+# @param key The shibboleth SP's key.
 #
 class dariahshibboleth::config (
   $hostname           = undef,
@@ -11,8 +17,6 @@ class dariahshibboleth::config (
   $key                = undef,
   $dfn_metadata       = undef,
 ) inherits dariahshibboleth::params {
-
-  include 'dariahshibboleth::metadata'
 
   file { '/etc/shibboleth/attribute-map.xml':
     ensure  => present,
@@ -53,6 +57,20 @@ class dariahshibboleth::config (
       group  => 'root',
       mode   => '0644',
       source => $dariahshibboleth::cert,
+    }
+
+    # parse the cert into variable for use by template below
+    $_shibcertfilenameonly = regsubst($cert,'puppet:///modules/','')
+    $_shibbolethcert = file($_shibcertfilenameonly)
+
+    $shibd_metadata = $::dariahshibboleth::params::shibd_metadata
+
+    file { '/opt/dariahshibboleth/sp-metadata.xml':
+      ensure  => present,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('dariahshibboleth/opt/dariahshibboleth/sp-metadata.xml.erb'),
     }
   }
 
