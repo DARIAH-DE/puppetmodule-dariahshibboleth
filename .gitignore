@@ -1,1 +1,4 @@
 log
+.vagrant
+spec/fixtures/
+Gemfile.lock

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
  
-group :development, :unit_tests do
+group :development, :tests do
+  gem 'rspec',                   :require => false
   gem 'rspec-core',              :require => false
   gem 'rspec-puppet',            :require => false
   gem 'puppetlabs_spec_helper',  :require => false
@@ -10,6 +11,7 @@ group :development, :unit_tests do
   gem 'metadata-json-lint',      :require => false
   gem 'puppet-syntax',           :require => false
   gem 'puppet-lint',             :require => false
+  gem 'puppet',                  :require => false
 end
 
 group :system_tests do

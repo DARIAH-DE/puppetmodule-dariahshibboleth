@@ -21,3 +21,11 @@ module RSpecPuppetDependencies
 
 end
 
+if ARGV[0] == 'install_to_fixtures' 
+  RSpecPuppetDependencies.dependencies.each do |dependency|
+    installcommand  = "puppet module install " + dependency['name'] + " -v '" + dependency['version_requirement'] + "' -i spec/fixtures/modules"
+    puts installcommand
+    system(installcommand)
+  end 
+end
+
