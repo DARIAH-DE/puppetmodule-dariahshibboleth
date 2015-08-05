@@ -64,4 +64,4 @@ Rake::Task["coverage"].clear
 Rake::Task["metadata"].clear
 Rake::Task["spec"].clear
 Rake::Task["spec_clean"].clear
-Rake::Task["spec_prep"].clear
+#Rake::Task["spec_prep"].clear
