@@ -66,12 +66,12 @@
         
     </afp:AttributeFilterPolicy>
 
-<% if scope.lookupvar('::dariahshibboleth::federation') != '' -%>
+<% if @federation_enabled -%>
     <!-- deny every attribute except those from our IdP -->
     <afp:AttributeFilterPolicy>
         <!-- This policy is in effect in all cases. -->
         <afp:PolicyRequirementRule xsi:type="NOT">
-            <Rule xsi:type="basic:AttributeIssuerString" value="<%= scope.lookupvar('::dariahshibboleth::IdP_entityID') %>" />
+            <Rule xsi:type="basic:AttributeIssuerString" value="<%= @idp_entityid %>" />
         </afp:PolicyRequirementRule>
 
         <afp:AttributeRule attributeID="*">

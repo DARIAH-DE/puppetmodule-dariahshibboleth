@@ -2,13 +2,18 @@
 #
 class dariahshibboleth::params {
 
+  # define the DARIAH-DE IdP
   $idp_entityid = 'https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth'
   $idp_loginurl = 'https://ldap-dariah.esc.rzg.mpg.de/Shibboleth.sso/Login'
 
+  # default to using metadata from DFN Basic federation but no federation setup
   $dfn_metadata       = 'Basic'
   $federation_enabled = false
   $edugain_enabled    = false
   $mail_contact       = 'root@localhost'
+
+  #default REMOTE_USER preference list
+  $remote_user_pref_list = 'eppn persistent-id targeted-id'
 
   # metadata, values looked up from hiera
   $shibd_metadata_hash = hiera_hash('dariahshibboleth::MetaData',{no => 'data'})

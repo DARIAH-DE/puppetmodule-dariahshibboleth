@@ -94,7 +94,6 @@ $mod_shibd_so = $::apache::apache_version ?
 
 
 
-
 ##Reference
 
 ###Classes
@@ -125,9 +124,13 @@ The URL used in discovery, when using federation.
 Set to `true` to enable loading of eduGain Metadata from DFN.
 This option is only respected when `dfn_metadata` is `Basic` and `federation_enabled` is `true`.
 
-#####`federation_enabled`
-Set to `true` to enable full federation support of the DFN federation selected by `dfn_metadata`.
-Defaults to `false`.
+#####`handlerurl_prefix`
+Sets the prefix in the mount path of the SP's HandlerURL.
+Defaults to empty string.
+
+#####`hostname`
+The hostname used in building the SP metadata, needs to match the cert's fqdn.
+Defaults to the system's fully qualified domain name.
 
 #####`hostname`
 The hostname used in building the SP metadata, needs to match the cert's fqdn.
@@ -140,11 +143,17 @@ This is used only if not in federation setup for whitelisting.
 #####`key`
 Accepts the key file for the SP, as created by `shib-keygen`.
 
+#####`mail_contact`
+The mail address to be used as contact address in the SP's metadata.
+Defaults to `root@localhost`.
 
+#####`remote_user_pref_list`
+Accepts a string containing the list of attributes in order of preference for setting the REMOTE_USER variable.
+Default to `eppn persistent-id targeted-id`.
 
 ##Limitations
 
-The module has been developed and tested with Puppet 3.7 on Ubuntu 14.04.
+The module has been developed and tested with Puppet 3.8 on Ubuntu 14.04.
 
 ##Development
 
@@ -181,3 +190,4 @@ dariahshibboleth::FakeCredentials:
   isMemberOf: 'group1;group2'
 ```
 You can access the relevant Apache lines from the variable `$::dariahshibboleth::fakeshibdata`, which defaults to the above.
+

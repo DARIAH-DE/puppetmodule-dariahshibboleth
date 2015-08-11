@@ -2,20 +2,51 @@ require 'spec_helper'
 
 describe "dariahshibboleth::config" do
 
+  context 'default settings' do
+    it do
+      should contain_file('/etc/shibboleth/attribute-map.xml')
+    end
+    it do
+      should contain_file('/etc/shibboleth/attribute-policy.xml')
+    end
+    it do
+      should contain_file('/etc/shibboleth/attrChecker.html')
+    end
+    it do
+      should contain_file('/etc/shibboleth/dfn-aai.pem')
+    end
+  end
+
+  context 'with hostname set' do
+    let(:params) { {:hostname => 'foobar'} }
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/<ApplicationDefaults entityID="https:\/\/foobar\/shibboleth"/)
+    end
+  end
+
   context 'with federation_enabled => true' do
-    let(:params) { {:federation_enabled => true} }
+    let(:params) { {:federation_enabled => true, :idp_entityid => 'foobar', :discoveryurl => 'barfoo'} }
     it do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
         .with_content(/<Handler type="AttributeChecker"/) \
-        .with_content(/AttributeResolver type="SimpleAggregation"/)
+        .with_content(/AttributeResolver type="SimpleAggregation"/) \
+        .with_content(/sessionHook="\/Shibboleth\.sso\/AttrChecker">/) \
+        .with_content(/<SSO discoveryProtocol="SAMLDS" discoveryURL="barfoo">/)
+    end
+    it do
+      should contain_file('/etc/shibboleth/attribute-policy.xml') \
+        .with_content(/<afp:PolicyRequirementRule xsi:type="NOT">/) \
+        .with_content(/<Rule xsi:type="basic:AttributeIssuerString" value="foobar" \/>/)
     end
   end
 
   context 'with federation_enabled => false' do
-    let(:params) { {:federation_enabled => false} }
+    let(:params) { {:federation_enabled => false, :idp_entityid => 'foobar'} }
     it do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
-        .with_content(/MetadataFilter type="Whitelist"/)
+        .with_content(/MetadataFilter type="Whitelist"/) \
+        .with_content(/<SSO entityID="foobar">/)
     end
   end
 
@@ -34,6 +65,62 @@ describe "dariahshibboleth::config" do
         .with_content(/<MetadataProvider type="XML" uri="https:\/\/www.aai.dfn.de\/fileadmin\/metadata\/DFN-AAI-Basic-metadata.xml"/)
     end
   end
+
+  context 'with federation Basic and edugain_enabled' do
+    let(:params) { {:federation_enabled => true, :dfn_metadata => 'Basic', :edugain_enabled => true} }
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/<MetadataProvider type="XML" uri="https:\/\/www.aai.dfn.de\/fileadmin\/metadata\/DFN-AAI-eduGAIN-metadata.xml"/)
+    end
+  end
+
+  context 'serve SP not at root but add a prefex to handler' do
+    let(:params) { {:handlerurl_prefix => '/foobar' } }
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/handlerURL="\/foobar\/Shibboleth.sso">/)
+    end
+  end
+
+  context 'with key' do
+    let(:params) { {:key => 'keyfile' } }
+    it do
+      should contain_file('/etc/shibboleth/sp-key.pem').with({
+        'ensure' => 'present',
+        'owner'  => '_shibd',
+        'group'  => 'root',
+        'mode'   => '0400',
+      })
+    end
+  end
+
+  context 'with cert' do
+    let(:params) { {
+      :cert => 'puppet:///modules/dariahshibboleth/spec/sp-cert.pem',
+      :hostname => 'foobar'
+    } }
+    it do
+      should contain_file('/etc/shibboleth/sp-cert.pem').with({
+        'ensure' => 'present',
+        'owner'  => 'root',
+        'group'  => 'root',
+        'mode'   => '0644',
+      })
+      should contain_file('/opt/dariahshibboleth/sp-metadata.xml') \
+        .with_content(/<ds:X509Certificate>\s*FooBar\s*<\/ds:X509Certificate>/) \
+        .with_content(/entityID="https:\/\/foobar\/shibboleth">/) \
+        .with_content(/<ds:KeyName>foobar<\/ds:KeyName>/)
+    end
+  end
+
+  context 'with changed REMOTE_USER preference' do
+    let(:params) { {:remote_user_pref_list => 'foo bar' } }
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/REMOTE_USER="foo bar"/)
+    end
+  end
+
 
 end
 

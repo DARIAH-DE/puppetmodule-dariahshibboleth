@@ -1,22 +1,30 @@
 # This private class configures the shibboleth SP.
 #
 # @param dfn_metadata The DFN metadata set to use.
+# @param discoveryurl URL of the discovery service for federated use.
 # @param cert The shibboleth SP's key.
 # @param edugain_enabled Enables the use of eduGain metafederation.
 # @param federation_enabled Enables the use of federation metadata.
+# @param handlerurl_prefix Mountpath for SP.
 # @param hostname The hostname to use in building the SP metadata.
 # @param idp_entityid The enityID of the IdP to use.
 # @param key The shibboleth SP's key.
+# @param mail_contact Email address of contact person.
+# @param remote_user_pref_list The preference list for REMOTE_USER.
 #
 class dariahshibboleth::config (
-  $hostname           = undef,
-  $idp_entityid       = undef,
-  $federation_enabled = undef,
-  $edugain_enabled    = undef,
-  $cert               = undef,
-  $key                = undef,
-  $dfn_metadata       = undef,
-  $mail_contact       = undef,
+  $hostname              = undef,
+  $idp_entityid          = undef,
+  $federation_enabled    = undef,
+  $edugain_enabled       = undef,
+  $cert                  = undef,
+  $key                   = undef,
+  $dfn_metadata          = undef,
+  $mail_contact          = undef,
+  $discoveryurl          = undef,
+  $handlerurl_prefix     = undef,
+  $remote_user_pref_list = undef,
+  
 ) inherits dariahshibboleth::params {
 
   file { '/etc/shibboleth/attribute-map.xml':
