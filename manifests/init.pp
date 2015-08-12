@@ -9,7 +9,7 @@
 # @param handlerurl_prefix
 # @param hostname The hostname to use in building the SP metadata.
 # @param idp_entityid The enityID of the IdP to use.
-# @param idp_loginurl
+# @param idp_loginurl LoginURL of IdP for AttrChecker in federation.
 # @param key The shibboleth SP's key.
 # @param mail_contact The contact mail address for metadata.
 # @param remote_user_pref_list The preference list for REMOTE_USER.
@@ -36,6 +36,7 @@ class dariahshibboleth (
   class { 'dariahshibboleth::config':
     hostname              => $hostname,
     idp_entityid          => $idp_entityid,
+    idp_loginurl          => $idp_loginurl,
     cert                  => $cert,
     key                   => $key,
     dfn_metadata          => $dfn_metadata,

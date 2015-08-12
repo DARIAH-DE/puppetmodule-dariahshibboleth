@@ -6,8 +6,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<% if scope.lookupvar('::dariahshibboleth::federation') != '' -%>
-  <meta http-equiv="refresh" content="5; URL=<%= scope.lookupvar('::dariahshibboleth::IdP_LOGINURL') %>?target=/secure/UserAttributesCompletion.php%3ForiginalURL%3D<shibmlp target/>&entityID=<shibmlp entityID/>"/>
+<% if @federation_enabled %>
+  <meta http-equiv="refresh" content="5; URL=<%= @idp_loginurl %>?target=/secure/UserAttributesCompletion.php%3ForiginalURL%3D<shibmlp target/>&entityID=<shibmlp entityID/>"/>
 <% end -%>
   <link rel="stylesheet" type="text/css" href="<shibmlp styleSheet/>" />
   <title>Insufficient Information</title>

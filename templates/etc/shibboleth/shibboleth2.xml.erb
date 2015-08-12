@@ -20,12 +20,12 @@
                   handlerURL="<%= @handlerurl_prefix %>/Shibboleth.sso">
 
 <% if @federation_enabled %>
-  <%# Use discovery Service -%>
+  <%-# Use discovery Service -%>
             <SSO discoveryProtocol="SAMLDS" discoveryURL="<%= @discoveryurl %>">
               SAML2 
             </SSO>
 <% else -%>
-  <%# Just go to the IdP -%>
+  <%-# Just go to the IdP -%>
             <SSO entityID="<%= @idp_entityid %>">
               SAML2
             </SSO>
@@ -42,7 +42,7 @@
             <Handler type="DiscoveryFeed" Location="/DiscoFeed"/>
 
 <% if @federation_enabled %>
-  <%# Make sure we have all attributes we need -- not all IdPs release them -%>
+  <%-# Make sure we have all attributes we need -- not all IdPs release them -%>
             <Handler type="AttributeChecker" Location="/AttrChecker" 
                      template="attrChecker.html" 
                      attributes="eppn mail givenName sn" 
@@ -56,18 +56,18 @@
             styleSheet="/shibboleth-sp/main.css"/>
 
 <% if @dfn_metadata == 'Test' -%>
-  <%# Load metadata for Test federation -%>
+  <%-# Load metadata for Test federation -%>
         <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Test-metadata.xml"
                           backingFilePath="DFN-AAI-Test-metadata.xml" reloadInterval="7200">
 <% else -%>
-  <%# Load metadata for Basic federation -%>
+  <%-# Load metadata for Basic federation -%>
         <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Basic-metadata.xml"
                           backingFilePath="DFN-AAI-Basic-metadata.xml" reloadInterval="3600">
 <% end -%>
           <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
           <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
 <% if not @federation_enabled %>
-  <%# Whithout federation we need only our IdP, not all of them -%>
+  <%-# Whithout federation we need only our IdP, not all of them -%>
           <MetadataFilter type="Whitelist">
             <Include><%= @idp_entityid %></Include>
           </MetadataFilter>
@@ -87,7 +87,7 @@
         <AttributeResolver type="Query" subjectMatch="true"/>
 
 <% if @federation_enabled -%>
-  <%# Attribute Aggregation enforcing isMemberOf from DARIAH IdP -%>
+  <%-# Attribute Aggregation enforcing isMemberOf from DARIAH IdP -%>
         <AttributeResolver type="SimpleAggregation" 
                            attributeId="eppn"
                            format="urn:oid:1.3.6.1.4.1.5923.1.1.1.6">

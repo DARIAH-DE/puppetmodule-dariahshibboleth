@@ -8,6 +8,7 @@
 # @param handlerurl_prefix Mountpath for SP.
 # @param hostname The hostname to use in building the SP metadata.
 # @param idp_entityid The enityID of the IdP to use.
+# @param idp_loginurl LoginURL of IdP for AttrChecker in federation.
 # @param key The shibboleth SP's key.
 # @param mail_contact Email address of contact person.
 # @param remote_user_pref_list The preference list for REMOTE_USER.
@@ -15,6 +16,7 @@
 class dariahshibboleth::config (
   $hostname              = undef,
   $idp_entityid          = undef,
+  $idp_loginurl          = undef,
   $federation_enabled    = undef,
   $edugain_enabled       = undef,
   $cert                  = undef,

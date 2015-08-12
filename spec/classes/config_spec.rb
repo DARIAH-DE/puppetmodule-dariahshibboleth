@@ -67,10 +67,12 @@ describe "dariahshibboleth::config" do
   end
 
   context 'with federation Basic and edugain_enabled' do
-    let(:params) { {:federation_enabled => true, :dfn_metadata => 'Basic', :edugain_enabled => true} }
+    let(:params) { {:federation_enabled => true, :dfn_metadata => 'Basic', :edugain_enabled => true, :idp_loginurl => 'https://foor.bar/'} }
     it do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
         .with_content(/<MetadataProvider type="XML" uri="https:\/\/www.aai.dfn.de\/fileadmin\/metadata\/DFN-AAI-eduGAIN-metadata.xml"/)
+      should contain_file('/etc/shibboleth/attrChecker.html') \
+        .with_content(/<meta http-equiv="refresh" content="5; URL=https:\/\/foor.bar\/\?target=\/secure\/UserAttributesCompletion.php%3ForiginalURL%3D<shibmlp target\/>&entityID=<shibmlp entityID\/>"\/>/)
     end
   end
 
