@@ -5,7 +5,8 @@
 # @param cert The shibboleth SP's key.
 # @param edugain_enabled Enables the use of eduGain metafederation.
 # @param federation_enabled Enables the use of federation metadata.
-# @param handlerurl_prefix Mountpath for SP.
+# @param handlerssl Accepts true or false for Shibboleth's setting
+# @param handlerurl_prefix Mountpoint of the shibboleth handler.
 # @param hostname The hostname to use in building the SP metadata.
 # @param idp_entityid The enityID of the IdP to use.
 # @param idp_loginurl LoginURL of IdP for AttrChecker in federation.
@@ -26,7 +27,7 @@ class dariahshibboleth::config (
   $discoveryurl          = undef,
   $handlerurl_prefix     = undef,
   $remote_user_pref_list = undef,
-  
+  $handlerssl            = undef,
 ) inherits dariahshibboleth::params {
 
   file { '/etc/shibboleth/attribute-map.xml':

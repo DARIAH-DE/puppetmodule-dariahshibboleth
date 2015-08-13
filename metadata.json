@@ -1,6 +1,6 @@
 {
   "name": "dariah-dariahshibboleth",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Carsten Thiel",
   "license": "Apache-2.0",
   "summary": "DARIAH-DE puppet module configuring shibboleth SP",

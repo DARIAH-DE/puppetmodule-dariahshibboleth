@@ -15,6 +15,11 @@ describe "dariahshibboleth::config" do
     it do
       should contain_file('/etc/shibboleth/dfn-aai.pem')
     end
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/handlerSSL="true" cookieProps="https"/)
+    end
+ 
   end
 
   context 'with hostname set' do
@@ -122,6 +127,15 @@ describe "dariahshibboleth::config" do
         .with_content(/REMOTE_USER="foo bar"/)
     end
   end
+
+  context 'with https disbaled' do
+    let(:params) { {:handlerssl => 'false'} }
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/handlerSSL="false" cookieProps="http"/)
+    end
+  end
+
 
 
 end

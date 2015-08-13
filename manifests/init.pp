@@ -6,7 +6,8 @@
 # @param discoveryurl
 # @param edugain_enabled Enables the use of eduGain metafederation.
 # @param federation_enabled Enables the use of federation metadata.
-# @param handlerurl_prefix
+# @param handlerssl Accepts true or false for Shibboleth's setting
+# @param handlerurl_prefix Mountpoint of the shibboleth handler.
 # @param hostname The hostname to use in building the SP metadata.
 # @param idp_entityid The enityID of the IdP to use.
 # @param idp_loginurl LoginURL of IdP for AttrChecker in federation.
@@ -28,6 +29,7 @@ class dariahshibboleth (
     $fakeshibdata          = $dariahshibboleth::params::fakeshibdata,
     $mail_contact          = $dariahshibboleth::params::mail_contact,
     $remote_user_pref_list = $dariahshibboleth::params::remote_user_pref_list,
+    $handlerssl            = true,
   ) inherits dariahshibboleth::params {
 
 
