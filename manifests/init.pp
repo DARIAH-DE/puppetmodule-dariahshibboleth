@@ -47,10 +47,10 @@ class dariahshibboleth (
     mail_contact          => $mail_contact,
     discoveryurl          => $discoveryurl,
     handlerurl_prefix     => $handlerurl_prefix,
+    handlerssl            => $handlerssl,
     remote_user_pref_list => $remote_user_pref_list,
   }~>
   class { 'dariahshibboleth::service':
   }
 
 }
-
