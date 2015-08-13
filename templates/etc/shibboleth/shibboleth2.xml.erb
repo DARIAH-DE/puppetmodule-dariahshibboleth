@@ -16,7 +16,7 @@
                          <% if @federation_enabled %>sessionHook="<%= @handlerurl_prefix %>/Shibboleth.sso/AttrChecker"<%end %>>
 
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
-<% if @federation_enabled %>
+<% if @federation_enabled -%>
   <%-# Use SSL -%>
                   checkAddress="false" handlerSSL="true" cookieProps="https"
 <% else -%>
