@@ -86,6 +86,9 @@ $mod_shibd_so = $::apache::apache_version ?
   '2.4'   => 'mod_shib_24.so',
   default => 'mod_shib_22.so',
 }
+package { 'libapache2-mod-shib2': 
+  ensure => absent
+}
 ::apache::mod { 'shib2':
   id  => 'mod_shib',
   lib => $mod_shibd_so,
