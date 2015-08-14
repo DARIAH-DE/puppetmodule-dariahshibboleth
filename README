@@ -127,16 +127,9 @@ The URL used in discovery, when using federation.
 Set to `true` to enable loading of eduGain Metadata from DFN.
 This option is only respected when `dfn_metadata` is `Basic` and `federation_enabled` is `true`.
 
-#####`handlerssl`
-Set to `false` to disable SSL in the Shibboleth SP handler.
-
 #####`handlerurl_prefix`
 Sets the prefix in the mount path of the SP's HandlerURL.
 Defaults to empty string.
-
-#####`hostname`
-The hostname used in building the SP metadata, needs to match the cert's fqdn.
-Defaults to the system's fully qualified domain name.
 
 #####`hostname`
 The hostname used in building the SP metadata, needs to match the cert's fqdn.

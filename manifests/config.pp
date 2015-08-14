@@ -27,7 +27,7 @@ class dariahshibboleth::config (
   $discoveryurl          = undef,
   $handlerurl_prefix     = undef,
   $remote_user_pref_list = undef,
-  $handlerssl            = undef,
+  $handlerssl            = true,
 ) inherits dariahshibboleth::params {
 
   file { '/etc/shibboleth/attribute-map.xml':

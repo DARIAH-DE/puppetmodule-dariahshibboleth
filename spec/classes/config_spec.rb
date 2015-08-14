@@ -129,7 +129,7 @@ describe "dariahshibboleth::config" do
   end
 
   context 'with https disbaled' do
-    let(:params) { {:handlerssl => 'false'} }
+    let(:params) { {:handlerssl => false} }
     it do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
         .with_content(/handlerSSL="false" cookieProps="http"/)
