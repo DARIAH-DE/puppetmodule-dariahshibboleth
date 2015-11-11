@@ -1,5 +1,8 @@
 #dariahshibboleth
 
+[![Build Status](https://api.travis-ci.org/DARIAH-DE/puppetmodule-dariahshibboleth.png?branch=master)](https://travis-ci.org/DARIAH-DE/puppetmodule-dariahshibboleth)
+[![Coverage Status](https://coveralls.io/repos/DARIAH-DE/puppetmodule-dariahshibboleth/badge.svg?branch=master&service=github)](https://coveralls.io/github/DARIAH-DE/puppetmodule-dariahshibboleth?branch=master)
+
 ####Table of Contents
 
 1. [Description](#description)

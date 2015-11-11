@@ -7,3 +7,12 @@ RSpec.configure do |c|
   c.manifest_dir = File.join(fixture_path, 'manifests')
   c.environmentpath = File.join(Dir.pwd, 'spec')
 end
+
+require 'simplecov'
+require 'coveralls'
+
+SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+SimpleCov.start do
+  add_filter 'spec/fixtures'
+end
+
