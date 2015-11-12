@@ -62,13 +62,13 @@ class dariahshibboleth::config (
     content => template('dariahshibboleth/etc/shibboleth/attrChecker.html.erb'),
   }
 
-  if $cert {
+  unless $cert == undef {
     file { '/etc/shibboleth/sp-cert.pem':
       ensure => present,
       owner  => 'root',
       group  => 'root',
       mode   => '0644',
-      source => $dariahshibboleth::cert,
+      source => $cert,
     }
 
     # parse the cert into variable for use by template below
@@ -86,13 +86,13 @@ class dariahshibboleth::config (
     }
   }
 
-  if $key {
+  unless $key == undef {
     file { '/etc/shibboleth/sp-key.pem':
       ensure => present,
       owner  => '_shibd',
       group  => 'root',
       mode   => '0400',
-      source => $dariahshibboleth::key,
+      source => $key,
     }
   }
 

@@ -21,8 +21,8 @@ class dariahshibboleth (
     $idp_loginurl          = $dariahshibboleth::params::idp_loginurl,
     $handlerurl_prefix     = '',
     $discoveryurl          = "https://${::fqdn}/ds",
-    $key                   = '',
-    $cert                  = '',
+    $key                   = undef,
+    $cert                  = undef,
     $dfn_metadata          = $dariahshibboleth::params::dfn_metadata,
     $federation_enabled    = $dariahshibboleth::params::federation_enabled,
     $edugain_enabled       = $dariahshibboleth::params::edugain_enabled,
@@ -32,10 +32,10 @@ class dariahshibboleth (
     $handlerssl            = true,
   ) inherits dariahshibboleth::params {
 
-
-  class { 'dariahshibboleth::install':
+  anchor { 'dariahshibboleth::begin': } ->
+  class { '::dariahshibboleth::install':
   }->
-  class { 'dariahshibboleth::config':
+  class { '::dariahshibboleth::config':
     hostname              => $hostname,
     idp_entityid          => $idp_entityid,
     idp_loginurl          => $idp_loginurl,
@@ -50,7 +50,8 @@ class dariahshibboleth (
     handlerssl            => $handlerssl,
     remote_user_pref_list => $remote_user_pref_list,
   }~>
-  class { 'dariahshibboleth::service':
-  }
+  class { '::dariahshibboleth::service':
+  }->
+  anchor { 'dariahshibboleth::end': }
 
 }
