@@ -65,7 +65,7 @@ class { 'dariahshibboleth':
 
 The module creates the SP's metadata in
 ```
-/etc/shibboleth/sp-metadata.xml
+/opt/dariahshibboleth/sp-metadata.xml
 ```
 which you should copy to your webroot and server under the entityID.
 
