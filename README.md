@@ -59,6 +59,7 @@ To configure the Test IdP do
 class { 'dariahshibboleth': 
   dfn_metadata => 'Test',
   idp_entityid => 'https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth',
+  idp_loginurl => 'https://ldap-dariah-clone.esc.rzg.mpg.de/Shibboleth.sso/Login',
 }
 
 ```
