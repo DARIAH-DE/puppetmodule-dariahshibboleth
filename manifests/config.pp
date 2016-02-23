@@ -105,6 +105,13 @@ class dariahshibboleth::config (
     source => 'puppet:///modules/dariahshibboleth/etc/shibboleth/dfn-aai.pem',
   }
 
+  file { '/etc/shibboleth/localLogout.html':
+    ensure => present,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    source => 'puppet:///modules/dariahshibboleth/etc/shibboleth/localLogout.html',
+  }
 }
 
 

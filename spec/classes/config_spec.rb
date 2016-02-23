@@ -16,6 +16,9 @@ describe "dariahshibboleth::config" do
       should contain_file('/etc/shibboleth/dfn-aai.pem')
     end
     it do
+      should contain_file('/etc/shibboleth/localLogout.html')
+    end
+    it do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
         .with_content(/handlerSSL="true" cookieProps="https"/)
     end
