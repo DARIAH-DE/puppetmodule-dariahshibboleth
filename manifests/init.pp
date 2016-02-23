@@ -14,6 +14,8 @@
 # @param key The shibboleth SP's key.
 # @param mail_contact The contact mail address for metadata.
 # @param remote_user_pref_list The preference list for REMOTE_USER.
+# @param attribute_checker_flushsession Whether to flush AttributeChecker's session
+# @param locallogout_headertags Additional header tags for localLogout.html
 #
 class dariahshibboleth (
     $hostname                       = $::fqdn,
@@ -29,6 +31,7 @@ class dariahshibboleth (
     $fakeshibdata                   = $dariahshibboleth::params::fakeshibdata,
     $mail_contact                   = $dariahshibboleth::params::mail_contact,
     $remote_user_pref_list          = $dariahshibboleth::params::remote_user_pref_list,
+    $locallogout_headertags         = undef,
     $handlerssl                     = true,
     $attribute_checker_flushsession = true,
   ) inherits dariahshibboleth::params {
@@ -51,6 +54,7 @@ class dariahshibboleth (
     handlerssl                     => $handlerssl,
     remote_user_pref_list          => $remote_user_pref_list,
     attribute_checker_flushsession => $attribute_checker_flushsession,
+    locallogout_headertags         => $locallogout_headertags,
   }~>
   class { '::dariahshibboleth::service':
   }->
