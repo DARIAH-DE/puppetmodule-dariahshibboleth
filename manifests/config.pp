@@ -15,20 +15,21 @@
 # @param remote_user_pref_list The preference list for REMOTE_USER.
 #
 class dariahshibboleth::config (
-  $hostname              = undef,
-  $idp_entityid          = undef,
-  $idp_loginurl          = undef,
-  $federation_enabled    = undef,
-  $edugain_enabled       = undef,
-  $cert                  = undef,
-  $key                   = undef,
-  $dfn_metadata          = undef,
-  $mail_contact          = undef,
-  $discoveryurl          = undef,
-  $handlerurl_prefix     = undef,
-  $remote_user_pref_list = undef,
-  $disable_scoping_check = false,
-  $handlerssl            = true,
+  $hostname                       = undef,
+  $idp_entityid                   = undef,
+  $idp_loginurl                   = undef,
+  $federation_enabled             = undef,
+  $edugain_enabled                = undef,
+  $cert                           = undef,
+  $key                            = undef,
+  $dfn_metadata                   = undef,
+  $mail_contact                   = undef,
+  $discoveryurl                   = undef,
+  $handlerurl_prefix              = undef,
+  $remote_user_pref_list          = undef,
+  $attribute_checker_flushsession = undef,
+  $disable_scoping_check          = false,
+  $handlerssl                     = true,
 ) inherits dariahshibboleth::params {
 
   file { '/etc/shibboleth/attribute-map.xml':

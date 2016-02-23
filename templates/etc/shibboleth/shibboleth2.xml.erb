@@ -52,7 +52,7 @@
             <Handler type="AttributeChecker" Location="/AttrChecker" 
                      template="attrChecker.html" 
                      attributes="eppn mail givenName sn" 
-                     flushSession="true"/>
+                     flushSession="<%= @attribute_checker_flushsession %>"/>
 <% end -%>
 
         </Sessions>

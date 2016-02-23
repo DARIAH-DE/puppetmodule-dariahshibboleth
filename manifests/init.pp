@@ -16,39 +16,41 @@
 # @param remote_user_pref_list The preference list for REMOTE_USER.
 #
 class dariahshibboleth (
-    $hostname              = $::fqdn,
-    $idp_entityid          = $dariahshibboleth::params::idp_entityid,
-    $idp_loginurl          = $dariahshibboleth::params::idp_loginurl,
-    $handlerurl_prefix     = '',
-    $discoveryurl          = "https://${::fqdn}/ds",
-    $key                   = undef,
-    $cert                  = undef,
-    $dfn_metadata          = $dariahshibboleth::params::dfn_metadata,
-    $federation_enabled    = $dariahshibboleth::params::federation_enabled,
-    $edugain_enabled       = $dariahshibboleth::params::edugain_enabled,
-    $fakeshibdata          = $dariahshibboleth::params::fakeshibdata,
-    $mail_contact          = $dariahshibboleth::params::mail_contact,
-    $remote_user_pref_list = $dariahshibboleth::params::remote_user_pref_list,
-    $handlerssl            = true,
+    $hostname                       = $::fqdn,
+    $idp_entityid                   = $dariahshibboleth::params::idp_entityid,
+    $idp_loginurl                   = $dariahshibboleth::params::idp_loginurl,
+    $handlerurl_prefix              = undef,
+    $discoveryurl                   = "https://${::fqdn}/ds",
+    $key                            = undef,
+    $cert                           = undef,
+    $dfn_metadata                   = $dariahshibboleth::params::dfn_metadata,
+    $federation_enabled             = $dariahshibboleth::params::federation_enabled,
+    $edugain_enabled                = $dariahshibboleth::params::edugain_enabled,
+    $fakeshibdata                   = $dariahshibboleth::params::fakeshibdata,
+    $mail_contact                   = $dariahshibboleth::params::mail_contact,
+    $remote_user_pref_list          = $dariahshibboleth::params::remote_user_pref_list,
+    $handlerssl                     = true,
+    $attribute_checker_flushsession = true,
   ) inherits dariahshibboleth::params {
 
   anchor { 'dariahshibboleth::begin': } ->
   class { '::dariahshibboleth::install':
   }->
   class { '::dariahshibboleth::config':
-    hostname              => $hostname,
-    idp_entityid          => $idp_entityid,
-    idp_loginurl          => $idp_loginurl,
-    cert                  => $cert,
-    key                   => $key,
-    dfn_metadata          => $dfn_metadata,
-    federation_enabled    => $federation_enabled,
-    edugain_enabled       => $edugain_enabled,
-    mail_contact          => $mail_contact,
-    discoveryurl          => $discoveryurl,
-    handlerurl_prefix     => $handlerurl_prefix,
-    handlerssl            => $handlerssl,
-    remote_user_pref_list => $remote_user_pref_list,
+    hostname                       => $hostname,
+    idp_entityid                   => $idp_entityid,
+    idp_loginurl                   => $idp_loginurl,
+    cert                           => $cert,
+    key                            => $key,
+    dfn_metadata                   => $dfn_metadata,
+    federation_enabled             => $federation_enabled,
+    edugain_enabled                => $edugain_enabled,
+    mail_contact                   => $mail_contact,
+    discoveryurl                   => $discoveryurl,
+    handlerurl_prefix              => $handlerurl_prefix,
+    handlerssl                     => $handlerssl,
+    remote_user_pref_list          => $remote_user_pref_list,
+    attribute_checker_flushsession => $attribute_checker_flushsession,
   }~>
   class { '::dariahshibboleth::service':
   }->

@@ -40,7 +40,8 @@ describe "dariahshibboleth::config" do
         .with_content(/<Handler type="AttributeChecker"/) \
         .with_content(/AttributeResolver type="SimpleAggregation"/) \
         .with_content(/sessionHook="\/Shibboleth\.sso\/AttrChecker">/) \
-        .with_content(/<SSO discoveryProtocol="SAMLDS" discoveryURL="barfoo">/)
+        .with_content(/<SSO discoveryProtocol="SAMLDS" discoveryURL="barfoo">/) \
+        .with_content(/flushSession="true"/)
     end
     it do
       should contain_file('/etc/shibboleth/attribute-policy.xml') \
@@ -48,6 +49,16 @@ describe "dariahshibboleth::config" do
         .with_content(/<Rule xsi:type="basic:AttributeIssuerString" value="foobar" \/>/)
     end
   end
+
+  context 'with federation_enabled => true and attribute_checker_flushsession => false' do
+    let(:params) { {:federation_enabled => true, :attribute_checker_flushsession => false} }
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/<Handler type="AttributeChecker"/) \
+        .with_content(/flushSession="false"/)
+    end
+  end
+
 
   context 'with federation_enabled => false' do
     let(:params) { {:federation_enabled => false, :idp_entityid => 'foobar'} }
