@@ -27,7 +27,7 @@ class dariahshibboleth::config (
   $discoveryurl                   = undef,
   $handlerurl_prefix              = undef,
   $remote_user_pref_list          = undef,
-  $attribute_checker_flushsession = undef,
+  $attribute_checker_flushsession = true,
   $disable_scoping_check          = false,
   $handlerssl                     = true,
 ) inherits dariahshibboleth::params {
