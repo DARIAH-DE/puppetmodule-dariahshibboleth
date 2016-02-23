@@ -107,7 +107,7 @@ describe "dariahshibboleth::config" do
     let(:params) { {:key => 'keyfile' } }
     it do
       should contain_file('/etc/shibboleth/sp-key.pem').with({
-        'ensure' => 'present',
+        'ensure' => 'file',
         'owner'  => '_shibd',
         'group'  => 'root',
         'mode'   => '0400',
@@ -122,7 +122,7 @@ describe "dariahshibboleth::config" do
     } }
     it do
       should contain_file('/etc/shibboleth/sp-cert.pem').with({
-        'ensure' => 'present',
+        'ensure' => 'file',
         'owner'  => 'root',
         'group'  => 'root',
         'mode'   => '0644',
@@ -157,8 +157,6 @@ describe "dariahshibboleth::config" do
         .with_content(/foobar/)
     end
   end
-
-locallogout_headertags
 
 end
 
