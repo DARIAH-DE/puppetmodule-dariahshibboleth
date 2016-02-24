@@ -27,13 +27,14 @@ class dariahshibboleth::config (
   $discoveryurl                   = undef,
   $handlerurl_prefix              = undef,
   $remote_user_pref_list          = undef,
-  $attribute_checker_flushsession = undef,
+  $locallogout_headertags         = undef,
+  $attribute_checker_flushsession = true,
   $disable_scoping_check          = false,
   $handlerssl                     = true,
 ) inherits dariahshibboleth::params {
 
   file { '/etc/shibboleth/attribute-map.xml':
-    ensure  => present,
+    ensure  => file,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
@@ -41,7 +42,7 @@ class dariahshibboleth::config (
   }
 
   file { '/etc/shibboleth/attribute-policy.xml':
-    ensure  => present,
+    ensure  => file,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
@@ -49,7 +50,7 @@ class dariahshibboleth::config (
   }
 
   file { '/etc/shibboleth/shibboleth2.xml':
-    ensure  => present,
+    ensure  => file,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
@@ -57,7 +58,7 @@ class dariahshibboleth::config (
   }
 
   file { '/etc/shibboleth/attrChecker.html':
-    ensure  => present,
+    ensure  => file,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
@@ -66,7 +67,7 @@ class dariahshibboleth::config (
 
   unless $cert == undef {
     file { '/etc/shibboleth/sp-cert.pem':
-      ensure => present,
+      ensure => file,
       owner  => 'root',
       group  => 'root',
       mode   => '0644',
@@ -80,7 +81,7 @@ class dariahshibboleth::config (
     $shibd_metadata = $::dariahshibboleth::params::shibd_metadata
 
     file { '/opt/dariahshibboleth/sp-metadata.xml':
-      ensure  => present,
+      ensure  => file,
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
@@ -90,7 +91,7 @@ class dariahshibboleth::config (
 
   unless $key == undef {
     file { '/etc/shibboleth/sp-key.pem':
-      ensure => present,
+      ensure => file,
       owner  => '_shibd',
       group  => 'root',
       mode   => '0400',
@@ -99,7 +100,7 @@ class dariahshibboleth::config (
   }
 
   file { '/etc/shibboleth/dfn-aai.pem':
-    ensure => present,
+    ensure => file,
     owner  => '_shibd',
     group  => 'root',
     mode   => '0644',
@@ -107,14 +108,12 @@ class dariahshibboleth::config (
   }
 
   file { '/etc/shibboleth/localLogout.html':
-    ensure => present,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-    source => 'puppet:///modules/dariahshibboleth/etc/shibboleth/localLogout.html',
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('dariahshibboleth/etc/shibboleth/localLogout.html.erb'),
   }
 }
-
-
 
 

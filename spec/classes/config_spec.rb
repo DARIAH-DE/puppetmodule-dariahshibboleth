@@ -107,7 +107,7 @@ describe "dariahshibboleth::config" do
     let(:params) { {:key => 'keyfile' } }
     it do
       should contain_file('/etc/shibboleth/sp-key.pem').with({
-        'ensure' => 'present',
+        'ensure' => 'file',
         'owner'  => '_shibd',
         'group'  => 'root',
         'mode'   => '0400',
@@ -122,7 +122,7 @@ describe "dariahshibboleth::config" do
     } }
     it do
       should contain_file('/etc/shibboleth/sp-cert.pem').with({
-        'ensure' => 'present',
+        'ensure' => 'file',
         'owner'  => 'root',
         'group'  => 'root',
         'mode'   => '0644',
@@ -142,7 +142,7 @@ describe "dariahshibboleth::config" do
     end
   end
 
-  context 'with https disbaled' do
+  context 'with https disabled' do
     let(:params) { {:handlerssl => false} }
     it do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
@@ -150,7 +150,13 @@ describe "dariahshibboleth::config" do
     end
   end
 
-
+  context 'with locallogout_headertags given' do
+    let(:params) { {:locallogout_headertags => 'foobar'} }
+    it do
+      should contain_file('/etc/shibboleth/localLogout.html') \
+        .with_content(/foobar/)
+    end
+  end
 
 end
 
