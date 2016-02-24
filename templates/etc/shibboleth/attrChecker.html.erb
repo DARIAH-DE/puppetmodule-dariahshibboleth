@@ -1,53 +1,119 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html 
-  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
-  "DTD/xhtml1-strict.dtd">
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>DARIAH :: Insufficient Information</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <% if @federation_enabled %>
-  <meta http-equiv="refresh" content="5; URL=<%= @idp_loginurl %>?target=/secure/UserAttributesCompletion.php%3ForiginalURL%3D<shibmlp target/>&entityID=<shibmlp entityID/>"/>
+    <meta http-equiv="refresh" content="5; URL=<%= @federation_registration_url %><shibmlp target/>&entityID=<shibmlp entityID/>"/>
 <% end -%>
-  <link rel="stylesheet" type="text/css" href="<shibmlp styleSheet/>" />
-  <title>Insufficient Information</title>
-</head>
 
-<body>
+		<!-- CSS Imports -->
+		<link rel="stylesheet" href="https://res.de.dariah.eu/aai/css/bootstrap.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="https://res.de.dariah.eu/aai/css/bootstrap-responsive.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="https://res.de.dariah.eu/aai/css/application.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="https://res.de.dariah.eu/aai/css/bootstrap-customization.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="https://res.de.dariah.eu/aai/css/bootstrap-modal.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="https://res.de.dariah.eu/aai/css/font-awesome.css">
+		<link rel="stylesheet" href="https://res.de.dariah.eu/aai/css/dariah_portal.css" type="text/css" media="screen, projection" />
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+		    <!--[if lt IE 9]>
+		      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		      <![endif]-->
+		<link rel="shortcut icon" type="image/png" href="https://res.de.dariah.eu/aai/img/page_icon.png" />
+	</head>
+	<body>
+		<div id="content_layout">
+			<div class="span8 main-content-wrapper">
+				<div id="content" class="primary-area">
 
-<shibmlpif logoLocation>
-<img src="<shibmlp logoLocation/>" alt="Logo" />
-</shibmlpif>
-<h3>We're sorry, but you cannot access this service at this time.</h3>
+          <shibmlpif logoLocation>
+          <img src="<shibmlp logoLocation/>" alt="Logo" />
+          </shibmlpif>
+          <h3>We're sorry, but you cannot access this service at this time.</h3>
 
-<p>This service requires information about you that your identity provider
-<shibmlpif Meta-displayName>(<shibmlp Meta-displayName />)</shibmlpif>
-did not release. To gain access to this service, your identity provider
-must release the required information.</p>
+          <p>This DARIAH service requires information about you that your identity provider
+          <shibmlpif Meta-displayName>(<shibmlp Meta-displayName />)</shibmlpif>
+          did not release. To gain access to this service, your identity provider
+          must release the required information.</p>
 
-<shibmlpif Meta-errorURL>
-<p>
-<div class="boxed-content">
-Please visit
-<a href="<shibmlp Meta-errorURL />">
-<shibmlpif Meta-displayName>the <shibmlp Meta-displayName /> support page</shibmlpif>
-<shibmlpifnot Meta-displayName>this support page</shibmlpifnot>
-</a>
-for further instructions.
-</div>
-</p>
-</shibmlpif>
+          <shibmlpif Meta-errorURL>
+          <p>
+          <div class="boxed-content">
+          Please visit
+          <a href="<shibmlp Meta-errorURL />">
+          <shibmlpif Meta-displayName>the <shibmlp Meta-displayName /> support page</shibmlpif>
+          <shibmlpifnot Meta-displayName>this support page</shibmlpifnot>
+          </a>
+          for further instructions.
+          </div>
+          </p>
+          </shibmlpif>
 
-<p>
-You were trying to access the following URL:
-<blockquote><p><shibmlp target /></p></blockquote>
-</p>
+          <p>
+          You were trying to access the following URL:
+          <blockquote><p><shibmlp target /></p></blockquote>
+          </p>
 
-<shibmlpif helpLocation>
-<p>For more information about this service, including what user information is
-required for access, please visit <a href="<shibmlp helpLocation />">our
-information page</a>.</p>
-</shibmlpif>
+          <shibmlpif helpLocation>
+          <p>For more information about this service, including what user information is
+          required for access, please visit <a href="<shibmlp helpLocation />">our
+          information page</a>.</p>
+          </shibmlpif>
 
-</body>
+          
+        </div>
+				<div class="row central_logo"></div>
+			</div>
+			<div class="row dfooter footer">
+				<div class="span7">	
+					<hr/>
+					<p>Digital Research Infrastructure for the Arts and Humanities.</p>
+				</div>
+			</div>
+		</div>
+		<noscript>
+			<div>
+
+        <shibmlpif logoLocation>
+        <img src="<shibmlp logoLocation/>" alt="Logo" />
+        </shibmlpif>
+        <h3>We're sorry, but you cannot access this service at this time.</h3>
+
+        <p>This DARIAH service requires information about you that your identity provider
+        <shibmlpif Meta-displayName>(<shibmlp Meta-displayName />)</shibmlpif>
+        did not release. To gain access to this service, your identity provider
+        must release the required information.</p>
+
+        <shibmlpif Meta-errorURL>
+        <p>
+        <div class="boxed-content">
+        Please visit
+        <a href="<shibmlp Meta-errorURL />">
+        <shibmlpif Meta-displayName>the <shibmlp Meta-displayName /> support page</shibmlpif>
+        <shibmlpifnot Meta-displayName>this support page</shibmlpifnot>
+        </a>
+        for further instructions.
+        </div>
+        </p>
+        </shibmlpif>
+
+        <p>
+        You were trying to access the following URL:
+        <blockquote><p><shibmlp target /></p></blockquote>
+        </p>
+
+        <shibmlpif helpLocation>
+        <p>For more information about this service, including what user information is
+        required for access, please visit <a href="<shibmlp helpLocation />">our
+        information page</a>.</p>
+        </shibmlpif>
+
+      </div>
+		</noscript>	  
+		<script type="text/javascript" src="https://res.de.dariah.eu/aai/js/jquery-1.8.2.js"></script>
+		<script type="text/javascript" src="https://res.de.dariah.eu/aai/js/bootstrap.js"></script>
+	</body>		
 </html>
+

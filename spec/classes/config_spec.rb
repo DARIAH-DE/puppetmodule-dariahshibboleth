@@ -22,7 +22,7 @@ describe "dariahshibboleth::config" do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
         .with_content(/handlerSSL="true" cookieProps="https"/)
     end
- 
+
   end
 
   context 'with hostname set' do
@@ -76,7 +76,7 @@ describe "dariahshibboleth::config" do
         .with_content(/<MetadataProvider type="XML" uri="https:\/\/www.aai.dfn.de\/fileadmin\/metadata\/DFN-AAI-Test-metadata.xml"/)
     end
   end
-  
+
   context 'with dfn_metadata => Basic' do
     let(:params) { {:dfn_metadata => 'Basic'} }
     it do
@@ -86,12 +86,12 @@ describe "dariahshibboleth::config" do
   end
 
   context 'with federation Basic and edugain_enabled' do
-    let(:params) { {:federation_enabled => true, :dfn_metadata => 'Basic', :edugain_enabled => true, :idp_loginurl => 'https://foor.bar/'} }
+    let(:params) { {:federation_enabled => true, :dfn_metadata => 'Basic', :edugain_enabled => true, :federation_registration_url => 'https://foor.bar/'} }
     it do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
         .with_content(/<MetadataProvider type="XML" uri="https:\/\/www.aai.dfn.de\/fileadmin\/metadata\/DFN-AAI-eduGAIN-metadata.xml"/)
       should contain_file('/etc/shibboleth/attrChecker.html') \
-        .with_content(/<meta http-equiv="refresh" content="5; URL=https:\/\/foor.bar\/\?target=\/secure\/UserAttributesCompletion.php%3ForiginalURL%3D<shibmlp target\/>&entityID=<shibmlp entityID\/>"\/>/)
+        .with_content(/<meta http-equiv="refresh" content="5; URL=https:\/\/foor.bar\/<shibmlp target\/>&entityID=<shibmlp entityID\/>"\/>/)
     end
   end
 

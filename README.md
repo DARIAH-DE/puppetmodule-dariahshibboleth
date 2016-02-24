@@ -57,9 +57,9 @@ class { 'dariahshibboleth': }
 To configure the Test IdP do
 ```
 class { 'dariahshibboleth': 
-  dfn_metadata => 'Test',
-  idp_entityid => 'https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth',
-  idp_loginurl => 'https://ldap-dariah-clone.esc.rzg.mpg.de/Shibboleth.sso/Login',
+  dfn_metadata                => 'Test',
+  idp_entityid                => 'https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth',
+  federation_registration_url => 'https://dariah.daasi.de/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
 }
 
 ```

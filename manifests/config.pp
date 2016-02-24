@@ -17,7 +17,7 @@
 class dariahshibboleth::config (
   $hostname                       = undef,
   $idp_entityid                   = undef,
-  $idp_loginurl                   = undef,
+  $federation_registration_url    = undef,
   $federation_enabled             = undef,
   $edugain_enabled                = undef,
   $cert                           = undef,

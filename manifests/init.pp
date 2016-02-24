@@ -10,7 +10,7 @@
 # @param handlerurl_prefix Mountpoint of the shibboleth handler.
 # @param hostname The hostname to use in building the SP metadata.
 # @param idp_entityid The enityID of the IdP to use.
-# @param idp_loginurl LoginURL of IdP for AttrChecker in federation.
+# @param federation_registration_url URL of the registration form for federation users
 # @param key The shibboleth SP's key.
 # @param mail_contact The contact mail address for metadata.
 # @param remote_user_pref_list The preference list for REMOTE_USER.
@@ -20,7 +20,7 @@
 class dariahshibboleth (
     $hostname                       = $::fqdn,
     $idp_entityid                   = $dariahshibboleth::params::idp_entityid,
-    $idp_loginurl                   = $dariahshibboleth::params::idp_loginurl,
+    $federation_registration_url    = $dariahshibboleth::params::federation_registration_url,
     $handlerurl_prefix              = undef,
     $discoveryurl                   = "https://${::fqdn}/ds",
     $key                            = undef,
@@ -42,7 +42,7 @@ class dariahshibboleth (
   class { '::dariahshibboleth::config':
     hostname                       => $hostname,
     idp_entityid                   => $idp_entityid,
-    idp_loginurl                   => $idp_loginurl,
+    federation_registration_url    => $federation_registration_url,
     cert                           => $cert,
     key                            => $key,
     dfn_metadata                   => $dfn_metadata,
