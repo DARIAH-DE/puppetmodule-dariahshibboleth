@@ -65,7 +65,7 @@
         <afp:AttributeRule attributeID="*">
             <afp:PermitValueRule xsi:type="ANY"/>
         </afp:AttributeRule>
-        
+
     </afp:AttributeFilterPolicy>
 
 <% if @federation_enabled -%>
@@ -76,9 +76,40 @@
             <Rule xsi:type="basic:AttributeIssuerString" value="<%= @idp_entityid %>" />
         </afp:PolicyRequirementRule>
 
-        <afp:AttributeRule attributeID="*">
+       <!-- must have here EVERYTHING, except eppn -->
+       <afp:AttributeRule attributeID="dariahTextGridRbacId">
             <afp:DenyValueRule xsi:type="ANY"/>
-        </afp:AttributeRule>
+       </afp:AttributeRule>
+       <afp:AttributeRule attributeID="sn">
+            <afp:DenyValueRule xsi:type="ANY"/>
+       </afp:AttributeRule>
+       <afp:AttributeRule attributeID="givenName">
+            <afp:DenyValueRule xsi:type="ANY"/>
+       </afp:AttributeRule>
+       <afp:AttributeRule attributeID="mail">
+            <afp:DenyValueRule xsi:type="ANY"/>
+       </afp:AttributeRule>
+       <afp:AttributeRule attributeID="cn">
+            <afp:DenyValueRule xsi:type="ANY"/>
+       </afp:AttributeRule>
+       <afp:AttributeRule attributeID="uid">
+            <afp:DenyValueRule xsi:type="ANY"/>
+       </afp:AttributeRule>
+       <afp:AttributeRule attributeID="o">
+            <afp:DenyValueRule xsi:type="ANY"/>
+       </afp:AttributeRule>
+       <afp:AttributeRule attributeID="isMemberOf">
+            <afp:DenyValueRule xsi:type="ANY"/>
+       </afp:AttributeRule>
+       <afp:AttributeRule attributeID="affiliation">
+            <afp:DenyValueRule xsi:type="ANY"/>
+       </afp:AttributeRule>
+       <afp:AttributeRule attributeID="unscoped-affiliation">
+            <afp:DenyValueRule xsi:type="ANY"/>
+       </afp:AttributeRule>
+       <afp:AttributeRule attributeID="entitlement">
+            <afp:DenyValueRule xsi:type="ANY"/>
+       </afp:AttributeRule>        
     </afp:AttributeFilterPolicy>
 <% end -%>
 
