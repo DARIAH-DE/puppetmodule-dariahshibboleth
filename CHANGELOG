@@ -1,3 +1,12 @@
+2016-02-24 Release 0.1.2
+- attrChecker in DARIAH style
+- LocalLogout in DARIAH style with possible headers
+- AttributeRules extended
+- AccessDenied page in DARIAH style
+- various TextGrid related changes
+- puppet 4 compatibility
+- use travis and coveralls
+
 2015-08-13 Release 0.1.1
 - Add possibilty to disable SSL for Shibboleth handler
 - Don't save DiscoFeed to disk, due to permission problems
