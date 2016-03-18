@@ -4,7 +4,6 @@
 # @param attribute_checker_flushsession Whether to flush AttributeChecker's session
 # @param cert The shibboleth SP's key.
 # @param dfn_metadata The DFN metadata set to use.
-# @param disable_scoping_check Whether to disable scoping checks
 # @param discoveryurl The URL of the Discovery Service / WAYF
 # @param edugain_enabled Enables the use of eduGain metafederation.
 # @param fakeshibdata Hash of fake shibboleth session data
@@ -23,7 +22,6 @@ class dariahshibboleth (
     $attribute_checker_flushsession = $dariahshibboleth::params::attribute_checker_flushsession,
     $cert                           = undef,
     $dfn_metadata                   = $dariahshibboleth::params::dfn_metadata,
-    $disable_scoping_check          = $dariahshibboleth::params::disable_scoping_check,
     $discoveryurl                   = "https://${::fqdn}/ds",
     $edugain_enabled                = $dariahshibboleth::params::edugain_enabled,
     $fakeshibdata                   = $dariahshibboleth::params::fakeshibdata,

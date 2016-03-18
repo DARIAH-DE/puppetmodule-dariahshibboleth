@@ -17,7 +17,6 @@
         <Rule xsi:type="AttributeValueString" value="library-walk-in"/>
     </afp:PermitValueRule>
 
-<% if not @disable_scoping_check -%>
     <!--
     Shared rule for all "scoped" attributes, but you'll have to manually apply it inside
     an AttributeRule for each attribute you want to check.
@@ -28,7 +27,6 @@
         </Rule>
         <Rule xsi:type="saml:AttributeScopeMatchesShibMDScope"/>
     </afp:PermitValueRule>
-<% end -%>
 
     <afp:AttributeFilterPolicy>
         <!-- This policy is in effect in all cases. -->

@@ -18,7 +18,6 @@ class dariahshibboleth::params {
   # security settings
   $handlerssl                     = true
   $attribute_checker_flushsession = true
-  $disable_scoping_check          = false
 
   # metadata, values looked up from hiera
   $shibd_metadata_hash = hiera_hash('dariahshibboleth::MetaData',{no => 'data'})

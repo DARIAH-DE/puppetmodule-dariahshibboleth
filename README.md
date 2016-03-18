@@ -122,10 +122,6 @@ It is styrongly recommended to check the certificate's signature algorithm.
 #####`dfn_metadata`
 The metadata set from DFN to use, valid options are `Test` and `Basic`, default to `Basic`.
 
-#####`disable_scoping_check`
-Whether to disable scoping checks, i.e. allow IdPs to send data that conflicts with the scopes registered with the federation.
-Should be `false` unless you are very sure.
-
 #####`discoveryurl`
 The URL used in discovery, when using federation.
 
