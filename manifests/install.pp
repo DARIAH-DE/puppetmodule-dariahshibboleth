@@ -1,7 +1,6 @@
 # This private class installs the shibboleth SP.
 #
-class dariahshibboleth::install (
-  ) inherits dariahshibboleth::params {
+class dariahshibboleth::install inherits dariahshibboleth {
 
   case $::osfamily {
     'Debian': {
@@ -32,20 +31,19 @@ class dariahshibboleth::install (
 
   file { '/opt/dariahshibboleth':
     ensure => directory,
-    owner  => root,
-    group  => root,
+    owner  => 'root',
+    group  => 'root',
     mode   => '0755',
   }->
   file { '/opt/dariahshibboleth/accessdenied.html':
     ensure => directory,
-    owner  => root,
-    group  => root,
+    owner  => 'root',
+    group  => 'root',
     mode   => '0644',
     source => 'puppet:///modules/dariahshibboleth/opt/dariahshibboleth/accessdenied.html',
   }
 
 }
-
 
 
 

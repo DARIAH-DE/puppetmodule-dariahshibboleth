@@ -15,6 +15,11 @@ class dariahshibboleth::params {
   #default REMOTE_USER preference list
   $remote_user_pref_list = 'eppn persistent-id targeted-id'
 
+  # security settings
+  $handlerssl                     = true
+  $attribute_checker_flushsession = true
+  $disable_scoping_check          = false
+
   # metadata, values looked up from hiera
   $shibd_metadata_hash = hiera_hash('dariahshibboleth::MetaData',{no => 'data'})
 

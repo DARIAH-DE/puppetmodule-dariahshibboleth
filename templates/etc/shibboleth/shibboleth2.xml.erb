@@ -1,7 +1,7 @@
 <SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config"
     xmlns:conf="urn:mace:shibboleth:2.0:native:sp:config"
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
-    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"    
+    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
     xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
     clockSkew="180">
 
@@ -28,7 +28,7 @@
 <% if @federation_enabled %>
   <%-# Use discovery Service -%>
             <SSO discoveryProtocol="SAMLDS" discoveryURL="<%= @discoveryurl %>">
-              SAML2 
+              SAML2
             </SSO>
 <% else -%>
   <%-# Just go to the IdP -%>
@@ -49,9 +49,9 @@
 
 <% if @federation_enabled %>
   <%-# Make sure we have all attributes we need -- not all IdPs release them -%>
-            <Handler type="AttributeChecker" Location="/AttrChecker" 
-                     template="attrChecker.html" 
-                     attributes="eppn mail givenName sn" 
+            <Handler type="AttributeChecker" Location="/AttrChecker"
+                     template="attrChecker.html"
+                     attributes="eppn mail givenName sn"
                      flushSession="<%= @attribute_checker_flushsession %>"/>
 <% end -%>
 
@@ -84,7 +84,7 @@
         <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-eduGAIN-metadata.xml"
                           backingFilePath="DFN-AAI-eduGAIN-metadata.xml" reloadInterval="3600">
           <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/> 
+          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
         </MetadataProvider>
 <% end -%>
 
@@ -94,7 +94,7 @@
 
 <% if @federation_enabled -%>
   <%-# Attribute Aggregation enforcing isMemberOf from DARIAH IdP -%>
-        <AttributeResolver type="SimpleAggregation" 
+        <AttributeResolver type="SimpleAggregation"
                            attributeId="eppn"
                            format="urn:oid:1.3.6.1.4.1.5923.1.1.1.6">
           <Entity><%= @idp_entityid %></Entity>
