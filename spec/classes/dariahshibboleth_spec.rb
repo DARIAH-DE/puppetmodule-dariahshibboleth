@@ -60,6 +60,12 @@ describe "dariahshibboleth" do
       should contain_file('/etc/shibboleth/localLogout.html')
     end
     it do
+      should contain_file('/etc/shibboleth/metadataError.html')
+    end
+    it do
+      should contain_file('/etc/shibboleth/sessionError.html')
+    end
+    it do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
         .with_content(/handlerSSL="true" cookieProps="https"/)
     end

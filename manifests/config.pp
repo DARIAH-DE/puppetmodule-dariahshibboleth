@@ -84,6 +84,22 @@ class dariahshibboleth::config inherits dariahshibboleth {
     content => template('dariahshibboleth/etc/shibboleth/localLogout.html.erb'),
   }
 
+  file { '/etc/shibboleth/metadataError.html':
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('dariahshibboleth/etc/shibboleth/metadataError.html.erb'),
+  }
+
+  file { '/etc/shibboleth/sessionError.html':
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('dariahshibboleth/etc/shibboleth/sessionError.html.erb'),
+  }
+
 }
 
 
