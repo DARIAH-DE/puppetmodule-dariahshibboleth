@@ -21,7 +21,7 @@ The module provides the setup and configuration of a Shibboleth Service Provider
 specifically targeted at DARIAH integration.
 
 The module sets up a shibboleth service provider configured for DARIAH services.
-By default, the module will configure the SP to authenticate against the DARIAH Homeless IdP. 
+By default, the module will configure the SP to authenticate against the DARIAH Homeless IdP.
 Alternatively, you can set it up against the DARIAH Test IdP or switch fo full federation setup within DFN AAI.
 
 ##Setup
@@ -41,11 +41,6 @@ The module will also provide your SP metadata file
 and the default 'access denied' page
 * `/opt/dariahshibboleth/accessdenied.html`
 
-###Beginning with dariahshibboleth	
-
-The very basic steps needed for a user to get the module up and running.
-This can include setup steps, if necessary, or it can be an example of the most basic use of the module.
-
 ##Usage
 
 To use the module with DARIAH Homeless IdP only, simply load as
@@ -56,7 +51,7 @@ class { 'dariahshibboleth': }
 
 To configure the Test IdP do
 ```
-class { 'dariahshibboleth': 
+class { 'dariahshibboleth':
   dfn_metadata                => 'Test',
   idp_entityid                => 'https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth',
   federation_registration_url => 'https://dariah.daasi.de/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
@@ -73,7 +68,7 @@ which you should copy to your webroot and server under the entityID.
 
 To enable DFN Basic federation with edugain use
 ```
-class { 'dariahshibboleth': 
+class { 'dariahshibboleth':
   dfn_metadata       => 'Basic',
   federation_enabled => true,
   edugain_enabled    => true,
@@ -90,7 +85,7 @@ $mod_shibd_so = $::apache::apache_version ?
   '2.4'   => 'mod_shib_24.so',
   default => 'mod_shib_22.so',
 }
-package { 'libapache2-mod-shib2': 
+package { 'libapache2-mod-shib2':
   ensure => absent
 }
 ::apache::mod { 'shib2':
@@ -109,13 +104,16 @@ package { 'libapache2-mod-shib2':
 * [`dariahshibboleth`](#class-dariahshibboleth): Installs and configures the Shibboleth SP.
 
 ####Private Classes
-* [`dariahshibboleth::install`]: Handles the installation of the `shibboleth` package.
-* [`dariahshibboleth::configure`]: Handles the configuration.
-* [`dariahshibboleth::service`]: Handles the `shibd` service.
+* `dariahshibboleth::install`: Handles the installation of the `shibboleth` package.
+* `dariahshibboleth::config`: Handles the configuration.
+* `dariahshibboleth::service`: Handles the `shibd` service.
 
 ###Class: `dariahshibboleth`
 
 ####Parameters
+
+#####`attribute_checker_flushsession`
+Whether to flush the AttributeChecker's session.
 
 #####`cert`
 Accepts the cert file for the SP, as created by `shib-keygen`.
@@ -124,12 +122,26 @@ It is styrongly recommended to check the certificate's signature algorithm.
 #####`dfn_metadata`
 The metadata set from DFN to use, valid options are `Test` and `Basic`, default to `Basic`.
 
+#####`disable_scoping_check`
+Whether to disable scoping checks, i.e. allow IdPs to send data that conflicts with the scopes registered with the federation.
+Should be `false` unless you are very sure.
+
 #####`discoveryurl`
 The URL used in discovery, when using federation.
 
 #####`edugain_enabled`
 Set to `true` to enable loading of eduGain Metadata from DFN.
 This option is only respected when `dfn_metadata` is `Basic` and `federation_enabled` is `true`.
+
+#####`federation_enabled`
+Whether to enable full federation support.
+
+#####`federation_registration_url`
+The URL where to send federation users unknown to the DARIAH IdP.
+
+#####`handlerssl`
+Whether to use SSL for the Shibboleth handler.
+Defaults to `true` and should not be changed unless you are very sure.
 
 #####`handlerurl_prefix`
 Sets the prefix in the mount path of the SP's HandlerURL.
@@ -146,6 +158,9 @@ This is used only if not in federation setup for whitelisting.
 #####`key`
 Accepts the key file for the SP, as created by `shib-keygen`.
 
+#####`locallogout_headertags`
+Additonal header tags to insert into the LocalLogout.html.
+
 #####`mail_contact`
 The mail address to be used as contact address in the SP's metadata.
 Defaults to `root@localhost`.
@@ -160,8 +175,8 @@ The module has been developed and tested with Puppet 3.8 on Ubuntu 14.04.
 
 ##Development
 
-Development was carried out with in the DARIAH-DE project, receiving funding from Bundesministerium für Bildung und Forschung (BMBF), 
-Förderkennzeichen 01UG1110A bis N.
+Development was carried out with in the DARIAH-DE project, receiving funding from Bundesministerium für Bildung und Forschung (BMBF),
+Förderkennzeichen 01UG1110A bis N und 01UG1610A bis J.
 
 
 ##Further notes
