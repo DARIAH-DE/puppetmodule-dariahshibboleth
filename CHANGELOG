@@ -1,3 +1,6 @@
+UNRELEASED
+- move all tests into one class
+
 2016-02-24 Release 0.1.2
 - attrChecker in DARIAH style
 - LocalLogout in DARIAH style with possible headers
