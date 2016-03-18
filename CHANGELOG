@@ -1,6 +1,6 @@
-UNRELEASED
-- change inheritance model
-- move all tests into one class
+2016-03-18 Release 0.2.0
+- refactor inheritance model
+- change test suite layout
 
 2016-02-24 Release 0.1.2
 - attrChecker in DARIAH style
