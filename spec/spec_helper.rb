@@ -16,3 +16,9 @@ SimpleCov.start do
   add_filter 'spec/fixtures'
 end
 
+RSpec.configure do |c|
+  c.after(:suite) do
+    RSpec::Puppet::Coverage.report!
+  end
+end
+
