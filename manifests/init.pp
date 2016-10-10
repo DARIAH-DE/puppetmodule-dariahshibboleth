@@ -22,7 +22,7 @@ class dariahshibboleth (
     $attribute_checker_flushsession = $dariahshibboleth::params::attribute_checker_flushsession,
     $cert                           = undef,
     $dfn_metadata                   = $dariahshibboleth::params::dfn_metadata,
-    $discoveryurl                   = "https://${::fqdn}/ds",
+    $discoveryurl                   = $dariahshibboleth::params::discoveryurl,
     $edugain_enabled                = $dariahshibboleth::params::edugain_enabled,
     $fakeshibdata                   = $dariahshibboleth::params::fakeshibdata,
     $federation_enabled             = $dariahshibboleth::params::federation_enabled,

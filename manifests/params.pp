@@ -5,6 +5,7 @@ class dariahshibboleth::params {
   # define the DARIAH-DE IdP
   $idp_entityid                = 'https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth'
   $federation_registration_url = 'https://auth.dariah.eu/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
+  $discoveryurl                = 'https://auth.dariah.eu/CDS/WAYF'
 
   # default to using metadata from DFN Basic federation but no federation setup
   $dfn_metadata       = 'Basic'

@@ -28,13 +28,16 @@ Alternatively, you can set it up against the DARIAH Test IdP or switch fo full f
 
 ###What dariahshibboleth affects
 
-The module will configure you system to use the SWITCH AAI repository and installs and configures the shib deamon.
-The following config files will be affected and set up in the DARIAH style:
+The module will configure your system to use the SWITCH AAI repository and installs and configures the shib deamon.
+The following config files and templates will be affected and set up for use with DARIAH, in particular the settings as well as the styling:
 
 * `/etc/shibboleth/attrChecker.html`
 * `/etc/shibboleth/attribute-map.xml`
 * `/etc/shibboleth/attribute-policy.xml`
 * `/etc/shibboleth/shibboleth2.xml`
+* `/etc/shibboleth/localLogout.html`
+* `/etc/shibboleth/metadataError.html`
+* `/etc/shibboleth/sessionError.html`
 
 The module will also provide your SP metadata file
 * `/opt/dariahshibboleth/sp-metadata.xml`
@@ -54,6 +57,7 @@ To configure the Test IdP do
 class { 'dariahshibboleth':
   dfn_metadata                => 'Test',
   idp_entityid                => 'https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth',
+  discoveryurl                => 'https://dariah.daasi.de/CDS/WAYF',
   federation_registration_url => 'https://dariah.daasi.de/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
 }
 
@@ -120,10 +124,10 @@ Accepts the cert file for the SP, as created by `shib-keygen`.
 It is styrongly recommended to check the certificate's signature algorithm.
 
 #####`dfn_metadata`
-The metadata set from DFN to use, valid options are `Test` and `Basic`, default to `Basic`.
+The metadata set from DFN to use, valid options are `Test` and `Basic`, defaults to `Basic`.
 
 #####`discoveryurl`
-The URL used in discovery, when using federation.
+The URL used in discovery, when using federation, defaults to the DARIAH CDS.
 
 #####`edugain_enabled`
 Set to `true` to enable loading of eduGain Metadata from DFN.
