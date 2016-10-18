@@ -54,6 +54,9 @@ describe "dariahshibboleth" do
       should contain_file('/etc/shibboleth/attrChecker.html')
     end
     it do
+      should contain_file('/etc/shibboleth/edugain-mds.pem')
+    end
+    it do
       should contain_file('/etc/shibboleth/dfn-aai.pem')
     end
     it do
@@ -106,7 +109,6 @@ describe "dariahshibboleth" do
     end
   end
 
-
   context 'with federation_enabled => false' do
     let(:params) { {:federation_enabled => false, :idp_entityid => 'foobar'} }
     it do
@@ -116,29 +118,27 @@ describe "dariahshibboleth" do
     end
   end
 
-  context 'with dfn_metadata => Test' do
-    let(:params) { {:dfn_metadata => 'Test'} }
-    it do
-      should contain_file('/etc/shibboleth/shibboleth2.xml') \
-        .with_content(/<MetadataProvider type="XML" uri="https:\/\/www.aai.dfn.de\/fileadmin\/metadata\/DFN-AAI-Test-metadata.xml"/)
-    end
-  end
-
-  context 'with dfn_metadata => Basic' do
-    let(:params) { {:dfn_metadata => 'Basic'} }
+  context 'with dfn basic enabled' do
+    let(:params) { {:use_dfn_basic => true} }
     it do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
         .with_content(/<MetadataProvider type="XML" uri="https:\/\/www.aai.dfn.de\/fileadmin\/metadata\/DFN-AAI-Basic-metadata.xml"/)
     end
   end
 
-  context 'with federation Basic and edugain_enabled' do
-    let(:params) { {:federation_enabled => true, :dfn_metadata => 'Basic', :edugain_enabled => true, :federation_registration_url => 'https://foor.bar/'} }
+  context 'with dfn test enabled' do
+    let(:params) { {:use_dfn_test => true} }
     it do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
-        .with_content(/<MetadataProvider type="XML" uri="https:\/\/www.aai.dfn.de\/fileadmin\/metadata\/DFN-AAI-eduGAIN-metadata.xml"/)
-      should contain_file('/etc/shibboleth/attrChecker.html') \
-        .with_content(/<meta http-equiv="refresh" content="6; URL=https:\/\/foor.bar\/<shibmlp target\/>&entityID=<shibmlp entityID\/>"\/>/)
+        .with_content(/<MetadataProvider type="XML" uri="https:\/\/www.aai.dfn.de\/fileadmin\/metadata\/DFN-AAI-Test-metadata.xml"/)
+    end
+  end
+
+  context 'with custom metadata' do
+    let(:params) { {:custom_metadata_url => 'https://foo.bar', :custom_metadata_signature_cert => 'puppet://my.file'} }
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/<MetadataProvider type="XML" uri="https:\/\/foo.bar"/)
     end
   end
 

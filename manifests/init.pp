@@ -3,9 +3,9 @@
 #
 # @param attribute_checker_flushsession Whether to flush AttributeChecker's session
 # @param cert The shibboleth SP's key.
-# @param dfn_metadata The DFN metadata set to use.
+# @param custom_metadata_url URL from where to get federation metadata
+# @param custom_metadata_signature_cert File containing the public cert to verify the metadata
 # @param discoveryurl The URL of the Discovery Service / WAYF
-# @param edugain_enabled Enables the use of eduGain metafederation.
 # @param fakeshibdata Hash of fake shibboleth session data
 # @param federation_enabled Enables the use of federation metadata.
 # @param federation_registration_url URL of the registration form for federation users
@@ -16,14 +16,18 @@
 # @param key The shibboleth SP's key.
 # @param locallogout_headertags Additional header tags for localLogout.html
 # @param mail_contact The contact mail address for metadata.
+# @param metadata_signature_cert Puppet source of the metadata's signature
 # @param remote_user_pref_list The preference list for REMOTE_USER.
+# @param use_edugain Load the eduGAIN Metadata
+# @param use_dfn_basic Load the DFN-Basic AAI Metadata
+# @param use_dfn_test Load the DFN-Test AAI Metadata
 #
 class dariahshibboleth (
     $attribute_checker_flushsession = $dariahshibboleth::params::attribute_checker_flushsession,
     $cert                           = undef,
-    $dfn_metadata                   = $dariahshibboleth::params::dfn_metadata,
+    $custom_metadata_url            = $dariahshibboleth::params::custom_metadata_url,
+    $custom_metadata_signature_cert = $dariahshibboleth::params::custom_metadata_signature_cert,
     $discoveryurl                   = $dariahshibboleth::params::discoveryurl,
-    $edugain_enabled                = $dariahshibboleth::params::edugain_enabled,
     $fakeshibdata                   = $dariahshibboleth::params::fakeshibdata,
     $federation_enabled             = $dariahshibboleth::params::federation_enabled,
     $federation_registration_url    = $dariahshibboleth::params::federation_registration_url,
@@ -35,6 +39,9 @@ class dariahshibboleth (
     $locallogout_headertags         = undef,
     $mail_contact                   = $dariahshibboleth::params::mail_contact,
     $remote_user_pref_list          = $dariahshibboleth::params::remote_user_pref_list,
+    $use_edugain                    = $dariahshibboleth::params::use_edugain,
+    $use_dfn_basic                  = $dariahshibboleth::params::use_dfn_basic,
+    $use_dfn_test                   = $dariahshibboleth::params::ese_dfn_test,
 ) inherits dariahshibboleth::params {
 
   anchor { 'dariahshibboleth::begin': } ->

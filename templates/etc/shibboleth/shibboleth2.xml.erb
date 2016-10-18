@@ -22,7 +22,7 @@
 <% else -%>
   <%-# Disable SSL -%>
                   checkAddress="false" handlerSSL="false" cookieProps="http"
-<% end -%>
+<% end -%> <%-# if @handlerssl -%>
                   handlerURL="<%= @handlerurl_prefix %>/Shibboleth.sso">
 
 <% if @federation_enabled %>
@@ -35,7 +35,7 @@
             <SSO entityID="<%= @idp_entityid %>">
               SAML2
             </SSO>
-<% end -%>
+<% end -%> <%-# if @federation_enabled -%>
 
             <Logout>SAML2 Local</Logout>
 
@@ -53,7 +53,7 @@
                      template="attrChecker.html"
                      attributes="eppn mail givenName sn"
                      flushSession="<%= @attribute_checker_flushsession %>"/>
-<% end -%>
+<% end -%> <%-# if @federation_enabled -%>
 
         </Sessions>
 
@@ -61,32 +61,63 @@
             helpLocation="/about.html"
             styleSheet="/shibboleth-sp/main.css"/>
 
-<% if @dfn_metadata == 'Test' -%>
-  <%-# Load metadata for Test federation -%>
-        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Test-metadata.xml"
-                          backingFilePath="DFN-AAI-Test-metadata.xml" reloadInterval="7200">
-<% else -%>
-  <%-# Load metadata for Basic federation -%>
-        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Basic-metadata.xml"
-                          backingFilePath="DFN-AAI-Basic-metadata.xml" reloadInterval="3600">
-<% end -%>
+<% if @_with_custom_metadata_enabled %>
+  <%-# Add your own custom metadata -%>
+  <MetadataProvider type="XML" uri="<%= @custom_metadata_url %>"
+                          backingFilePath="custom_metadata.xml" reloadInterval="7200">
           <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
-<% if not @federation_enabled %>
-  <%-# Whithout federation we need only our IdP, not all of them -%>
+          <MetadataFilter type="Signature" certificate="/etc/shibboleth/custom_metadata_signature.pem"/>
+        </MetadataProvider>
+<% end -%> <%-# if @_with_custom_metadata_enabled -%>
+
+<% if @use_edugain -%>
+  <%-# eduGAIN -%>
+        <MetadataProvider type="XML" uri="http://mds.edugain.org/"
+                          backingFilePath="eduGAIN-mds.xml" reloadInterval="3600">
+          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+          <MetadataFilter type="Signature" certificate="/etc/shibboleth/edugain-mds.pem"/>
+
+  <%- if not @federation_enabled -%>
+    <%-# Whithout federation we need only our IdP, not all of them -%>
           <MetadataFilter type="Whitelist">
             <Include><%= @idp_entityid %></Include>
           </MetadataFilter>
-<% end -%>
+  <%- end -%> <%-# if not @federation_enabled -%>
         </MetadataProvider>
+<% end -%> <%-# if @enable_edugain -%>
 
-<% if @edugain_enabled and @dfn_metadata == 'Basic' and @federation_enabled -%>
-        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-eduGAIN-metadata.xml"
-                          backingFilePath="DFN-AAI-eduGAIN-metadata.xml" reloadInterval="3600">
+<% if @use_dfn_basic -%>
+  <%-# DFN Basic -%>
+        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Basic-metadata.xml"
+                          backingFilePath="DFN-AAI-Basic-metadata.xml" reloadInterval="3600">
           <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
           <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
+
+  <%- if not @federation_enabled -%>
+    <%-# Whithout federation we need only our IdP, not all of them -%>
+          <MetadataFilter type="Whitelist">
+            <Include><%= @idp_entityid %></Include>
+          </MetadataFilter>
+  <%- end -%> <%-# if not @federation_enabled -%>
         </MetadataProvider>
-<% end -%>
+<% end -%> <%-# if @enable_dfn_basic -%>
+
+<% if @use_dfn_test -%>
+  <%-# DFN Test -%>
+        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Test-metadata.xml"
+                          backingFilePath="DFN-AAI-Test-metadata.xml" reloadInterval="3600">
+          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
+
+  <%- if not @federation_enabled -%>
+    <%-# Whithout federation we need only our IdP, not all of them -%>
+          <MetadataFilter type="Whitelist">
+            <Include><%= @idp_entityid %></Include>
+          </MetadataFilter>
+  <%- end -%> <%-# if not @federation_enabled -%>
+        </MetadataProvider>
+<% end -%> <%-# if @enable_dfn_test -%>
+
 
         <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
 

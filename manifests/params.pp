@@ -6,15 +6,21 @@ class dariahshibboleth::params {
   $idp_entityid                = 'https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth'
   $federation_registration_url = 'https://auth.dariah.eu/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
   $discoveryurl                = 'https://auth.dariah.eu/CDS/WAYF'
+  $federation_enabled          = false
 
-  # default to using metadata from DFN Basic federation but no federation setup
-  $dfn_metadata       = 'Basic'
-  $federation_enabled = false
-  $edugain_enabled    = false
-  $mail_contact       = 'root@localhost'
+  # defaults
+  $use_edugain                 = true
+  $use_dfn_basic               = false
+  $use_dfn_test                = false
+
+  $mail_contact                = 'root@localhost'
 
   #default REMOTE_USER preference list
   $remote_user_pref_list = 'eppn persistent-id targeted-id'
+
+  # custom metadata settings
+  $custom_metadata_url            = undef
+  $custom_metadata_signature_cert = undef
 
   # security settings
   $handlerssl                     = true

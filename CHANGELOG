@@ -1,3 +1,8 @@
+2016-10-18 Release 0.3.0
+- breaking changes: federation support trough new parameters
+- default to edugain for federation
+- allow to combine dfn basic, dfn test, edugain arbitralily
+
 2016-03-18 Release 0.2.0
 - refactor inheritance model
 - change test suite layout

@@ -50,18 +50,39 @@ To use the module with DARIAH Homeless IdP only, simply load as
 ```
 class { 'dariahshibboleth': }
 ```
+This will load the DARIAH IdP's metadata via eduGAIN.
+To improve performance you may want to use DFN-Basic instead:
+```
+class { 'dariahshibboleth': 
+  use_edugain   => false,
+  use_dfn_basic => true,
+}
+```
 
-
-To configure the Test IdP do
+To switch to **eduGAIN mode**, simply use
 ```
 class { 'dariahshibboleth':
-  dfn_metadata                => 'Test',
+  federation_enabled => true,
+}
+```
+
+
+To configure the **Test IdP** do
+```
+class { 'dariahshibboleth':
+  use_edugain                 => false,
+  use_dfn_test                => true,
   idp_entityid                => 'https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth',
+  federation_enabled          => false,
   discoveryurl                => 'https://dariah.daasi.de/CDS/WAYF',
   federation_registration_url => 'https://dariah.daasi.de/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
 }
-
 ```
+Note that by using `federation_enabled => true` you enable the full Test setup with DFN-Test AAI federation support.
+
+If you want to load metadata from another federation, use `custom_metadata_url` and pass the relevant cert file to `custom_metadata_signature_cert`.
+Note, that you will need to provide a compatible `discoveryurl` and that registration at the DARIAH AAI is likely to fail.
+
 
 The module creates the SP's metadata in
 ```
@@ -69,16 +90,6 @@ The module creates the SP's metadata in
 ```
 which you should copy to your webroot and server under the entityID.
 
-
-To enable DFN Basic federation with edugain use
-```
-class { 'dariahshibboleth':
-  dfn_metadata       => 'Basic',
-  federation_enabled => true,
-  edugain_enabled    => true,
-}
-
-```
 
 ###Setting up apache
 If you want to use Shibboleth with apache, using the `puppetlabs/apache` module, you might need this:
@@ -123,15 +134,14 @@ Whether to flush the AttributeChecker's session.
 Accepts the cert file for the SP, as created by `shib-keygen`.
 It is styrongly recommended to check the certificate's signature algorithm.
 
-#####`dfn_metadata`
-The metadata set from DFN to use, valid options are `Test` and `Basic`, defaults to `Basic`.
+#####`custom_metadata_url`
+URL from where to get federation metadata.
+
+#####`custom_metadata_signature_cert`
+Puppet file source containing the public cert to verify the metadata.
 
 #####`discoveryurl`
 The URL used in discovery, when using federation, defaults to the DARIAH CDS.
-
-#####`edugain_enabled`
-Set to `true` to enable loading of eduGain Metadata from DFN.
-This option is only respected when `dfn_metadata` is `Basic` and `federation_enabled` is `true`.
 
 #####`federation_enabled`
 Whether to enable full federation support.
@@ -168,6 +178,15 @@ Defaults to `root@localhost`.
 #####`remote_user_pref_list`
 Accepts a string containing the list of attributes in order of preference for setting the REMOTE_USER variable.
 Default to `eppn persistent-id targeted-id`.
+
+#####`use_edugain`
+Boolean to decide whether to load the eduGAIN Metadata.
+
+#####`use_dfn_basic`
+Boolean to decide whether to load the DFN-Basic AAI Metadata.
+
+#####`use_dfn_test`
+Boolean to decide whether to load the DFN-Test AAI Metadata.
 
 ##Limitations
 

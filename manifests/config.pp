@@ -18,14 +18,6 @@ class dariahshibboleth::config inherits dariahshibboleth {
     content => template('dariahshibboleth/etc/shibboleth/attribute-policy.xml.erb'),
   }
 
-  file { '/etc/shibboleth/shibboleth2.xml':
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template('dariahshibboleth/etc/shibboleth/shibboleth2.xml.erb'),
-  }
-
   file { '/etc/shibboleth/attrChecker.html':
     ensure  => file,
     owner   => 'root',
@@ -68,12 +60,33 @@ class dariahshibboleth::config inherits dariahshibboleth {
     }
   }
 
+  file { '/etc/shibboleth/edugain-mds.pem':
+    ensure => file,
+    owner  => '_shibd',
+    group  => 'root',
+    mode   => '0644',
+    source => 'puppet:///modules/dariahshibboleth/etc/shibboleth/edugain-mds-2014.cer',
+  }
+
   file { '/etc/shibboleth/dfn-aai.pem':
     ensure => file,
     owner  => '_shibd',
     group  => 'root',
     mode   => '0644',
     source => 'puppet:///modules/dariahshibboleth/etc/shibboleth/dfn-aai.pem',
+  }
+
+  if ($::dariahshibboleth::custom_metadata_url != undef) and ($::dariahshibboleth::custom_metadata_signature_cert != undef) {
+    $_with_custom_metadata_enabled = true
+    file { '/etc/shibboleth/custom_metadata_signature.pem':
+      ensure => file,
+      owner  => '_shibd',
+      group  => 'root',
+      mode   => '0644',
+      source => $::dariahshibboleth::custom_metadata_signature_cert,
+    }
+  } else {
+    $_with_custom_metadata_enabled = false
   }
 
   file { '/etc/shibboleth/localLogout.html':
@@ -98,6 +111,14 @@ class dariahshibboleth::config inherits dariahshibboleth {
     group   => 'root',
     mode    => '0644',
     content => template('dariahshibboleth/etc/shibboleth/sessionError.html.erb'),
+  }
+
+  file { '/etc/shibboleth/shibboleth2.xml':
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('dariahshibboleth/etc/shibboleth/shibboleth2.xml.erb'),
   }
 
 }
