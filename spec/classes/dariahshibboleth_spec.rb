@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "dariahshibboleth" do
-  let(:facts) { {:osfamily => 'Debian', :lsbdistid => 'Ubuntu', :lsbdistcodename => 'trusty'} }
+  let(:facts) { {:osfamily => 'Debian', :lsbdistid => 'Ubuntu', :lsbdistcodename => 'trusty', :lsbdistrelease => '14.04'} }
 
   it { should contain_anchor('dariahshibboleth::begin').that_comes_before('Class[dariahshibboleth::install]') }
   it { should contain_class('dariahshibboleth::install').that_comes_before('Class[dariahshibboleth::config]') }
@@ -10,18 +10,8 @@ describe "dariahshibboleth" do
   it { should contain_class('dariahshibboleth::params') }
   it { should contain_anchor('dariahshibboleth::end') }
 
-  context 'debian wheezy system' do
-    let(:facts) { {:osfamily => 'Debian', :lsbdistid => 'Debian', :lsbdistcodename => 'wheezy'} }
-    it do
-      should contain_apt__source('SWITCHaai-swdistrib').with({
-        'location' => 'http://pkg.switch.ch/switchaai/debian',
-        'key'      => '294E37D154156E00FB96D7AA26C3C46915B76742',
-      })
-    end
-  end
-
   context 'ubuntu trusty system' do
-    let(:facts) { {:osfamily => 'Debian', :lsbdistid => 'Ubuntu', :lsbdistcodename => 'trusty'} }
+    let(:facts) { {:osfamily => 'Debian', :lsbdistid => 'Ubuntu', :lsbdistcodename => 'trusty', :lsbdistrelease => '14.04'} }
     it do
       should contain_apt__source('SWITCHaai-swdistrib').with({
         'location' => 'http://pkg.switch.ch/switchaai/ubuntu',
