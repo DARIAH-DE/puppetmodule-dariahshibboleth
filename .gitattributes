@@ -1,0 +1,3 @@
+files/** linguist-vendored
+templates/** linguist-vendored
+spec/fixtures/** linguist-vendored

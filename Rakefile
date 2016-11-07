@@ -60,7 +60,6 @@ task :unit_clean do
   system("rm -r spec/fixtures/*")
 end
 
-Rake::Task["coverage"].clear
 Rake::Task["metadata"].clear
 Rake::Task["spec"].clear
 Rake::Task["spec_clean"].clear
