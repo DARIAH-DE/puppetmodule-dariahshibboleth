@@ -12,12 +12,16 @@ class dariahshibboleth::install inherits dariahshibboleth {
       }
 
       apt::source { 'SWITCHaai-swdistrib':
-        location    => $switch_repo_location,
-        repos       => 'main',
-        include_src => false,
-        key         => '294E37D154156E00FB96D7AA26C3C46915B76742',
-        key_source  => 'http://pkg.switch.ch/switchaai/SWITCHaai-swdistrib.asc',
-        before      => Package['shibboleth'],
+        location => $switch_repo_location,
+        repos    => 'main',
+        key      => {
+          'id'     => '294E37D154156E00FB96D7AA26C3C46915B76742',
+          'source' => 'http://pkg.switch.ch/switchaai/SWITCHaai-swdistrib.asc',
+        },
+        include  => {
+          'src' => false,
+        },
+        before   => Package['shibboleth'],
       }
     }
     default: {
