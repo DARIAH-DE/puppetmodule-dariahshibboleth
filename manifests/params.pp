@@ -3,7 +3,7 @@
 class dariahshibboleth::params {
 
   # define the DARIAH-DE IdP
-  $idp_entityid                = 'https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth'
+  $idp_entityid                = 'https://idp.de.dariah.eu/idp/shibboleth'
   $federation_registration_url = 'https://auth.dariah.eu/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
   $discoveryurl                = 'https://auth.dariah.eu/CDS/WAYF'
   $federation_enabled          = false
@@ -16,7 +16,7 @@ class dariahshibboleth::params {
   $mail_contact                = 'root@localhost'
 
   #default REMOTE_USER preference list
-  $remote_user_pref_list = 'eppn persistent-id targeted-id'
+  $remote_user_pref_list          = 'eppn persistent-id targeted-id'
 
   # custom metadata settings
   $custom_metadata_url            = undef
