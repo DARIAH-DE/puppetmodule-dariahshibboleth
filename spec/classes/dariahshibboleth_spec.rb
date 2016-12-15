@@ -83,11 +83,6 @@ describe "dariahshibboleth" do
         .with_content(/<SSO discoveryProtocol="SAMLDS" discoveryURL="barfoo">/) \
         .with_content(/flushSession="true"/)
     end
-    it do
-      should contain_file('/etc/shibboleth/attribute-policy.xml') \
-        .with_content(/<afp:PolicyRequirementRule xsi:type="NOT">/) \
-        .with_content(/<Rule xsi:type="basic:AttributeIssuerString" value="foobar" \/>/)
-    end
   end
 
   context 'with federation_enabled => true and attribute_checker_flushsession => false' do
