@@ -69,11 +69,15 @@
 <% if @federation_enabled -%>
     <!-- deny every attribute except those from our IdP -->
     <afp:AttributeFilterPolicy>
-        <afp:PolicyRequirementRule xsi:type="NOT">
-            <Rule xsi:type="basic:AttributeIssuerString" value="<%= @idp_entityid %>" />
-        </afp:PolicyRequirementRule>
+       <afp:PolicyRequirementRule xsi:type="NOT">
+           <basic:Rule xsi:type="OR">
+               <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://idp.de.dariah.eu/idp/shibboleth" />
+               <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth" />
+               <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth" />
+           </basic:Rule>
+       </afp:PolicyRequirementRule>
 
-       <!-- must have here EVERYTHING, except eppn -->
+       <!-- must not accept ANYTHING, except eppn -->
        <afp:AttributeRule attributeID="dariahTextGridRbacId">
             <afp:DenyValueRule xsi:type="ANY"/>
        </afp:AttributeRule>
