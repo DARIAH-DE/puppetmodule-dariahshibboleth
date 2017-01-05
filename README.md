@@ -179,6 +179,12 @@ Defaults to `root@localhost`.
 Accepts a string containing the list of attributes in order of preference for setting the REMOTE_USER variable.
 Default to `eppn persistent-id targeted-id`.
 
+#####`standby_cert`
+Standby Shibboleth SP cert for rollover migration.
+
+#####`standby_key`
+Standby Shibboleth SP key for rollover migration.
+
 #####`use_edugain`
 Boolean to decide whether to load the eduGAIN Metadata.
 
@@ -227,4 +233,6 @@ dariahshibboleth::FakeCredentials:
   isMemberOf: 'group1;group2'
 ```
 You can access the relevant Apache lines from the variable `$::dariahshibboleth::fakeshibdata`, which defaults to the above.
+
+The module provides option for standby cert and key if you need to perform a rollover in federation use.
 

@@ -25,6 +25,10 @@
     </md:Extensions>
     <md:KeyDescriptor>
       <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<% if @_cert_rollover -%>
+    <%-# in rollover case we add the identifier -%>
+        <ds:KeyName>Active</ds:KeyName>
+<% end -%>
         <ds:KeyName><%= scope.lookupvar('::dariahshibboleth::hostname') %></ds:KeyName>
         <ds:X509Data>
           <ds:X509Certificate>
@@ -33,6 +37,21 @@
         </ds:X509Data>
       </ds:KeyInfo>
     </md:KeyDescriptor>
+<% if @_cert_rollover -%>
+    <%-# add standby cert for rollover -%>
+     <md:KeyDescriptor>
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:KeyName>Standby</ds:KeyName>
+        <ds:KeyName><%= scope.lookupvar('::dariahshibboleth::hostname') %></ds:KeyName>
+        <ds:X509Data>
+          <ds:X509Certificate>
+<%= @_shibbolethstandbycert.gsub("-----BEGIN CERTIFICATE-----\n", "").gsub("\n-----END CERTIFICATE-----\n", "") %>
+          </ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor> 
+<% end -%>
+    
     <md:ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/Artifact/SOAP" index="1"/>
     <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/SLO/SOAP"/>
     <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/SLO/Redirect"/>

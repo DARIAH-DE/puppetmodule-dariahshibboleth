@@ -124,6 +124,7 @@ describe "dariahshibboleth" do
     it do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
         .with_content(/<MetadataProvider type="XML" uri="https:\/\/foo.bar"/)
+      should contain_file('/etc/shibboleth/custom_metadata_signature.pem')
     end
   end
 
@@ -150,7 +151,7 @@ describe "dariahshibboleth" do
   context 'with cert' do
     let(:params) { {
       :cert => 'puppet:///modules/dariahshibboleth/spec/sp-cert.pem',
-      :hostname => 'foobar'
+      :hostname => 'foo.bar'
     } }
     it do
       should contain_file('/etc/shibboleth/sp-cert.pem').with({
@@ -161,9 +162,38 @@ describe "dariahshibboleth" do
       })
       should contain_file('/opt/dariahshibboleth/sp-metadata.xml') \
         .with_content(/<ds:X509Certificate>\s*FooBar\s*<\/ds:X509Certificate>/) \
-        .with_content(/entityID="https:\/\/foobar\/shibboleth">/) \
-        .with_content(/<ds:KeyName>foobar<\/ds:KeyName>/)
+        .with_content(/entityID="https:\/\/foo.bar\/shibboleth">/) \
+        .with_content(/<ds:KeyName>foo.bar<\/ds:KeyName>/)
     end
+  end
+
+
+  context 'with standby cert' do
+    let(:params) { {
+      :cert => 'puppet:///modules/dariahshibboleth/spec/sp-cert.pem',
+      :standby_cert => 'puppet:///modules/dariahshibboleth/spec/sp-standby-cert.pem',
+      :standby_key => 'puppet:///modules/dariahshibboleth/spec/sp-stanby-cert.pem',
+      :hostname => 'foo.bar'
+    } }
+    it do
+      should contain_file('/etc/shibboleth/sp-standby-cert.pem').with({
+        'ensure' => 'file',
+        'owner'  => 'root',
+        'group'  => 'root',
+        'mode'   => '0644',
+      })
+      should contain_file('/etc/shibboleth/sp-standby-key.pem').with({
+        'ensure' => 'file',
+        'owner'  => '_shibd',
+        'group'  => 'root',
+        'mode'   => '0400',
+      })
+      should contain_file('/opt/dariahshibboleth/sp-metadata.xml') \
+        .with_content(/<ds:X509Certificate>\s*FooBar\s*<\/ds:X509Certificate>/) \
+        .with_content(/<ds:X509Certificate>\s*Standby\s*<\/ds:X509Certificate>/) \
+        .with_content(/<ds:KeyName>Active<\/ds:KeyName>/)
+        .with_content(/<ds:KeyName>Standby<\/ds:KeyName>/)
+    end    
   end
 
   context 'with changed REMOTE_USER preference' do
