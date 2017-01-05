@@ -18,6 +18,8 @@
 # @param mail_contact The contact mail address for metadata.
 # @param metadata_signature_cert Puppet source of the metadata's signature
 # @param remote_user_pref_list The preference list for REMOTE_USER.
+# @param standby_cert standby Shibboleth SP cert for rollover
+# @param standby_key standby Shibboleth SP key for rollover
 # @param use_edugain Load the eduGAIN Metadata
 # @param use_dfn_basic Load the DFN-Basic AAI Metadata
 # @param use_dfn_test Load the DFN-Test AAI Metadata
@@ -39,6 +41,8 @@ class dariahshibboleth (
     $locallogout_headertags         = undef,
     $mail_contact                   = $dariahshibboleth::params::mail_contact,
     $remote_user_pref_list          = $dariahshibboleth::params::remote_user_pref_list,
+    $standby_cert                   = undef,
+    $standby_key                    = undef,
     $use_edugain                    = $dariahshibboleth::params::use_edugain,
     $use_dfn_basic                  = $dariahshibboleth::params::use_dfn_basic,
     $use_dfn_test                   = $dariahshibboleth::params::ese_dfn_test,

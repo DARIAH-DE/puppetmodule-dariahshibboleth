@@ -2,6 +2,16 @@
 #
 class dariahshibboleth::config inherits dariahshibboleth {
 
+  if ($::dariahshibboleth::standby_cert != undef) and ($::dariahshibboleth::standby_key != undef) {
+    $_cert_rollover = true
+    # parse the cert into variable for use by template below
+    $_shibstandbycertfilenameonly = regsubst($::dariahshibboleth::standby_cert,'puppet:///modules/','')
+    $_shibbolethstandbycert = file($_shibstandbycertfilenameonly)
+
+  } else {
+    $_cert_rollover = false
+  }
+
   file { '/etc/shibboleth/attribute-map.xml':
     ensure  => file,
     owner   => 'root',
@@ -57,6 +67,26 @@ class dariahshibboleth::config inherits dariahshibboleth {
       group  => 'root',
       mode   => '0400',
       source => $::dariahshibboleth::key,
+    }
+  }
+
+  if $::dariahshibboleth::standby_cert != undef {
+    file { '/etc/shibboleth/sp-standby-cert.pem':
+      ensure => file,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
+      source => $::dariahshibboleth::standby_cert,
+    }
+  }
+
+  if $::dariahshibboleth::standby_key != undef {
+    file { '/etc/shibboleth/sp-standby-key.pem':
+      ensure => file,
+      owner  => '_shibd',
+      group  => 'root',
+      mode   => '0400',
+      source => $::dariahshibboleth::standby_key,
     }
   }
 
