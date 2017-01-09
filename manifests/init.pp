@@ -23,6 +23,7 @@
 # @param use_edugain Load the eduGAIN Metadata
 # @param use_dfn_basic Load the DFN-Basic AAI Metadata
 # @param use_dfn_test Load the DFN-Test AAI Metadata
+# @param use_dfn_edugain Load the eduGAIN Metadata from DFN (without DFN!)
 #
 class dariahshibboleth (
     $attribute_checker_flushsession = $dariahshibboleth::params::attribute_checker_flushsession,
@@ -45,7 +46,8 @@ class dariahshibboleth (
     $standby_key                    = undef,
     $use_edugain                    = $dariahshibboleth::params::use_edugain,
     $use_dfn_basic                  = $dariahshibboleth::params::use_dfn_basic,
-    $use_dfn_test                   = $dariahshibboleth::params::ese_dfn_test,
+    $use_dfn_test                   = $dariahshibboleth::params::use_dfn_test,
+    $use_dfn_edugain                = $dariahshibboleth::params::use_dfn_edugain,
 ) inherits dariahshibboleth::params {
 
   anchor { 'dariahshibboleth::begin': } ->

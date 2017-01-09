@@ -119,6 +119,14 @@ describe "dariahshibboleth" do
     end
   end
 
+  context 'with edugain via dfn' do
+    let(:params) { {:use_dfn_edugain => true} }
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/<MetadataProvider type="XML" uri="https:\/\/www.aai.dfn.de\/fileadmin\/metadata\/DFN-AAI-eduGAIN\+idp-metadata.xml"/)
+    end
+  end
+
   context 'with custom metadata' do
     let(:params) { {:custom_metadata_url => 'https://foo.bar', :custom_metadata_signature_cert => 'puppet://my.file'} }
     it do

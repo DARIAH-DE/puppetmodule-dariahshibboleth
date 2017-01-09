@@ -12,6 +12,7 @@ class dariahshibboleth::params {
   $use_edugain                 = true
   $use_dfn_basic               = false
   $use_dfn_test                = false
+  $use_dfn_edugain             = false
 
   $mail_contact                = 'root@localhost'
 
