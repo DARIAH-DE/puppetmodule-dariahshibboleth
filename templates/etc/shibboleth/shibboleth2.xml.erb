@@ -84,7 +84,7 @@
           </MetadataFilter>
   <%- end -%> <%-# if not @federation_enabled -%>
         </MetadataProvider>
-<% end -%> <%-# if @enable_edugain -%>
+<% end -%> <%-# if @use_edugain -%>
 
 <% if @use_dfn_basic -%>
   <%-# DFN Basic -%>
@@ -100,7 +100,7 @@
           </MetadataFilter>
   <%- end -%> <%-# if not @federation_enabled -%>
         </MetadataProvider>
-<% end -%> <%-# if @enable_dfn_basic -%>
+<% end -%> <%-# if @use_dfn_basic -%>
 
 <% if @use_dfn_test -%>
   <%-# DFN Test -%>
@@ -116,8 +116,16 @@
           </MetadataFilter>
   <%- end -%> <%-# if not @federation_enabled -%>
         </MetadataProvider>
-<% end -%> <%-# if @enable_dfn_test -%>
+<% end -%> <%-# if @use_dfn_test -%>
 
+<% if @use_dfn_edugain -%>
+  <%-# eduGAIN via DFN -%>
+        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-eduGAIN+idp-metadata.xml"
+                          backingFilePath="DFN-AAI-Test-metadata.xml" reloadInterval="3600">
+          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
+        </MetadataProvider>
+<% end -%> <%-# if @use_dfn_edugain-%>
 
         <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
 
