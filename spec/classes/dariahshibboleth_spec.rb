@@ -15,7 +15,10 @@ describe "dariahshibboleth" do
     it do
       should contain_apt__source('SWITCHaai-swdistrib').with({
         'location' => 'http://pkg.switch.ch/switchaai/ubuntu',
-        'key'      => '294E37D154156E00FB96D7AA26C3C46915B76742',
+        'key'      => {
+          'id'     => '294E37D154156E00FB96D7AA26C3C46915B76742',
+          'source' => 'http://pkg.switch.ch/switchaai/SWITCHaai-swdistrib.asc'
+        }
       })
     end
   end
@@ -31,7 +34,6 @@ describe "dariahshibboleth" do
   it do
     should contain_file('/opt/dariahshibboleth/accessdenied.html')
   end
-
 
   context 'default settings' do
     it do
@@ -62,7 +64,6 @@ describe "dariahshibboleth" do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
         .with_content(/handlerSSL="true" cookieProps="https"/)
     end
-
   end
 
   context 'with hostname set' do
