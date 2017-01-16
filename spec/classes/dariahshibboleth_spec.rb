@@ -137,10 +137,16 @@ describe "dariahshibboleth" do
   end
 
   context 'serve SP not at root but add a prefex to handler' do
-    let(:params) { {:handlerurl_prefix => '/foobar' } }
+    let(:params) { {
+      :handlerurl_prefix => '/foobar',
+      :cert => 'puppet:///modules/dariahshibboleth/spec/sp-cert.pem'
+    } }
     it do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
         .with_content(/handlerURL="\/foobar\/Shibboleth.sso">/)
+      should contain_file('/opt/dariahshibboleth/sp-metadata.xml') \
+        .with_content(/\/foobar\/Shibboleth.sso\/SAML2\/POST/) \
+        .with_content(/\/foobar\/Shibboleth.sso\/Login/)
     end
   end
 

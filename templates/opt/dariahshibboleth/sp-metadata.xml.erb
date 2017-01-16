@@ -21,7 +21,7 @@
                 <mdui:InformationURL xml:lang="en"><%= @shibd_metadata['md_iu_en'] %></mdui:InformationURL>
                 <mdui:PrivacyStatementURL xml:lang="en">https://de.dariah.eu/ServicePrivacyPolicy</mdui:PrivacyStatementURL>
       </mdui:UIInfo>
-      <init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/Login"/>
+      <init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/Login"/>
     </md:Extensions>
     <md:KeyDescriptor>
       <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
@@ -52,22 +52,22 @@
     </md:KeyDescriptor> 
 <% end -%>
     
-    <md:ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/Artifact/SOAP" index="1"/>
-    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/SLO/SOAP"/>
-    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/SLO/Redirect"/>
-    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/SLO/POST"/>
-    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/SLO/Artifact"/>
+    <md:ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/Artifact/SOAP" index="1"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SLO/SOAP"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SLO/Redirect"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SLO/POST"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SLO/Artifact"/>
 
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/SAML2/POST" index="1"/>
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/SAML2/POST-SimpleSign" index="2"/>
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/SAML2/Artifact" index="3"/>
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %>/Shibboleth.sso/SAML2/ECP" index="4"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SAML2/POST" index="1"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SAML2/POST-SimpleSign" index="2"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SAML2/Artifact" index="3"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SAML2/ECP" index="4"/>
 
 <% @shibd_metadata['ACS_Hosts'].to_enum.with_index(1).each do |host,idx| -%>
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://<%= host %>/Shibboleth.sso/SAML2/POST" index="<%= idx %>1"/>
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://<%= host %>/Shibboleth.sso/SAML2/POST-SimpleSign" index="<%= idx %>2"/>
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://<%= host %>/Shibboleth.sso/SAML2/Artifact" index="<%= idx %>3"/>
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://<%= host %>/Shibboleth.sso/SAML2/ECP" index="<%= idx %>4"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://<%= host %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SAML2/POST" index="<%= idx %>1"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://<%= host %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SAML2/POST-SimpleSign" index="<%= idx %>2"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://<%= host %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SAML2/Artifact" index="<%= idx %>3"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://<%= host %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SAML2/ECP" index="<%= idx %>4"/>
 
 <% end -%>
 
