@@ -43,7 +43,7 @@
 
             <Handler type="Status" Location="/Status" acl="127.0.0.1 ::1"/>
 
-            <Handler type="Session" Location="/Session" showAttributeValues="false"/>
+            <Handler type="Session" Location="/Session" showAttributeValues="<%= @session_handler_show_attribute_values %>"/>
 
             <Handler type="DiscoveryFeed" Location="/DiscoFeed" cacheToDisk="false"/>
 

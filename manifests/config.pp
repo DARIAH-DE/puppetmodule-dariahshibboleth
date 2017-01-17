@@ -1,6 +1,8 @@
 # This private class configures the shibboleth SP.
 #
-class dariahshibboleth::config inherits dariahshibboleth {
+class dariahshibboleth::config (
+  $session_handler_show_attribute_values = false
+) inherits dariahshibboleth {
 
   if ($::dariahshibboleth::standby_cert != undef) and ($::dariahshibboleth::standby_key != undef) {
     $_cert_rollover = true
