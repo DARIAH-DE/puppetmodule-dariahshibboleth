@@ -3,18 +3,23 @@
 class dariahshibboleth::params {
 
   # define the DARIAH-DE IdP
-  $idp_entityid                = 'https://idp.de.dariah.eu/idp/shibboleth'
-  $federation_registration_url = 'https://auth.dariah.eu/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
-  $discoveryurl                = 'https://auth.dariah.eu/CDS/WAYF'
-  $federation_enabled          = false
+  $idp_entityid            = 'https://idp.de.dariah.eu/idp/shibboleth'
+  $dariah_registration_url = 'https://auth.dariah.eu/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
+  $discoveryurl            = 'https://auth.dariah.eu/CDS/WAYF'
+  $federation_enabled      = false
 
   # defaults
-  $use_edugain                 = true
-  $use_dfn_basic               = false
-  $use_dfn_test                = false
-  $use_dfn_edugain             = false
+  $use_edugain                          = true
+  $use_dfn_basic                        = false
+  $use_dfn_test                         = false
+  $use_dfn_edugain                      = false
+  $tou_enforced                         = true
+  $tou_additional_tous                  = []
 
-  $mail_contact                = 'root@localhost'
+  $mail_contact                         = 'root@localhost'
+
+  $attribute_checker_requiredattributes = ['eppn','mail','givenName','sn']
+
 
   #default REMOTE_USER preference list
   $remote_user_pref_list          = 'eppn persistent-id targeted-id'

@@ -211,6 +211,37 @@ describe "dariahshibboleth" do
     end    
   end
 
+  context 'with custom list of required attributes' do
+    let(:params) { {:attribute_checker_requiredattributes => ['foobar'] } }
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/<Rule require="foobar" /)
+    end
+  end
+
+  context 'with custom registration url' do
+    let(:params) { {:dariah_registration_url => 'https://boo.bar/register' } }
+    it do
+      should contain_file('/etc/shibboleth/attrChecker.html') \
+        .with_content(/<meta http-equiv="refresh" content="6; URL=https:\/\/boo.bar\/register<shibmlp target\/>&entityID=<shibmlp entityID\/>"/)
+    end
+  end
+
+  context 'tou enforced' do
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/<Rule require="dariahTermsOfUse">Terms_of_Use_v5.pdf<\/Rule>/)
+    end
+  end
+
+  context ' with additonal tous' do
+    let(:params) { {:tou_additional_tous => ['foobar.txt'] } }
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/<Rule require="dariahTermsOfUse">foobar.txt<\/Rule>/)
+    end
+  end
+
   context 'with changed REMOTE_USER preference' do
     let(:params) { {:remote_user_pref_list => 'foo bar' } }
     it do

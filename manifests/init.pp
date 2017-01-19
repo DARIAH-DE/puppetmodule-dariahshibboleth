@@ -26,29 +26,44 @@
 # @param use_dfn_edugain Load the eduGAIN Metadata from DFN (without DFN!)
 #
 class dariahshibboleth (
-    $attribute_checker_flushsession = $dariahshibboleth::params::attribute_checker_flushsession,
-    $cert                           = undef,
-    $custom_metadata_url            = $dariahshibboleth::params::custom_metadata_url,
-    $custom_metadata_signature_cert = $dariahshibboleth::params::custom_metadata_signature_cert,
-    $discoveryurl                   = $dariahshibboleth::params::discoveryurl,
-    $fakeshibdata                   = $dariahshibboleth::params::fakeshibdata,
-    $federation_enabled             = $dariahshibboleth::params::federation_enabled,
-    $federation_registration_url    = $dariahshibboleth::params::federation_registration_url,
-    $handlerssl                     = $dariahshibboleth::params::handlerssl,
-    $handlerurl_prefix              = undef,
-    $hostname                       = $::fqdn,
-    $idp_entityid                   = $dariahshibboleth::params::idp_entityid,
-    $key                            = undef,
-    $locallogout_headertags         = undef,
-    $mail_contact                   = $dariahshibboleth::params::mail_contact,
-    $remote_user_pref_list          = $dariahshibboleth::params::remote_user_pref_list,
-    $standby_cert                   = undef,
-    $standby_key                    = undef,
-    $use_edugain                    = $dariahshibboleth::params::use_edugain,
-    $use_dfn_basic                  = $dariahshibboleth::params::use_dfn_basic,
-    $use_dfn_test                   = $dariahshibboleth::params::use_dfn_test,
-    $use_dfn_edugain                = $dariahshibboleth::params::use_dfn_edugain,
+    $attribute_checker_flushsession       = $dariahshibboleth::params::attribute_checker_flushsession,
+    $attribute_checker_requiredattributes = $dariahshibboleth::params::attribute_checker_requiredattributes,
+    $cert                                 = undef,
+    $custom_metadata_url                  = $dariahshibboleth::params::custom_metadata_url,
+    $custom_metadata_signature_cert       = $dariahshibboleth::params::custom_metadata_signature_cert,
+    $dariah_registration_url              = $dariahshibboleth::params::dariah_registration_url,
+    $discoveryurl                         = $dariahshibboleth::params::discoveryurl,
+    $fakeshibdata                         = $dariahshibboleth::params::fakeshibdata,
+    $federation_enabled                   = $dariahshibboleth::params::federation_enabled,
+    $handlerssl                           = $dariahshibboleth::params::handlerssl,
+    $handlerurl_prefix                    = undef,
+    $hostname                             = $::fqdn,
+    $idp_entityid                         = $dariahshibboleth::params::idp_entityid,
+    $key                                  = undef,
+    $locallogout_headertags               = undef,
+    $mail_contact                         = $dariahshibboleth::params::mail_contact,
+    $remote_user_pref_list                = $dariahshibboleth::params::remote_user_pref_list,
+    $standby_cert                         = undef,
+    $standby_key                          = undef,
+    $tou_additional_tous                  = $dariahshibboleth::params::tou_additional_tous,
+    $tou_enforced                         = $dariahshibboleth::params::tou_enforced,
+    $use_edugain                          = $dariahshibboleth::params::use_edugain,
+    $use_dfn_basic                        = $dariahshibboleth::params::use_dfn_basic,
+    $use_dfn_test                         = $dariahshibboleth::params::use_dfn_test,
+    $use_dfn_edugain                      = $dariahshibboleth::params::use_dfn_edugain,
 ) inherits dariahshibboleth::params {
+
+
+  validate_bool($attribute_checker_flushsession)
+  validate_array($attribute_checker_requiredattributes)
+  validate_bool($federation_enabled)
+  validate_bool($handlerssl)
+  validate_array($tou_additional_tous)
+  validate_bool($tou_enforced)
+  validate_bool($use_edugain)
+  validate_bool($use_dfn_basic)
+  validate_bool($use_dfn_test)
+  validate_bool($use_dfn_edugain)
 
   anchor { 'dariahshibboleth::begin': } ->
   class { '::dariahshibboleth::install':}->

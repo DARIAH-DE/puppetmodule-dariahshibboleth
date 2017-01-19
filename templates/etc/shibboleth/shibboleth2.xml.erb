@@ -13,7 +13,7 @@
 
     <ApplicationDefaults entityID="https://<%= @hostname %>/shibboleth"
                          REMOTE_USER="<%= @remote_user_pref_list %>"
-                         <% if @federation_enabled %>sessionHook="<%= @handlerurl_prefix %>/Shibboleth.sso/AttrChecker"<%end %>>
+                         sessionHook="<%= @handlerurl_prefix %>/Shibboleth.sso/AttrChecker">
 
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
 <% if @handlerssl -%>
@@ -47,13 +47,22 @@
 
             <Handler type="DiscoveryFeed" Location="/DiscoFeed" cacheToDisk="false"/>
 
-<% if @federation_enabled %>
-  <%-# Make sure we have all attributes we need -- not all IdPs release them -%>
+            <%-# Make sure we have all attributes we need -- not all IdPs release them -%>
             <Handler type="AttributeChecker" Location="/AttrChecker"
                      template="attrChecker.html"
-                     attributes="eppn mail givenName sn"
-                     flushSession="<%= @attribute_checker_flushsession %>"/>
-<% end -%> <%-# if @federation_enabled -%>
+                     flushSession="<%= @attribute_checker_flushsession %>">
+                <AND>
+                  <%- @attribute_checker_requiredattributes.each do |requiredattribute| -%>
+                    <Rule require="<%= requiredattribute %>" />
+                  <%- end -%>
+                  <%- if @tou_enforced -%>
+                    <Rule require="dariahTermsOfUse">Terms_of_Use_v5.pdf</Rule>
+                    <%- @tou_additional_tous.each do |additional_tou| -%>
+                      <Rule require="dariahTermsOfUse"><%= additional_tou %></Rule>
+                    <%- end -%>
+                  <%- end -%>
+                </AND>
+            </Handler>
 
         </Sessions>
 
