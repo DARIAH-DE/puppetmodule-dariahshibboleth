@@ -4,11 +4,7 @@
     <meta charset="utf-8">
     <title>DARIAH :: Insufficient Information</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <% if @federation_enabled %>
-    <meta http-equiv="refresh" content="6; URL=<%= @federation_registration_url %><shibmlp target/>&entityID=<shibmlp entityID/>"/>
-    <% end -%>
-    
+    <meta http-equiv="refresh" content="6; URL=<%= @dariah_registration_url %><shibmlp target/>&entityID=<shibmlp entityID/>"/>
     <!-- CSS Imports -->
     <link rel="stylesheet" href="https://res.de.dariah.eu/aai/css/bootstrap.css" type="text/css" media="screen, projection" />
     <link rel="stylesheet" href="https://res.de.dariah.eu/aai/css/bootstrap-responsive.css" type="text/css" media="screen, projection" />

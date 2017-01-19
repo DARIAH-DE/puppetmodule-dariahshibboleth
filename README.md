@@ -47,12 +47,12 @@ and the default 'access denied' page
 ##Usage
 
 To use the module with DARIAH Homeless IdP only, simply load as
-```
+```puppet
 class { 'dariahshibboleth': }
 ```
 This will load the DARIAH IdP's metadata via eduGAIN.
 To improve performance you may want to use DFN-Basic instead:
-```
+```puppet
 class { 'dariahshibboleth': 
   use_edugain   => false,
   use_dfn_basic => true,
@@ -60,7 +60,7 @@ class { 'dariahshibboleth':
 ```
 
 To switch to **eduGAIN mode**, simply use
-```
+```puppet
 class { 'dariahshibboleth':
   federation_enabled => true,
 }
@@ -68,14 +68,14 @@ class { 'dariahshibboleth':
 
 
 To configure the **Test IdP** do
-```
+```puppet
 class { 'dariahshibboleth':
-  use_edugain                 => false,
-  use_dfn_test                => true,
-  idp_entityid                => 'https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth',
-  federation_enabled          => false,
-  discoveryurl                => 'https://dariah.daasi.de/CDS/WAYF',
-  federation_registration_url => 'https://dariah.daasi.de/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
+  use_edugain             => false,
+  use_dfn_test            => true,
+  idp_entityid            => 'https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth',
+  federation_enabled      => false,
+  discoveryurl            => 'https://dariah.daasi.de/CDS/WAYF',
+  dariah_registration_url => 'https://dariah.daasi.de/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
 }
 ```
 Note that by using `federation_enabled => true` you enable the full Test setup with DFN-Test AAI federation support.
@@ -94,7 +94,7 @@ which you should copy to your webroot and server under the entityID.
 ###Setting up apache
 If you want to use Shibboleth with apache, using the `puppetlabs/apache` module, you might need this:
 
-```
+```puppet
 $mod_shibd_so = $::apache::apache_version ?
 {
   '2.4'   => 'mod_shib_24.so',
@@ -107,9 +107,8 @@ package { 'libapache2-mod-shib2':
   id  => 'mod_shib',
   lib => $mod_shibd_so,
 }
+Service['shibd'] ~> Service['apache2']
 ```
-
-
 
 ##Reference
 
@@ -130,6 +129,10 @@ package { 'libapache2-mod-shib2':
 #####`attribute_checker_flushsession`
 Whether to flush the AttributeChecker's session.
 
+#####`attribute_checker_requiredattributes`
+The list of attributes required from the IdP, if absent the user is sent to DARIAH registration.
+Defaults to `['eppn','mail','givenName','sn']`.
+
 #####`cert`
 Accepts the cert file for the SP, as created by `shib-keygen`.
 It is styrongly recommended to check the certificate's signature algorithm.
@@ -140,14 +143,14 @@ URL from where to get federation metadata.
 #####`custom_metadata_signature_cert`
 Puppet file source containing the public cert to verify the metadata.
 
+#####`dariah_registration_url`
+The URL where to send users to register with DARIAH and update their data.
+
 #####`discoveryurl`
 The URL used in discovery, when using federation, defaults to the DARIAH CDS.
 
 #####`federation_enabled`
 Whether to enable full federation support.
-
-#####`federation_registration_url`
-The URL where to send federation users unknown to the DARIAH IdP.
 
 #####`handlerssl`
 Whether to use SSL for the Shibboleth handler.
@@ -185,6 +188,13 @@ Standby Shibboleth SP cert for rollover migration.
 #####`standby_key`
 Standby Shibboleth SP key for rollover migration.
 
+#####`tou_additional_tous`
+Array of additional ToUs enforced by AttributeChecker, only active if `tou_enforced=true`.
+Defaults to empty.
+
+#####`tou_enforced`
+Allow only users who signed the DARIAH ToU, `Terms_of_Use_v5.pdf`.
+
 #####`use_edugain`
 Boolean to decide whether to load the eduGAIN Metadata.
 
@@ -207,7 +217,7 @@ Förderkennzeichen 01UG1110A bis N und 01UG1610A bis J.
 ##Further notes
 
 To customize the metadata, add your values to hiera:
-```
+```yaml
 dariahshibboleth::MetaData:
   UIInfo_DisplayName_de: 'MY Service'
   UIInfo_Description_de: 'Beschreibung meines Dienstes'
@@ -224,7 +234,7 @@ dariahshibboleth::MetaData:
 ```
 
 There is basic support for faking shibboleth options to Apache from hiera:
-```
+```yaml
 dariahshibboleth::FakeCredentials:
   firstname: 'Jane'
   lastname: 'Doe'

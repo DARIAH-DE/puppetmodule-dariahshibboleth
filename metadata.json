@@ -1,6 +1,6 @@
 {
   "name": "dariah-dariahshibboleth",
-  "version": "0.3.0",
+  "version": "0.4.0-snapshot",
   "author": "Carsten Thiel",
   "license": "Apache-2.0",
   "summary": "DARIAH-DE puppet module configuring shibboleth SP",
@@ -11,7 +11,7 @@
   "operatingsystem_support": [
     {
     "operatingsystem": "Ubuntu",
-    "operatingsystemrelease": [ "14.04" ]
+    "operatingsystemrelease": [ "14.04", "16.04" ]
     }
    ],
   "requirements": [
@@ -21,9 +21,9 @@
     }
   ],
   "dependencies": [
-    { "name": "puppetlabs/apt", "version_requirement": ">=1.8.0" },
-    { "name": "puppetlabs/concat", "version_requirement": ">=1.2.3" },
-    { "name": "puppetlabs/stdlib", "version_requirement": ">=4.6.0" }
+    { "name": "puppetlabs/apt", "version_requirement": ">=2.3.0" },
+    { "name": "puppetlabs/concat", "version_requirement": ">=2.2.0" },
+    { "name": "puppetlabs/stdlib", "version_requirement": ">=4.13.1" }
   ]
 }
 

@@ -15,7 +15,10 @@ describe "dariahshibboleth" do
     it do
       should contain_apt__source('SWITCHaai-swdistrib').with({
         'location' => 'http://pkg.switch.ch/switchaai/ubuntu',
-        'key'      => '294E37D154156E00FB96D7AA26C3C46915B76742',
+        'key'      => {
+          'id'     => '294E37D154156E00FB96D7AA26C3C46915B76742',
+          'source' => 'http://pkg.switch.ch/switchaai/SWITCHaai-swdistrib.asc'
+        }
       })
     end
   end
@@ -31,7 +34,6 @@ describe "dariahshibboleth" do
   it do
     should contain_file('/opt/dariahshibboleth/accessdenied.html')
   end
-
 
   context 'default settings' do
     it do
@@ -62,7 +64,6 @@ describe "dariahshibboleth" do
       should contain_file('/etc/shibboleth/shibboleth2.xml') \
         .with_content(/handlerSSL="true" cookieProps="https"/)
     end
-
   end
 
   context 'with hostname set' do
@@ -208,6 +209,37 @@ describe "dariahshibboleth" do
         .with_content(/<ds:KeyName>Active<\/ds:KeyName>/)
         .with_content(/<ds:KeyName>Standby<\/ds:KeyName>/)
     end    
+  end
+
+  context 'with custom list of required attributes' do
+    let(:params) { {:attribute_checker_requiredattributes => ['foobar'] } }
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/<Rule require="foobar" /)
+    end
+  end
+
+  context 'with custom registration url' do
+    let(:params) { {:dariah_registration_url => 'https://boo.bar/register' } }
+    it do
+      should contain_file('/etc/shibboleth/attrChecker.html') \
+        .with_content(/<meta http-equiv="refresh" content="6; URL=https:\/\/boo.bar\/register<shibmlp target\/>&entityID=<shibmlp entityID\/>"/)
+    end
+  end
+
+  context 'tou enforced' do
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/<Rule require="dariahTermsOfUse">Terms_of_Use_v5.pdf<\/Rule>/)
+    end
+  end
+
+  context ' with additonal tous' do
+    let(:params) { {:tou_additional_tous => ['foobar.txt'] } }
+    it do
+      should contain_file('/etc/shibboleth/shibboleth2.xml') \
+        .with_content(/<Rule require="dariahTermsOfUse">foobar.txt<\/Rule>/)
+    end
   end
 
   context 'with changed REMOTE_USER preference' do
