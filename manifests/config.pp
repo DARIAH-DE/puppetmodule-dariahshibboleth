@@ -80,6 +80,10 @@ class dariahshibboleth::config (
       mode   => '0644',
       source => $::dariahshibboleth::standby_cert,
     }
+  } else {
+    file { '/etc/shibboleth/sp-standby-cert.pem':
+      ensure => absent,
+    }
   }
 
   if $::dariahshibboleth::standby_key != undef {
@@ -89,6 +93,10 @@ class dariahshibboleth::config (
       group  => 'root',
       mode   => '0400',
       source => $::dariahshibboleth::standby_key,
+    }
+  } else {
+    file { '/etc/shibboleth/sp-standby-key.pem':
+      ensure => absent,
     }
   }
 
@@ -119,6 +127,10 @@ class dariahshibboleth::config (
     }
   } else {
     $_with_custom_metadata_enabled = false
+    file { '/etc/shibboleth/custom_metadata_signature.pem':
+      ensure => absent,
+    }
+
   }
 
   file { '/etc/shibboleth/localLogout.html':
