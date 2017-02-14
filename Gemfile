@@ -4,6 +4,7 @@ group :development, :tests do
   gem 'rspec',                   :require => false
   gem 'rspec-core',              :require => false
   gem 'rspec-puppet',            :require => false
+  gem 'rspec-puppet-facts',      :require => false
   gem 'puppetlabs_spec_helper',  :require => false
   gem 'simplecov',               :require => false
   gem 'puppet_facts',            :require => false

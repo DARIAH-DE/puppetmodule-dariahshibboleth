@@ -4,9 +4,9 @@
   "author": "Carsten Thiel",
   "license": "Apache-2.0",
   "summary": "DARIAH-DE puppet module configuring shibboleth SP",
-  "source": "https://projects.gwdg.de/projects/dariah-puppetmodule-shibboleth/repository",
-  "project_page": "https://projects.gwdg.de/projects/dariah-puppetmodule-shibboleth",
-  "issues_url": "https://projects.gwdg.de/projects/dariah-puppetmodule-shibboleth/issues",
+  "source": "https://github.com/DARIAH-DE/puppetmodule-dariahshibboleth",
+  "project_page": "https://github.com/DARIAH-DE/puppetmodule-dariahshibboleth",
+  "issues_url": "https://github.com/DARIAH-DE/puppetmodule-dariahshibboleth/issues",
   "tags": ["dariah", "shibboleth","sso"],
   "operatingsystem_support": [
     {
@@ -17,7 +17,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 3.0.0 < 5.0.0"
+      "version_requirement": ">= 4.0.0 < 5.0.0"
     }
   ],
   "dependencies": [

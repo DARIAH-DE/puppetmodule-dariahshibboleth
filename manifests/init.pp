@@ -26,44 +26,36 @@
 # @param use_dfn_edugain Load the eduGAIN Metadata from DFN (without DFN!)
 #
 class dariahshibboleth (
-    $attribute_checker_flushsession       = $dariahshibboleth::params::attribute_checker_flushsession,
-    $attribute_checker_requiredattributes = $dariahshibboleth::params::attribute_checker_requiredattributes,
-    $cert                                 = undef,
-    $custom_metadata_url                  = $dariahshibboleth::params::custom_metadata_url,
-    $custom_metadata_signature_cert       = $dariahshibboleth::params::custom_metadata_signature_cert,
-    $dariah_registration_url              = $dariahshibboleth::params::dariah_registration_url,
-    $discoveryurl                         = $dariahshibboleth::params::discoveryurl,
-    $fakeshibdata                         = $dariahshibboleth::params::fakeshibdata,
-    $federation_enabled                   = $dariahshibboleth::params::federation_enabled,
-    $handlerssl                           = $dariahshibboleth::params::handlerssl,
-    $handlerurl_prefix                    = undef,
-    $hostname                             = $::fqdn,
-    $idp_entityid                         = $dariahshibboleth::params::idp_entityid,
-    $key                                  = undef,
-    $locallogout_headertags               = undef,
-    $mail_contact                         = $dariahshibboleth::params::mail_contact,
-    $remote_user_pref_list                = $dariahshibboleth::params::remote_user_pref_list,
-    $standby_cert                         = undef,
-    $standby_key                          = undef,
-    $tou_additional_tous                  = $dariahshibboleth::params::tou_additional_tous,
-    $tou_enforced                         = $dariahshibboleth::params::tou_enforced,
-    $use_edugain                          = $dariahshibboleth::params::use_edugain,
-    $use_dfn_basic                        = $dariahshibboleth::params::use_dfn_basic,
-    $use_dfn_test                         = $dariahshibboleth::params::use_dfn_test,
-    $use_dfn_edugain                      = $dariahshibboleth::params::use_dfn_edugain,
+  Boolean $attribute_checker_flushsession          = $dariahshibboleth::params::attribute_checker_flushsession,
+  Array   $attribute_checker_requiredattributes    = $dariahshibboleth::params::attribute_checker_requiredattributes,
+  Optional[String] $cert                           = undef,
+  Optional[String] $custom_metadata_url            = $dariahshibboleth::params::custom_metadata_url,
+  Optional[String] $custom_metadata_signature_cert = $dariahshibboleth::params::custom_metadata_signature_cert,
+  String  $dariah_registration_url                 = $dariahshibboleth::params::dariah_registration_url,
+  String  $discoveryurl                            = $dariahshibboleth::params::discoveryurl,
+  String  $fakeshibdata                            = $dariahshibboleth::params::fakeshibdata,
+  Boolean $federation_enabled                      = $dariahshibboleth::params::federation_enabled,
+  Boolean $handlerssl                              = $dariahshibboleth::params::handlerssl,
+  Optional[String] $handlerurl_prefix              = undef,
+  String  $hostname                                = $::fqdn,
+  String  $idp_entityid                            = $dariahshibboleth::params::idp_entityid,
+  Optional[String] $key                            = undef,
+  Optional[String] $locallogout_headertags         = undef,
+  String  $mail_contact                            = $dariahshibboleth::params::mail_contact,
+  String  $remote_user_pref_list                   = $dariahshibboleth::params::remote_user_pref_list,
+  Optional[String] $standby_cert                   = undef,
+  Optional[String] $standby_key                    = undef,
+  Array   $tou_additional_tous                     = $dariahshibboleth::params::tou_additional_tous,
+  Boolean $tou_enforced                            = $dariahshibboleth::params::tou_enforced,
+  Boolean $use_edugain                             = $dariahshibboleth::params::use_edugain,
+  Boolean $use_dfn_basic                           = $dariahshibboleth::params::use_dfn_basic,
+  Boolean $use_dfn_test                            = $dariahshibboleth::params::use_dfn_test,
+  Boolean $use_dfn_edugain                         = $dariahshibboleth::params::use_dfn_edugain,
 ) inherits dariahshibboleth::params {
 
 
-  validate_bool($attribute_checker_flushsession)
   validate_array($attribute_checker_requiredattributes)
-  validate_bool($federation_enabled)
-  validate_bool($handlerssl)
   validate_array($tou_additional_tous)
-  validate_bool($tou_enforced)
-  validate_bool($use_edugain)
-  validate_bool($use_dfn_basic)
-  validate_bool($use_dfn_test)
-  validate_bool($use_dfn_edugain)
 
   anchor { 'dariahshibboleth::begin': } ->
   class { '::dariahshibboleth::install':}->
