@@ -5,7 +5,9 @@ describe "dariahshibboleth" do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
-        facts
+        facts.merge({
+          :networking => { 'fqdn' => 'fq.dn' },
+        })
       end
 
       it { should contain_anchor('dariahshibboleth::begin').that_comes_before('Class[dariahshibboleth::install]') }
@@ -210,7 +212,7 @@ describe "dariahshibboleth" do
             .with_content(/<ds:X509Certificate>\s*Standby\s*<\/ds:X509Certificate>/) \
             .with_content(/<ds:KeyName>Active<\/ds:KeyName>/)
             .with_content(/<ds:KeyName>Standby<\/ds:KeyName>/)
-        end    
+        end
       end
 
       context 'with custom list of required attributes' do

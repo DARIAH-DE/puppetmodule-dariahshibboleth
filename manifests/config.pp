@@ -1,5 +1,7 @@
 # This private class configures the shibboleth SP.
 #
+# @param session_handler_show_attribute_values Boolean to enable debug option showing the attributes' values at the Session handler.
+#
 class dariahshibboleth::config (
   $session_handler_show_attribute_values = false
 ) inherits dariahshibboleth {

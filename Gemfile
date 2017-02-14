@@ -13,6 +13,7 @@ group :development, :tests do
   gem 'metadata-json-lint',      :require => false
   gem 'puppet-syntax',           :require => false
   gem 'puppet-lint',             :require => false
+  gem 'puppet-strings',          :require => false
 end
 
 group :system_tests do

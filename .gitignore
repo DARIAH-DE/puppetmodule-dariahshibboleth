@@ -3,3 +3,5 @@ log
 spec/fixtures/
 Gemfile.lock
 coverage/
+.yardoc/
+doc/
