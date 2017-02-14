@@ -37,7 +37,7 @@ class dariahshibboleth (
   Boolean $federation_enabled                      = $dariahshibboleth::params::federation_enabled,
   Boolean $handlerssl                              = $dariahshibboleth::params::handlerssl,
   Optional[String] $handlerurl_prefix              = undef,
-  String  $hostname                                = $::fqdn,
+  String  $hostname                                = $facts['fqdn'],
   String  $idp_entityid                            = $dariahshibboleth::params::idp_entityid,
   Optional[String] $key                            = undef,
   Optional[String] $locallogout_headertags         = undef,

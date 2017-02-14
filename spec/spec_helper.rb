@@ -10,17 +10,6 @@ RSpec.configure do |c|
   c.environmentpath = File.join(Dir.pwd, 'spec')
 end
 
-require 'simplecov'
 require 'coveralls'
-
-SimpleCov.formatter = Coveralls::SimpleCov::Formatter
-SimpleCov.start do
-  add_filter 'spec/fixtures'
-end
-
-RSpec.configure do |c|
-  c.after(:suite) do
-    RSpec::Puppet::Coverage.report!
-  end
-end
+Coveralls.wear!
 
