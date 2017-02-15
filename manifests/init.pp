@@ -2,31 +2,36 @@
 # It installs and configures the SP.
 #
 # @param attribute_checker_flushsession Whether to flush AttributeChecker's session
-# @param attribute_checker_requiredattributes Array of attributes required from IdP.
-# @param cert The shibboleth SP's key.
+# @param attribute_checker_requiredattributes Array of attributes required from the IdP, if absent the user is sent to DARIAH registration.
+#   Defaults to `['eppn','mail','givenName','sn']`.
+# @param cert Accepts the cert file for the SP, as created by `shib-keygen`.
+#   It is styrongly recommended to check the certificate's signature algorithm.
 # @param custom_metadata_url URL from where to get federation metadata.
-# @param custom_metadata_signature_cert File containing the public cert to verify the metadata.
-# @param dariah_registration_url URL of the registration form for federation users.
-# @param discoveryurl The URL of the Discovery Service / WAYF.
+# @param custom_metadata_signature_cert Puppet file source containing the public cert to verify the metadata.
+# @param dariah_registration_url The URL where to send users to register with DARIAH and update their data.
+# @param discoveryurl The URL of the Discovery Service / WAYF, defaults to the DARIAH CDS.
 # @param fakeshibdata Hash of fake shibboleth session data.
-# @param federation_enabled Enables the use of federation metadata.
-# @param handlerssl Accepts true or false for Shibboleth's setting.
-# @param handlerurl_prefix Mountpoint of the shibboleth handler.
-# @param hostname The hostname to use in building the SP metadata.
-# @param idp_entityid The enityID of the IdP to use.
-# @param key The shibboleth SP's key.
-# @param locallogout_headertags Additional header tags for localLogout.html.
-# @param mail_contact The contact mail address for metadata.
-# @param remote_user_pref_list The preference list for REMOTE_USER.
-# @param standby_cert standby Shibboleth SP cert for rollover.
-# @param standby_key standby Shibboleth SP key for rollover.
-# @param standby_key standby Shibboleth SP key for rollover.
-# @param tou_additional_tous Array of additonal ToU to be enforced..
+# @param federation_enabled Whether to enable full federation support.
+# @param handlerssl Whether to use SSL for the Shibboleth handler.
+#   Defaults to `true` and should not be changed unless you are very sure.
+# @param handlerurl_prefix Sets the prefix in the mount path of the SP's HandlerURL.
+# @param hostname The hostname used in building the SP metadata, needs to match the cert's fqdn.
+#  Defaults to the system's fully qualified domain name.
+# @param idp_entityid EntityID of the IdP to use, defaults to the DARIAH Homeless IdP's entityId.
+#   This is used only if not in federation setup for whitelisting.
+# @param key Accepts the key file for the SP, as created by `shib-keygen`..
+# @param locallogout_headertags Additional header tags to insert into localLogout.html.
+# @param mail_contact The mail address to be used as contact address in the SP's metadata.
+# @param remote_user_pref_list Accepts a string containing the list of attributes in order of preference for setting the `REMOTE_USER` variable.
+#   Default to `eppn persistent-id targeted-id`.
+# @param standby_cert Standby Shibboleth SP cert for rollover migration.
+# @param standby_key Standby Shibboleth SP key for rollover migration.
+# @param tou_additional_tous Names of additional ToUs enforced by AttributeChecker, only active if `tou_enforced=true`.
 # @param tou_enforced Whether to enforce acceptance of DARIAH ToU.
 # @param use_dfn_basic Load the DFN-Basic AAI Metadata.
 # @param use_dfn_test Load the DFN-Test AAI Metadata.
 # @param use_dfn_edugain Load the eduGAIN Metadata from DFN (without DFN!).
-# @param use_edugain Whether to load eduGAIN directly.
+# @param use_edugain Load the eduGAIN Metadata directly.
 #
 class dariahshibboleth (
   Boolean $attribute_checker_flushsession          = $dariahshibboleth::params::attribute_checker_flushsession,

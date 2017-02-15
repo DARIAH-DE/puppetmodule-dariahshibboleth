@@ -6,6 +6,7 @@ require 'puppetlabs_spec_helper/puppetlabs_spec_helper'
 require 'puppet-lint/tasks/puppet-lint'
 require 'puppet-syntax/tasks/puppet-syntax'
 require 'metadata-json-lint/rake_task'
+require 'puppet-strings/tasks'
 
 Rake::Task[:lint].clear
 
