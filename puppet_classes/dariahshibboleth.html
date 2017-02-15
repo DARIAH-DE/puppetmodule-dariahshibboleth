@@ -91,9 +91,8 @@
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    
-<p>This class provides the dariahshibboleth module. It installs and configures
-the SP.</p>
+    <p>This class provides the dariahshibboleth module.
+It installs and configures the SP.</p>
 
   </div>
 </div>
@@ -113,8 +112,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether to flush AttributeChecker&#39;s session</p>
+        <div class='inline'><p>Whether to flush AttributeChecker&#39;s session</p>
 </div>
       
     </li>
@@ -131,8 +129,8 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Array of attributes required from IdP.</p>
+        <div class='inline'><p>Array of attributes required from the IdP, if absent the user is sent to DARIAH registration.
+Defaults to <code>[&#39;eppn&#39;,&#39;mail&#39;,&#39;givenName&#39;,&#39;sn&#39;]</code>.</p>
 </div>
       
     </li>
@@ -149,8 +147,8 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>The shibboleth SP&#39;s key.</p>
+        <div class='inline'><p>Accepts the cert file for the SP, as created by <code>shib-keygen</code>.
+It is styrongly recommended to check the certificate&#39;s signature algorithm.</p>
 </div>
       
     </li>
@@ -167,8 +165,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>URL from where to get federation metadata.</p>
+        <div class='inline'><p>URL from where to get federation metadata.</p>
 </div>
       
     </li>
@@ -185,8 +182,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>File containing the public cert to verify the metadata.</p>
+        <div class='inline'><p>Puppet file source containing the public cert to verify the metadata.</p>
 </div>
       
     </li>
@@ -203,8 +199,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>URL of the registration form for federation users.</p>
+        <div class='inline'><p>The URL where to send users to register with DARIAH and update their data.</p>
 </div>
       
     </li>
@@ -221,8 +216,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>The URL of the Discovery Service / WAYF.</p>
+        <div class='inline'><p>The URL of the Discovery Service / WAYF, defaults to the DARIAH CDS.</p>
 </div>
       
     </li>
@@ -239,8 +233,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Hash of fake shibboleth session data.</p>
+        <div class='inline'><p>Hash of fake shibboleth session data.</p>
 </div>
       
     </li>
@@ -257,8 +250,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Enables the use of federation metadata.</p>
+        <div class='inline'><p>Whether to enable full federation support.</p>
 </div>
       
     </li>
@@ -275,8 +267,8 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Accepts true or false for Shibboleth&#39;s setting.</p>
+        <div class='inline'><p>Whether to use SSL for the Shibboleth handler.
+Defaults to <code>true</code> and should not be changed unless you are very sure.</p>
 </div>
       
     </li>
@@ -293,8 +285,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Mountpoint of the shibboleth handler.</p>
+        <div class='inline'><p>Sets the prefix in the mount path of the SP&#39;s HandlerURL.</p>
 </div>
       
     </li>
@@ -311,8 +302,8 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>The hostname to use in building the SP metadata.</p>
+        <div class='inline'><p>The hostname used in building the SP metadata, needs to match the cert&#39;s fqdn.
+Defaults to the system&#39;s fully qualified domain name.</p>
 </div>
       
     </li>
@@ -329,8 +320,8 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>The enityID of the IdP to use.</p>
+        <div class='inline'><p>EntityID of the IdP to use, defaults to the DARIAH Homeless IdP&#39;s entityId.
+This is used only if not in federation setup for whitelisting.</p>
 </div>
       
     </li>
@@ -347,8 +338,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>The shibboleth SP&#39;s key.</p>
+        <div class='inline'><p>Accepts the key file for the SP, as created by <code>shib-keygen</code>..</p>
 </div>
       
     </li>
@@ -365,8 +355,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Additional header tags for localLogout.html.</p>
+        <div class='inline'><p>Additional header tags to insert into localLogout.html.</p>
 </div>
       
     </li>
@@ -383,8 +372,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>The contact mail address for metadata.</p>
+        <div class='inline'><p>The mail address to be used as contact address in the SP&#39;s metadata.</p>
 </div>
       
     </li>
@@ -401,8 +389,8 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>The preference list for REMOTE_USER.</p>
+        <div class='inline'><p>Accepts a string containing the list of attributes in order of preference for setting the <code>REMOTE_USER</code> variable.
+Default to <code>eppn persistent-id targeted-id</code>.</p>
 </div>
       
     </li>
@@ -419,8 +407,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>standby Shibboleth SP cert for rollover.</p>
+        <div class='inline'><p>Standby Shibboleth SP cert for rollover migration.</p>
 </div>
       
     </li>
@@ -437,26 +424,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>standby Shibboleth SP key for rollover.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>standby_key</span>
-      
-      
-        <span class='type'></span>
-      
-      
-        <em class="default">(defaults to: <tt>undef</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>standby Shibboleth SP key for rollover.</p>
+        <div class='inline'><p>Standby Shibboleth SP key for rollover migration.</p>
 </div>
       
     </li>
@@ -473,8 +441,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Array of additonal ToU to be enforced..</p>
+        <div class='inline'><p>Names of additional ToUs enforced by AttributeChecker, only active if <code>tou_enforced=true</code>.</p>
 </div>
       
     </li>
@@ -491,8 +458,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether to enforce acceptance of DARIAH ToU.</p>
+        <div class='inline'><p>Whether to enforce acceptance of DARIAH ToU.</p>
 </div>
       
     </li>
@@ -509,8 +475,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Load the DFN-Basic AAI Metadata.</p>
+        <div class='inline'><p>Load the DFN-Basic AAI Metadata.</p>
 </div>
       
     </li>
@@ -527,8 +492,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Load the DFN-Test AAI Metadata.</p>
+        <div class='inline'><p>Load the DFN-Test AAI Metadata.</p>
 </div>
       
     </li>
@@ -545,8 +509,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Load the eduGAIN Metadata from DFN (without DFN!).</p>
+        <div class='inline'><p>Load the eduGAIN Metadata from DFN (without DFN!).</p>
 </div>
       
     </li>
@@ -563,8 +526,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether to load eduGAIN directly.</p>
+        <div class='inline'><p>Load the eduGAIN Metadata directly.</p>
 </div>
       
     </li>
@@ -579,11 +541,6 @@ the SP.</p>
         <pre class="lines">
 
 
-31
-32
-33
-34
-35
 36
 37
 38
@@ -613,10 +570,15 @@ the SP.</p>
 62
 63
 64
-65</pre>
+65
+66
+67
+68
+69
+70</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 31</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 36</span>
 
 class dariahshibboleth (
   Boolean $attribute_checker_flushsession          = $dariahshibboleth::params::attribute_checker_flushsession,
@@ -660,7 +622,7 @@ class dariahshibboleth (
 </div>
 
       <div id="footer">
-  Generated on Wed Feb 15 16:14:19 2017 by
+  Generated on Wed Feb 15 16:51:28 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.3.1).
 </div>
