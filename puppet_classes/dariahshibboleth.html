@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: dariahshibboleth
+  
+    &mdash; Documentation by YARD 0.9.8
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::dariahshibboleth";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (d)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">dariahshibboleth</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: dariahshibboleth</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd><span class='object_link'><a href="dariahshibboleth_3A_3Aparams.html" title="puppet_classes::dariahshibboleth::params (puppet_class)">dariahshibboleth::params</a></span></dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Inherited by:</dt>
+    <dd>
+      
+      <span class='object_link'><a href="dariahshibboleth_3A_3Aconfig.html" title="puppet_classes::dariahshibboleth::config (puppet_class)">dariahshibboleth::config</a></span><br/>
+      
+      <span class='object_link'><a href="dariahshibboleth_3A_3Ainstall.html" title="puppet_classes::dariahshibboleth::install (puppet_class)">dariahshibboleth::install</a></span><br/>
+      
+      <span class='object_link'><a href="dariahshibboleth_3A_3Aservice.html" title="puppet_classes::dariahshibboleth::service (puppet_class)">dariahshibboleth::service</a></span><br/>
+      
+    </dd>
+  </dl>
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      manifests/init.pp
+    </dd>
+  </dl>
+</div>
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    
+<p>This class provides the dariahshibboleth module. It installs and configures
+the SP.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>attribute_checker_flushsession</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::attribute_checker_flushsession</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether to flush AttributeChecker&#39;s session</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>attribute_checker_requiredattributes</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::attribute_checker_requiredattributes</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array of attributes required from IdP.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cert</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The shibboleth SP&#39;s key.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>custom_metadata_url</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::custom_metadata_url</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>URL from where to get federation metadata.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>custom_metadata_signature_cert</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::custom_metadata_signature_cert</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>File containing the public cert to verify the metadata.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dariah_registration_url</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::dariah_registration_url</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>URL of the registration form for federation users.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>discoveryurl</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::discoveryurl</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The URL of the Discovery Service / WAYF.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fakeshibdata</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::fakeshibdata</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Hash of fake shibboleth session data.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>federation_enabled</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::federation_enabled</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Enables the use of federation metadata.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>handlerssl</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::handlerssl</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Accepts true or false for Shibboleth&#39;s setting.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>handlerurl_prefix</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Mountpoint of the shibboleth handler.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>hostname</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$facts[&#39;networking&#39;][&#39;fqdn&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The hostname to use in building the SP metadata.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>idp_entityid</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::idp_entityid</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The enityID of the IdP to use.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The shibboleth SP&#39;s key.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>locallogout_headertags</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Additional header tags for localLogout.html.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mail_contact</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::mail_contact</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The contact mail address for metadata.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>remote_user_pref_list</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::remote_user_pref_list</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The preference list for REMOTE_USER.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>standby_cert</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>standby Shibboleth SP cert for rollover.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>standby_key</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>standby Shibboleth SP key for rollover.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>standby_key</span>
+      
+      
+        <span class='type'></span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>standby Shibboleth SP key for rollover.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tou_additional_tous</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::tou_additional_tous</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array of additonal ToU to be enforced..</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tou_enforced</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::tou_enforced</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether to enforce acceptance of DARIAH ToU.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_dfn_basic</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::use_dfn_basic</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Load the DFN-Basic AAI Metadata.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_dfn_test</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::use_dfn_test</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Load the DFN-Test AAI Metadata.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_dfn_edugain</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::use_dfn_edugain</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Load the eduGAIN Metadata from DFN (without DFN!).</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_edugain</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$dariahshibboleth::params::use_edugain</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether to load eduGAIN directly.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 31</span>
+
+class dariahshibboleth (
+  Boolean $attribute_checker_flushsession          = $dariahshibboleth::params::attribute_checker_flushsession,
+  Array   $attribute_checker_requiredattributes    = $dariahshibboleth::params::attribute_checker_requiredattributes,
+  Optional[String] $cert                           = undef,
+  Optional[String] $custom_metadata_url            = $dariahshibboleth::params::custom_metadata_url,
+  Optional[String] $custom_metadata_signature_cert = $dariahshibboleth::params::custom_metadata_signature_cert,
+  String  $dariah_registration_url                 = $dariahshibboleth::params::dariah_registration_url,
+  String  $discoveryurl                            = $dariahshibboleth::params::discoveryurl,
+  String  $fakeshibdata                            = $dariahshibboleth::params::fakeshibdata,
+  Boolean $federation_enabled                      = $dariahshibboleth::params::federation_enabled,
+  Boolean $handlerssl                              = $dariahshibboleth::params::handlerssl,
+  Optional[String] $handlerurl_prefix              = undef,
+  String  $hostname                                = $facts[&#39;networking&#39;][&#39;fqdn&#39;],
+  String  $idp_entityid                            = $dariahshibboleth::params::idp_entityid,
+  Optional[String] $key                            = undef,
+  Optional[String] $locallogout_headertags         = undef,
+  String  $mail_contact                            = $dariahshibboleth::params::mail_contact,
+  String  $remote_user_pref_list                   = $dariahshibboleth::params::remote_user_pref_list,
+  Optional[String] $standby_cert                   = undef,
+  Optional[String] $standby_key                    = undef,
+  Array   $tou_additional_tous                     = $dariahshibboleth::params::tou_additional_tous,
+  Boolean $tou_enforced                            = $dariahshibboleth::params::tou_enforced,
+  Boolean $use_edugain                             = $dariahshibboleth::params::use_edugain,
+  Boolean $use_dfn_basic                           = $dariahshibboleth::params::use_dfn_basic,
+  Boolean $use_dfn_test                            = $dariahshibboleth::params::use_dfn_test,
+  Boolean $use_dfn_edugain                         = $dariahshibboleth::params::use_dfn_edugain,
+) inherits dariahshibboleth::params {
+
+  anchor { &#39;dariahshibboleth::begin&#39;: } -&gt;
+  class { &#39;::dariahshibboleth::install&#39;:}-&gt;
+  class { &#39;::dariahshibboleth::config&#39;: }~&gt;
+  class { &#39;::dariahshibboleth::service&#39;: }-&gt;
+  anchor { &#39;dariahshibboleth::end&#39;: }
+
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+  Generated on Wed Feb 15 16:14:19 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.8 (ruby-2.3.1).
+</div>
+
+    </div>
+  </body>
+</html>
