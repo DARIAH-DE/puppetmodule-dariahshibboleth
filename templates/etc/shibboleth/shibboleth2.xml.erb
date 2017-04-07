@@ -12,6 +12,11 @@
     -->
 
     <ApplicationDefaults entityID="https://<%= @hostname %>/shibboleth"
+<% if @federation_enabled -%>
+  <%-# use signing for backchannel requests to DARIAH IdP -%>
+                         signing="back"
+                         requireTransportAuth="false"
+<% end -%>
                          REMOTE_USER="<%= @remote_user_pref_list %>"
                          sessionHook="<%= @handlerurl_prefix %>/Shibboleth.sso/AttrChecker">
 
