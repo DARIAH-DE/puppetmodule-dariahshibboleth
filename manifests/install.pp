@@ -47,6 +47,20 @@ class dariahshibboleth::install inherits dariahshibboleth {
     source => 'puppet:///modules/dariahshibboleth/opt/dariahshibboleth/accessdenied.html',
   }
 
+  file {'/opt/dariah_de_puppet/anonymiser_shibd.sh':
+    ensure => file,
+    owner  => 'root',
+    mode   => '0755',
+    source => 'puppet:///modules/profiles/opt/dariah_de_puppet/anonymiser_shibd.sh'
+  }
+
+  cron { 'anonymiser_shibd' :
+    command => '/opt/dariah_de_puppet/anonymiser_shibd.sh',
+    user    => 'root',
+    hour    => '22',
+    minute  => '07',
+  }
+
 }
 
 
