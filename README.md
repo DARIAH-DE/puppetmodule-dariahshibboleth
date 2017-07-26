@@ -1,8 +1,8 @@
-#dariahshibboleth
+# dariahshibboleth
 
 [![Build Status](https://api.travis-ci.org/DARIAH-DE/puppetmodule-dariahshibboleth.png?branch=master)](https://travis-ci.org/DARIAH-DE/puppetmodule-dariahshibboleth)
 
-##Description
+## Description
 
 The module provides the setup and configuration of a Shibboleth Service Provider,
 specifically targeted at DARIAH integration.
@@ -11,7 +11,7 @@ The module sets up a shibboleth service provider configured for DARIAH services.
 By default, the module will configure the SP to authenticate against the DARIAH Homeless IdP.
 Alternatively, you can set it up against the DARIAH Test IdP or switch fo full federation setup within DFN AAI.
 
-##Setup
+## Setup
 
 The module will configure your system to use the SWITCH AAI repository and installs and configures the shib deamon.
 The following config files and templates will be affected and set up for use with DARIAH, in particular the settings as well as the styling:
@@ -29,7 +29,7 @@ The module will also provide your SP metadata file
 and the default 'access denied' page
 * `/opt/dariahshibboleth/accessdenied.html`
 
-##Usage
+## Usage
 
 To use the module with DARIAH Homeless IdP only, simply load as
 ```puppet
@@ -76,7 +76,7 @@ The module creates the SP's metadata in
 which you should copy to your webroot and server under the entityID.
 
 
-###Setting up apache
+### Setting up apache
 If you want to use Shibboleth with apache, using the `puppetlabs/apache` module, you might need this:
 
 ```puppet
@@ -91,22 +91,22 @@ package { 'libapache2-mod-shib2':
 Service['shibd'] ~> Service['apache2']
 ```
 
-##Reference
+## Reference
 
 The documentation is available [online](https://dariah-de.github.io/puppetmodule-dariahshibboleth/).
 
 
-##Limitations
+## Limitations
 
 The module has been developed and tested with Puppet 4.9 on Ubuntu 14.04 and 16.04.
 
-##Development
+## Development
 
 Development was carried out with in the DARIAH-DE project, receiving funding from Bundesministerium für Bildung und Forschung (BMBF),
 Förderkennzeichen 01UG1110A bis N und 01UG1610A bis J.
 
 
-##Further notes
+## Further notes
 
 To customize the metadata, add your values to hiera:
 ```yaml
