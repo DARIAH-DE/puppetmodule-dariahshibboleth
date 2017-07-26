@@ -80,17 +80,13 @@ which you should copy to your webroot and server under the entityID.
 If you want to use Shibboleth with apache, using the `puppetlabs/apache` module, you might need this:
 
 ```puppet
-$mod_shibd_so = $::apache::apache_version ?
-{
-  '2.4'   => 'mod_shib_24.so',
-  default => 'mod_shib_22.so',
-}
-package { 'libapache2-mod-shib2':
-  ensure => absent
-}
 ::apache::mod { 'shib2':
   id  => 'mod_shib',
-  lib => $mod_shibd_so,
+  lib => 'mod_shib2.so',
+}
+package { 'libapache2-mod-shib2':
+  ensure => present,
+  before => Package['shibboleth'],
 }
 Service['shibd'] ~> Service['apache2']
 ```
