@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -57,159 +57,146 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'><h1>dariahshibboleth</h1>
+      <div id="content"><div id='filecontents'>
+<h1 id="label-dariahshibboleth">dariahshibboleth</h1>
 
-<p><a href="https://travis-ci.org/DARIAH-DE/puppetmodule-dariahshibboleth"><img src="https://api.travis-ci.org/DARIAH-DE/puppetmodule-dariahshibboleth.png?branch=master" alt="Build Status"></a></p>
+<p><a
+href="https://travis-ci.org/DARIAH-DE/puppetmodule-dariahshibboleth"><img
+src="https://api.travis-ci.org/DARIAH-DE/puppetmodule-dariahshibboleth.png?branch=master"></a></p>
 
-<h2>Description</h2>
+<h2 id="label-Description">Description</h2>
 
-<p>The module provides the setup and configuration of a Shibboleth Service Provider,
-specifically targeted at DARIAH integration.</p>
+<p>The module provides the setup and configuration of a Shibboleth Service
+Provider, specifically targeted at DARIAH integration.</p>
 
-<p>The module sets up a shibboleth service provider configured for DARIAH services.
-By default, the module will configure the SP to authenticate against the DARIAH Homeless IdP.
-Alternatively, you can set it up against the DARIAH Test IdP or switch fo full federation setup within DFN AAI.</p>
+<p>The module sets up a shibboleth service provider configured for DARIAH
+services. By default, the module will configure the SP to authenticate
+against the DARIAH Homeless IdP. Alternatively, you can set it up against
+the DARIAH Test IdP or switch fo full federation setup within DFN AAI.</p>
 
-<h2>Setup</h2>
+<h2 id="label-Setup">Setup</h2>
 
-<p>The module will configure your system to use the SWITCH AAI repository and installs and configures the shib deamon.
-The following config files and templates will be affected and set up for use with DARIAH, in particular the settings as well as the styling:</p>
+<p>The module will configure your system to use the SWITCH AAI repository and
+installs and configures the shib deamon. The following config files and
+templates will be affected and set up for use with DARIAH, in particular
+the settings as well as the styling:</p>
+<ul><li>
+<p><code>/etc/shibboleth/attrChecker.html</code></p>
+</li><li>
+<p><code>/etc/shibboleth/attribute-map.xml</code></p>
+</li><li>
+<p><code>/etc/shibboleth/attribute-policy.xml</code></p>
+</li><li>
+<p><code>/etc/shibboleth/shibboleth2.xml</code></p>
+</li><li>
+<p><code>/etc/shibboleth/localLogout.html</code></p>
+</li><li>
+<p><code>/etc/shibboleth/metadataError.html</code></p>
+</li><li>
+<p><code>/etc/shibboleth/sessionError.html</code></p>
+</li></ul>
 
-<ul>
-<li><code>/etc/shibboleth/attrChecker.html</code></li>
-<li><code>/etc/shibboleth/attribute-map.xml</code></li>
-<li><code>/etc/shibboleth/attribute-policy.xml</code></li>
-<li><code>/etc/shibboleth/shibboleth2.xml</code></li>
-<li><code>/etc/shibboleth/localLogout.html</code></li>
-<li><code>/etc/shibboleth/metadataError.html</code></li>
-<li><code>/etc/shibboleth/sessionError.html</code></li>
-</ul>
+<p>The module will also provide your SP metadata file *
+<code>/opt/dariahshibboleth/sp-metadata.xml</code> and the default
+&#39;access denied&#39; page *
+<code>/opt/dariahshibboleth/accessdenied.html</code></p>
 
-<p>The module will also provide your SP metadata file</p>
+<h2 id="label-Usage">Usage</h2>
 
-<ul>
-<li><code>/opt/dariahshibboleth/sp-metadata.xml</code>
-and the default &#39;access denied&#39; page</li>
-<li><code>/opt/dariahshibboleth/accessdenied.html</code></li>
-</ul>
+<p>To use the module with DARIAH Homeless IdP only, simply load as
+<code>puppet class { &#39;dariahshibboleth&#39;: } </code> This will load
+the DARIAH IdP&#39;s metadata via eduGAIN. To improve performance you may
+want to use DFN-Basic instead: <code>puppet class {
+&#39;dariahshibboleth&#39;:    use_edugain   =&gt; false,   use_dfn_basic
+=&gt; true, } </code></p>
 
-<h2>Usage</h2>
+<p>To switch to <strong>eduGAIN mode</strong>, simply use <code>puppet class {
+&#39;dariahshibboleth&#39;:   federation_enabled =&gt; true, } </code></p>
 
-<p>To use the module with DARIAH Homeless IdP only, simply load as</p>
+<p>To configure the <strong>Test IdP</strong> do <code>puppet class {
+&#39;dariahshibboleth&#39;:   use_edugain             =&gt; false,  
+use_dfn_test            =&gt; true,   idp_entityid            =&gt;
+&#39;https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth&#39;,  
+federation_enabled      =&gt; false,   discoveryurl            =&gt;
+&#39;https://dariah.daasi.de/CDS/WAYF&#39;,   dariah_registration_url =&gt;
+&#39;https://dariah.daasi.de/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration&#39;
+} </code> Note that by using <code>federation_enabled =&gt; true</code> you
+enable the full Test setup with DFN-Test AAI federation support.</p>
 
-<pre class="code puppet"><code class="puppet">class { &#39;dariahshibboleth&#39;: }
-</code></pre>
+<p>If you want to load metadata from another federation, use
+<code>custom_metadata_url</code> and pass the relevant cert file to
+<code>custom_metadata_signature_cert</code>. Note, that you will need to
+provide a compatible <code>discoveryurl</code> and that registration at the
+DARIAH AAI is likely to fail.</p>
 
-<p>This will load the DARIAH IdP&#39;s metadata via eduGAIN.
-To improve performance you may want to use DFN-Basic instead:</p>
+<p>The module creates the SP&#39;s metadata in <code>
+/opt/dariahshibboleth/sp-metadata.xml </code> which you should copy to your
+webroot and server under the entityID.</p>
 
-<pre class="code puppet"><code class="puppet">class { &#39;dariahshibboleth&#39;: 
-  use_edugain   =&gt; false,
-  use_dfn_basic =&gt; true,
-}
-</code></pre>
+<h3 id="label-Setting+up+apache">Setting up apache</h3>
 
-<p>To switch to <strong>eduGAIN mode</strong>, simply use</p>
+<p>If you want to use Shibboleth with apache, using the
+<code>puppetlabs/apache</code> module, you might need this:</p>
 
-<pre class="code puppet"><code class="puppet">class { &#39;dariahshibboleth&#39;:
-  federation_enabled =&gt; true,
-}
-</code></pre>
-
-<p>To configure the <strong>Test IdP</strong> do</p>
-
-<pre class="code puppet"><code class="puppet">class { &#39;dariahshibboleth&#39;:
-  use_edugain             =&gt; false,
-  use_dfn_test            =&gt; true,
-  idp_entityid            =&gt; &#39;https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth&#39;,
-  federation_enabled      =&gt; false,
-  discoveryurl            =&gt; &#39;https://dariah.daasi.de/CDS/WAYF&#39;,
-  dariah_registration_url =&gt; &#39;https://dariah.daasi.de/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D&#39;
-}
-</code></pre>
-
-<p>Note that by using <code>federation_enabled =&gt; true</code> you enable the full Test setup with DFN-Test AAI federation support.</p>
-
-<p>If you want to load metadata from another federation, use <code>custom_metadata_url</code> and pass the relevant cert file to <code>custom_metadata_signature_cert</code>.
-Note, that you will need to provide a compatible <code>discoveryurl</code> and that registration at the DARIAH AAI is likely to fail.</p>
-
-<p>The module creates the SP&#39;s metadata in</p>
-
-<pre class="code ruby"><code class="ruby">/opt/dariahshibboleth/sp-metadata.xml
-</code></pre>
-
-<p>which you should copy to your webroot and server under the entityID.</p>
-
-<h3>Setting up apache</h3>
-
-<p>If you want to use Shibboleth with apache, using the <code>puppetlabs/apache</code> module, you might need this:</p>
-
-<pre class="code puppet"><code class="puppet">$mod_shibd_so = $::apache::apache_version ?
-{
-  &#39;2.4&#39;   =&gt; &#39;mod_shib_24.so&#39;,
-  default =&gt; &#39;mod_shib_22.so&#39;,
+<pre class="code ruby"><code class="ruby">::apache::mod { &#39;shib2&#39;:
+  id  =&gt; &#39;mod_shib&#39;,
+  lib =&gt; &#39;mod_shib2.so&#39;,
 }
 package { &#39;libapache2-mod-shib2&#39;:
-  ensure =&gt; absent
+  ensure =&gt; present,
+  before =&gt; Package[&#39;shibboleth&#39;],
 }
-::apache::mod { &#39;shib2&#39;:
-  id  =&gt; &#39;mod_shib&#39;,
-  lib =&gt; $mod_shibd_so,
-}
-Service[&#39;shibd&#39;] ~&gt; Service[&#39;apache2&#39;]
-</code></pre>
+Service[&#39;shibd&#39;] ~&gt; Service[&#39;apache2&#39;]</code></pre>
 
-<h2>Reference</h2>
+<h2 id="label-Reference">Reference</h2>
 
-<p>The documentation is available <a href="https://dariah-de.github.io/puppetmodule-dariahshibboleth/">online</a>.</p>
+<p>The documentation is available <a
+href="https://dariah-de.github.io/puppetmodule-dariahshibboleth/">online</a>.</p>
 
-<h2>Limitations</h2>
+<h2 id="label-Limitations">Limitations</h2>
 
-<p>The module has been developed and tested with Puppet 4.9 on Ubuntu 14.04 and 16.04.</p>
+<p>The module has been developed and tested with Puppet 4.9 on Ubuntu 14.04
+and 16.04.</p>
 
-<h2>Development</h2>
+<h2 id="label-Development">Development</h2>
 
-<p>Development was carried out with in the DARIAH-DE project, receiving funding from Bundesministerium für Bildung und Forschung (BMBF),
+<p>Development was carried out with in the DARIAH-DE project, receiving
+funding from Bundesministerium für Bildung und Forschung (BMBF),
 Förderkennzeichen 01UG1110A bis N und 01UG1610A bis J.</p>
 
-<h2>Further notes</h2>
+<h2 id="label-Further+notes">Further notes</h2>
 
-<p>To customize the metadata, add your values to hiera:</p>
+<p>To customize the metadata, add your values to hiera: “`yaml
+dariahshibboleth::MetaData:  UIInfo_DisplayName_de: &#39;MY Service&#39; 
+UIInfo_Description_de: &#39;Beschreibung meines Dienstes&#39; 
+UIInfo_Description_en: &#39;Description of my service&#39; 
+UIInfo_InformationURL_en: &#39;<a
+href="http://www.web.site">www.web.site</a>&#39; 
+ContactPerson_support_GivenName: &#39;support&#39; 
+Organization_OrganizationName_en: &#39;MyOrg&#39; 
+Organization_OrganizationDisplayName_en: &#39;My Organisation&#39; 
+Organization_OrganizationURL_en: &#39;<a
+href="http://www.my.org">www.my.org</a>&#39;  ACS_Hosts:  - one.host.domain
+- two.host.domain</p>
 
-<pre class="code yaml"><code class="yaml">dariahshibboleth::MetaData:
-  UIInfo_DisplayName_de: &#39;MY Service&#39;
-  UIInfo_Description_de: &#39;Beschreibung meines Dienstes&#39;
-  UIInfo_Description_en: &#39;Description of my service&#39;
-  UIInfo_InformationURL_en: &#39;http://www.web.site&#39;
-  ContactPerson_support_GivenName: &#39;support&#39;
-  Organization_OrganizationName_en: &#39;MyOrg&#39;
-  Organization_OrganizationDisplayName_en: &#39;My Organisation&#39;
-  Organization_OrganizationURL_en: &#39;http://www.my.org&#39;
-  ACS_Hosts:
-    - one.host.domain
-    - two.host.domain
+<pre class="code ruby"><code class="ruby">
+There is basic support for faking shibboleth options to Apache from hiera:</code></pre>
 
-</code></pre>
+<p>yaml dariahshibboleth::FakeCredentials:  firstname: &#39;Jane&#39; 
+lastname: &#39;Doe&#39;  mail: &#39;jane.doe@example.com&#39;  eppn:
+&#39;JaneDoe@dariah.eu&#39;  isMemberOf: &#39;group1;group2&#39; “<code>
+You can access the relevant Apache lines from the
+variable</code>$::dariahshibboleth::fakeshibdata`, which defaults to the
+above.</p>
 
-<p>There is basic support for faking shibboleth options to Apache from hiera:</p>
-
-<pre class="code yaml"><code class="yaml">dariahshibboleth::FakeCredentials:
-  firstname: &#39;Jane&#39;
-  lastname: &#39;Doe&#39;
-  mail: &#39;jane.doe@example.com&#39;
-  eppn: &#39;JaneDoe@dariah.eu&#39;
-  isMemberOf: &#39;group1;group2&#39;
-</code></pre>
-
-<p>You can access the relevant Apache lines from the variable <code>$::dariahshibboleth::fakeshibdata</code>, which defaults to the above.</p>
-
-<p>The module provides option for standby cert and key if you need to perform a rollover in federation use.</p>
+<p>The module provides option for standby cert and key if you need to perform
+a rollover in federation use.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Feb 15 16:52:05 2017 by
+  Generated on Fri Oct 13 13:08:50 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.3.1).
+  0.9.9 (ruby-2.3.4).
 </div>
 
     </div>

@@ -6,7 +6,7 @@
 <title>
   Puppet Class: dariahshibboleth::params
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -79,10 +79,12 @@
     </dd>
   </dl>
 </div>
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>This private class provides the module&#39;s params.</p>
+    
+<p>This private class provides the module&#39;s params.</p>
 
   </div>
 </div>
@@ -167,8 +169,7 @@
 71
 72
 73
-74
-75</pre>
+74</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/params.pp', line 3</span>
@@ -177,7 +178,7 @@ class dariahshibboleth::params {
 
   # define the DARIAH-DE IdP
   $idp_entityid            = &#39;https://idp.de.dariah.eu/idp/shibboleth&#39;
-  $dariah_registration_url = &#39;https://auth.dariah.eu/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D&#39;
+  $dariah_registration_url = &#39;https://auth.dariah.eu/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration&#39;
   $discoveryurl            = &#39;https://auth.dariah.eu/CDS/WAYF&#39;
   $federation_enabled      = false
 
@@ -187,7 +188,6 @@ class dariahshibboleth::params {
   $use_dfn_test                         = false
   $use_dfn_edugain                      = false
   $tou_enforced                         = true
-  $tou_additional_tous                  = []
 
   $mail_contact                         = &#39;root@localhost&#39;
 
@@ -253,9 +253,9 @@ class dariahshibboleth::params {
 </div>
 
       <div id="footer">
-  Generated on Wed Feb 15 16:52:05 2017 by
+  Generated on Fri Oct 13 13:08:51 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.3.1).
+  0.9.9 (ruby-2.3.4).
 </div>
 
     </div>

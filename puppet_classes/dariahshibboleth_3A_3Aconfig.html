@@ -6,7 +6,7 @@
 <title>
   Puppet Class: dariahshibboleth::config
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -75,10 +75,12 @@
     </dd>
   </dl>
 </div>
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>This private class configures the shibboleth SP.</p>
+    
+<p>This private class configures the shibboleth SP.</p>
 
   </div>
 </div>
@@ -98,7 +100,9 @@
       
       
         &mdash;
-        <div class='inline'><p>Boolean to enable debug option showing the attributes&#39; values at the Session handler.</p>
+        <div class='inline'>
+<p>Boolean to enable debug option showing the attributes&#39; values at the
+Session handler.</p>
 </div>
       
     </li>
@@ -278,7 +282,13 @@
 167
 168
 169
-170</pre>
+170
+171
+172
+173
+174
+175
+176</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/config.pp', line 5</span>
@@ -311,6 +321,12 @@ class dariahshibboleth::config (
     group   =&gt; &#39;root&#39;,
     mode    =&gt; &#39;0644&#39;,
     content =&gt; template(&#39;dariahshibboleth/etc/shibboleth/attribute-policy.xml.erb&#39;),
+  }
+
+  if ($::dariahshibboleth::tou_sp_tou_group != undef) and ($::dariahshibboleth::tou_enforced) {
+    $_tou_initial_group = &quot;%3Binitialgroup%3D${$::dariahshibboleth::tou_sp_tou_group}&quot;
+  } else {
+    $_tou_initial_group = undef
   }
 
   file { &#39;/etc/shibboleth/attrChecker.html&#39;:
@@ -456,9 +472,9 @@ class dariahshibboleth::config (
 </div>
 
       <div id="footer">
-  Generated on Wed Feb 15 16:52:05 2017 by
+  Generated on Fri Oct 13 13:08:51 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.3.1).
+  0.9.9 (ruby-2.3.4).
 </div>
 
     </div>
