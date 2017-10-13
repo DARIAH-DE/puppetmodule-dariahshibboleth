@@ -48,6 +48,11 @@ task :test => [
 
 task :default => :help
 
+desc "Generate documentation"
+task :documentation do
+  Rake::Task["strings:gh_pages:update"].invoke
+end
+
 desc "Run unit tests"
 task :unit do
   Rake::Task["spec_prep"].invoke
