@@ -15,6 +15,7 @@ group :development, :tests do
   gem 'puppet-syntax',           :require => false
   gem 'puppet-lint',             :require => false
   gem 'puppet-strings',          :require => false
+  gem 'rgen',                    :require => false
   gem 'redcarpet',               :require => false
   gem 'github-markup',           :require => false
 end
