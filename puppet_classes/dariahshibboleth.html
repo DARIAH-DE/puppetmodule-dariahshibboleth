@@ -92,9 +92,8 @@
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    
-<p>This class provides the dariahshibboleth module. It installs and configures
-the SP.</p>
+    <p>This class provides the dariahshibboleth module.
+It installs and configures the SP.</p>
 
   </div>
 </div>
@@ -114,8 +113,7 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether to flush AttributeChecker&#39;s session</p>
+        <div class='inline'><p>Whether to flush AttributeChecker&#39;s session</p>
 </div>
       
     </li>
@@ -132,10 +130,8 @@ the SP.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Array of attributes required from the IdP, if absent the user is sent to
-DARIAH registration. Defaults to
-<code>[&#39;eppn&#39;,&#39;mail&#39;,&#39;givenName&#39;,&#39;sn&#39;]</code>.</p>
+        <div class='inline'><p>Array of attributes required from the IdP, if absent the user is sent to DARIAH registration.
+Defaults to <code>[&#39;eppn&#39;,&#39;mail&#39;,&#39;givenName&#39;,&#39;sn&#39;]</code>.</p>
 </div>
       
     </li>
@@ -152,10 +148,8 @@ DARIAH registration. Defaults to
       
       
         &mdash;
-        <div class='inline'>
-<p>Accepts the cert file for the SP, as created by <code>shib-keygen</code>.
-It is styrongly recommended to check the certificate&#39;s signature
-algorithm.</p>
+        <div class='inline'><p>Accepts the cert file for the SP, as created by <code>shib-keygen</code>.
+It is styrongly recommended to check the certificate&#39;s signature algorithm.</p>
 </div>
       
     </li>
@@ -172,8 +166,7 @@ algorithm.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>URL from where to get federation metadata.</p>
+        <div class='inline'><p>URL from where to get federation metadata.</p>
 </div>
       
     </li>
@@ -190,8 +183,7 @@ algorithm.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Puppet file source containing the public cert to verify the metadata.</p>
+        <div class='inline'><p>Puppet file source containing the public cert to verify the metadata.</p>
 </div>
       
     </li>
@@ -208,8 +200,7 @@ algorithm.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>The URL where to send users to register with DARIAH and update their data.</p>
+        <div class='inline'><p>The URL where to send users to register with DARIAH and update their data.</p>
 </div>
       
     </li>
@@ -226,8 +217,7 @@ algorithm.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>The URL of the Discovery Service / WAYF, defaults to the DARIAH CDS.</p>
+        <div class='inline'><p>The URL of the Discovery Service / WAYF, defaults to the DARIAH CDS.</p>
 </div>
       
     </li>
@@ -244,8 +234,7 @@ algorithm.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Hash of fake shibboleth session data.</p>
+        <div class='inline'><p>Hash of fake shibboleth session data.</p>
 </div>
       
     </li>
@@ -262,8 +251,7 @@ algorithm.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether to enable full federation support.</p>
+        <div class='inline'><p>Whether to enable full federation support.</p>
 </div>
       
     </li>
@@ -280,9 +268,8 @@ algorithm.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether to use SSL for the Shibboleth handler. Defaults to
-<code>true</code> and should not be changed unless you are very sure.</p>
+        <div class='inline'><p>Whether to use SSL for the Shibboleth handler.
+Defaults to <code>true</code> and should not be changed unless you are very sure.</p>
 </div>
       
     </li>
@@ -299,8 +286,7 @@ algorithm.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Sets the prefix in the mount path of the SP&#39;s HandlerURL.</p>
+        <div class='inline'><p>Sets the prefix in the mount path of the SP&#39;s HandlerURL.</p>
 </div>
       
     </li>
@@ -317,9 +303,8 @@ algorithm.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>The hostname used in building the SP metadata, needs to match the
-cert&#39;s fqdn. Defaults to the system&#39;s fully qualified domain name.</p>
+        <div class='inline'><p>The hostname used in building the SP metadata, needs to match the cert&#39;s fqdn.
+Defaults to the system&#39;s fully qualified domain name.</p>
 </div>
       
     </li>
@@ -336,9 +321,8 @@ cert&#39;s fqdn. Defaults to the system&#39;s fully qualified domain name.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>EntityID of the IdP to use, defaults to the DARIAH Homeless IdP&#39;s
-entityId. This is used only if not in federation setup for whitelisting.</p>
+        <div class='inline'><p>EntityID of the IdP to use, defaults to the DARIAH Homeless IdP&#39;s entityId.
+This is used only if not in federation setup for whitelisting.</p>
 </div>
       
     </li>
@@ -355,8 +339,7 @@ entityId. This is used only if not in federation setup for whitelisting.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Accepts the key file for the SP, as created by <code>shib-keygen</code>..</p>
+        <div class='inline'><p>Accepts the key file for the SP, as created by <code>shib-keygen</code>..</p>
 </div>
       
     </li>
@@ -373,8 +356,7 @@ entityId. This is used only if not in federation setup for whitelisting.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Additional header tags to insert into localLogout.html.</p>
+        <div class='inline'><p>Additional header tags to insert into localLogout.html.</p>
 </div>
       
     </li>
@@ -391,8 +373,7 @@ entityId. This is used only if not in federation setup for whitelisting.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>The mail address to be used as contact address in the SP&#39;s metadata.</p>
+        <div class='inline'><p>The mail address to be used as contact address in the SP&#39;s metadata.</p>
 </div>
       
     </li>
@@ -409,10 +390,8 @@ entityId. This is used only if not in federation setup for whitelisting.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Accepts a string containing the list of attributes in order of preference
-for setting the <code>REMOTE_USER</code> variable. Default to <code>eppn
-persistent-id targeted-id</code>.</p>
+        <div class='inline'><p>Accepts a string containing the list of attributes in order of preference for setting the <code>REMOTE_USER</code> variable.
+Default to <code>eppn persistent-id targeted-id</code>.</p>
 </div>
       
     </li>
@@ -429,8 +408,7 @@ persistent-id targeted-id</code>.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Standby Shibboleth SP cert for rollover migration.</p>
+        <div class='inline'><p>Standby Shibboleth SP cert for rollover migration.</p>
 </div>
       
     </li>
@@ -447,8 +425,7 @@ persistent-id targeted-id</code>.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Standby Shibboleth SP key for rollover migration.</p>
+        <div class='inline'><p>Standby Shibboleth SP key for rollover migration.</p>
 </div>
       
     </li>
@@ -465,8 +442,7 @@ persistent-id targeted-id</code>.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether to enforce acceptance of DARIAH ToU.</p>
+        <div class='inline'><p>Whether to enforce acceptance of DARIAH ToU.</p>
 </div>
       
     </li>
@@ -483,8 +459,7 @@ persistent-id targeted-id</code>.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>SP specific ToU&#39;s group, only active if <code>tou_enforced=true</code>.</p>
+        <div class='inline'><p>SP specific ToU&#39;s group, only active if <code>tou_enforced=true</code>.</p>
 </div>
       
     </li>
@@ -501,8 +476,7 @@ persistent-id targeted-id</code>.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>SP specif ToU&#39;s name, only active if <code>tou_enforced=true</code>.</p>
+        <div class='inline'><p>SP specif ToU&#39;s name, only active if <code>tou_enforced=true</code>.</p>
 </div>
       
     </li>
@@ -519,8 +493,7 @@ persistent-id targeted-id</code>.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Load the DFN-Basic AAI Metadata.</p>
+        <div class='inline'><p>Load the DFN-Basic AAI Metadata.</p>
 </div>
       
     </li>
@@ -537,8 +510,7 @@ persistent-id targeted-id</code>.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Load the DFN-Test AAI Metadata.</p>
+        <div class='inline'><p>Load the DFN-Test AAI Metadata.</p>
 </div>
       
     </li>
@@ -555,8 +527,7 @@ persistent-id targeted-id</code>.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Load the eduGAIN Metadata from DFN (without DFN!).</p>
+        <div class='inline'><p>Load the eduGAIN Metadata from DFN (without DFN!).</p>
 </div>
       
     </li>
@@ -573,8 +544,7 @@ persistent-id targeted-id</code>.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>Load the eduGAIN Metadata directly.</p>
+        <div class='inline'><p>Load the eduGAIN Metadata directly.</p>
 </div>
       
     </li>
@@ -672,7 +642,7 @@ class dariahshibboleth (
 </div>
 
       <div id="footer">
-  Generated on Fri Oct 13 13:08:51 2017 by
+  Generated on Fri Oct 13 15:02:51 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.4).
 </div>
