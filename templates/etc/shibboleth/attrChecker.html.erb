@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>DARIAH :: Insufficient Information</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="refresh" content="6; URL=<%= @dariah_registration_url %><%= @_tou_initial_group %>%3Breturnurl%3D<shibmlp target/>&entityID=<shibmlp entityID/>"/>
+    <meta http-equiv="refresh" content="5; URL=<%= @dariah_registration_url %><%= @_tou_initial_group %>%3Breturnurl%3D<shibmlp target/>&entityID=<shibmlp entityID/>"/>
     <!-- CSS Imports -->
     <link rel="stylesheet" href="https://res.de.dariah.eu/aai/css/bootstrap.css" type="text/css" media="screen, projection" />
     <link rel="stylesheet" href="https://res.de.dariah.eu/aai/css/bootstrap-responsive.css" type="text/css" media="screen, projection" />
@@ -24,11 +24,9 @@
       <div class="span8 main-content-wrapper">
         <div id="content" class="primary-area">
           <h1>Redirect</h1>
-          <div class="alert alert-warn">DARIAH registration required!</div>
+          <div class="alert alert-warn">DARIAH Registration</div>
 
-            <p>This DARIAH service requires information about you that your identity provider
-              <shibmlpif Meta-displayName>(<shibmlp Meta-displayName />)</shibmlpif>
-              did not release. In order to use this service you need to complete the DARIAH registration process.</p>
+          <p>In order to use this DARIAH service, you need to complete or update your DARIAH registration details.</p>
             <p><strong>You are being redirected now.</strong></p>
 
           </div>
@@ -48,11 +46,9 @@
         </shibmlpif>
 
         <h1>Redirect</h1>
-        <div class="alert alert-warn">DARIAH registration required!</div>
+        <div class="alert alert-warn">DARIAH Registration</div>
 
-          <p>This DARIAH service requires information about you that your identity provider
-            <shibmlpif Meta-displayName>(<shibmlp Meta-displayName />)</shibmlpif>
-            did not release. In order to use this service you need to complete the DARIAH registration process.</p>
+        <p>In order to use this DARIAH service, you need to complete or update your DARIAH registration details.</p>
           <p><strong>You are being redirected now.</strong></p>
 
       </div>

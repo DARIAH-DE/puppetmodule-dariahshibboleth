@@ -227,7 +227,7 @@ describe "dariahshibboleth" do
         let(:params) { {:dariah_registration_url => 'https://boo.bar/register' } }
         it do
           should contain_file('/etc/shibboleth/attrChecker.html') \
-            .with_content(/<meta http-equiv="refresh" content="6; URL=https:\/\/boo.bar\/register%3Breturnurl%3D<shibmlp target\/>&entityID=<shibmlp entityID\/>"/)
+            .with_content(/<meta http-equiv="refresh" content="5; URL=https:\/\/boo.bar\/register%3Breturnurl%3D<shibmlp target\/>&entityID=<shibmlp entityID\/>"/)
         end
       end
 
