@@ -32,11 +32,14 @@ and the default 'access denied' page
 ## Usage
 
 To use the module with DARIAH Homeless IdP only, simply load as
+
 ```puppet
 class { 'dariahshibboleth': }
 ```
+
 This will load the DARIAH IdP's metadata via eduGAIN.
 To improve performance you may want to use DFN-Basic instead:
+
 ```puppet
 class { 'dariahshibboleth': 
   use_edugain   => false,
@@ -45,14 +48,15 @@ class { 'dariahshibboleth':
 ```
 
 To switch to **eduGAIN mode**, simply use
+
 ```puppet
 class { 'dariahshibboleth':
   federation_enabled => true,
 }
 ```
 
-
 To configure the **Test IdP** do
+
 ```puppet
 class { 'dariahshibboleth':
   use_edugain             => false,
@@ -70,9 +74,11 @@ Note, that you will need to provide a compatible `discoveryurl` and that registr
 
 
 The module creates the SP's metadata in
+
 ```
 /opt/dariahshibboleth/sp-metadata.xml
 ```
+
 which you should copy to your webroot and server under the entityID.
 
 
@@ -108,7 +114,8 @@ Förderkennzeichen 01UG1110A bis N und 01UG1610A bis J.
 
 ## Further notes
 
-To customize the metadata, add your values to hiera:
+To customize the metadata, add your values to hiera
+
 ```yaml
 dariahshibboleth::MetaData:
   UIInfo_DisplayName_de: 'MY Service'
@@ -122,10 +129,10 @@ dariahshibboleth::MetaData:
   ACS_Hosts:
     - one.host.domain
     - two.host.domain
-
 ```
 
-There is basic support for faking shibboleth options to Apache from hiera:
+There is basic support for faking shibboleth options to Apache from hiera
+
 ```yaml
 dariahshibboleth::FakeCredentials:
   firstname: 'Jane'
@@ -134,6 +141,7 @@ dariahshibboleth::FakeCredentials:
   eppn: 'JaneDoe@dariah.eu'
   isMemberOf: 'group1;group2'
 ```
+
 You can access the relevant Apache lines from the variable `$::dariahshibboleth::fakeshibdata`, which defaults to the above.
 
 The module provides option for standby cert and key if you need to perform a rollover in federation use.
