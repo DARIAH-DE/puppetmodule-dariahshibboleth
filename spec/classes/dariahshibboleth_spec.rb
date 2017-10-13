@@ -227,7 +227,7 @@ describe "dariahshibboleth" do
         let(:params) { {:dariah_registration_url => 'https://boo.bar/register' } }
         it do
           should contain_file('/etc/shibboleth/attrChecker.html') \
-            .with_content(/<meta http-equiv="refresh" content="6; URL=https:\/\/boo.bar\/register<shibmlp target\/>&entityID=<shibmlp entityID\/>"/)
+            .with_content(/<meta http-equiv="refresh" content="6; URL=https:\/\/boo.bar\/register%3Breturnurl%3D<shibmlp target\/>&entityID=<shibmlp entityID\/>"/)
         end
       end
 
@@ -239,10 +239,16 @@ describe "dariahshibboleth" do
       end
 
       context ' with additonal tous' do
-        let(:params) { {:tou_additional_tous => ['foobar.txt'] } }
+        let(:params) { {
+          :tou_enforced => true,
+          :tou_sp_tou_group => 'foobargroup',
+          :tou_sp_tou_name => 'foobar.txt',
+        } }
         it do
           should contain_file('/etc/shibboleth/shibboleth2.xml') \
             .with_content(/<Rule require="dariahTermsOfUse">foobar.txt<\/Rule>/)
+          should contain_file('/etc/shibboleth/attrChecker.html') \
+            .with_content(/registration%3Binitialgroup%3Dfoobargroup%3Breturnurl%3D/)
         end
       end
 

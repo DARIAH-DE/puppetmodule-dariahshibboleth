@@ -4,7 +4,7 @@ class dariahshibboleth::params {
 
   # define the DARIAH-DE IdP
   $idp_entityid            = 'https://idp.de.dariah.eu/idp/shibboleth'
-  $dariah_registration_url = 'https://auth.dariah.eu/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
+  $dariah_registration_url = 'https://auth.dariah.eu/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration'
   $discoveryurl            = 'https://auth.dariah.eu/CDS/WAYF'
   $federation_enabled      = false
 
@@ -14,7 +14,6 @@ class dariahshibboleth::params {
   $use_dfn_test                         = false
   $use_dfn_edugain                      = false
   $tou_enforced                         = true
-  $tou_additional_tous                  = []
 
   $mail_contact                         = 'root@localhost'
 

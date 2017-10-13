@@ -60,7 +60,7 @@ class { 'dariahshibboleth':
   idp_entityid            => 'https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth',
   federation_enabled      => false,
   discoveryurl            => 'https://dariah.daasi.de/CDS/WAYF',
-  dariah_registration_url => 'https://dariah.daasi.de/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration%3Breturnurl%3D'
+  dariah_registration_url => 'https://dariah.daasi.de/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration'
 }
 ```
 Note that by using `federation_enabled => true` you enable the full Test setup with DFN-Test AAI federation support.

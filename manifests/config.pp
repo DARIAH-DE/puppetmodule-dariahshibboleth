@@ -32,6 +32,12 @@ class dariahshibboleth::config (
     content => template('dariahshibboleth/etc/shibboleth/attribute-policy.xml.erb'),
   }
 
+  if ($::dariahshibboleth::tou_sp_tou_group != undef) and ($::dariahshibboleth::tou_enforced) {
+    $_tou_initial_group = "%3Binitialgroup%3D${$::dariahshibboleth::tou_sp_tou_group}"
+  } else {
+    $_tou_initial_group = undef
+  }
+
   file { '/etc/shibboleth/attrChecker.html':
     ensure  => file,
     owner   => 'root',

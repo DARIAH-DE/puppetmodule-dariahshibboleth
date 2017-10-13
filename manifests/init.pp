@@ -26,8 +26,9 @@
 #   Default to `eppn persistent-id targeted-id`.
 # @param standby_cert Standby Shibboleth SP cert for rollover migration.
 # @param standby_key Standby Shibboleth SP key for rollover migration.
-# @param tou_additional_tous Names of additional ToUs enforced by AttributeChecker, only active if `tou_enforced=true`.
 # @param tou_enforced Whether to enforce acceptance of DARIAH ToU.
+# @param tou_sp_tou_group SP specific ToU's group, only active if `tou_enforced=true`.
+# @param tou_sp_tou_name SP specif ToU's name, only active if `tou_enforced=true`.
 # @param use_dfn_basic Load the DFN-Basic AAI Metadata.
 # @param use_dfn_test Load the DFN-Test AAI Metadata.
 # @param use_dfn_edugain Load the eduGAIN Metadata from DFN (without DFN!).
@@ -53,8 +54,9 @@ class dariahshibboleth (
   String  $remote_user_pref_list                   = $dariahshibboleth::params::remote_user_pref_list,
   Optional[String] $standby_cert                   = undef,
   Optional[String] $standby_key                    = undef,
-  Array   $tou_additional_tous                     = $dariahshibboleth::params::tou_additional_tous,
   Boolean $tou_enforced                            = $dariahshibboleth::params::tou_enforced,
+  Optional[String] $tou_sp_tou_group               = undef,
+  Optional[String] $tou_sp_tou_name                = undef,
   Boolean $use_edugain                             = $dariahshibboleth::params::use_edugain,
   Boolean $use_dfn_basic                           = $dariahshibboleth::params::use_dfn_basic,
   Boolean $use_dfn_test                            = $dariahshibboleth::params::use_dfn_test,

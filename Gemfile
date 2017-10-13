@@ -11,6 +11,7 @@ group :development, :tests do
   gem 'simplecov-console',       :require => false
   gem 'json',                    :require => false
   gem 'metadata-json-lint',      :require => false
+  gem 'semantic_puppet',         :require => false
   gem 'puppet-syntax',           :require => false
   gem 'puppet-lint',             :require => false
   gem 'puppet-strings',          :require => false

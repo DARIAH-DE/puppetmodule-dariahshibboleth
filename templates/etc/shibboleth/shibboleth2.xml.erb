@@ -62,8 +62,8 @@
                   <%- end -%>
                   <%- if @tou_enforced -%>
                     <Rule require="dariahTermsOfUse">Terms_of_Use_v5.pdf</Rule>
-                    <%- @tou_additional_tous.each do |additional_tou| -%>
-                      <Rule require="dariahTermsOfUse"><%= additional_tou %></Rule>
+                    <%- if @tou_sp_tou_name != nil -%>
+                      <Rule require="dariahTermsOfUse"><%= @tou_sp_tou_name %></Rule>
                     <%- end -%>
                   <%- end -%>
                 </AND>
