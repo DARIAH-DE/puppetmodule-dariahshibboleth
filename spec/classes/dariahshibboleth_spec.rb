@@ -234,7 +234,7 @@ describe "dariahshibboleth" do
       context 'tou enforced' do
         it do
           should contain_file('/etc/shibboleth/shibboleth2.xml') \
-            .with_content(/<Rule require="dariahTermsOfUse">Terms_of_Use_v5.pdf<\/Rule>/)
+            .with_content(/<Rule require="dariahTermsOfUse">Terms_of_Use_germ_engl_v6.pdf<\/Rule>/)
         end
       end
 
