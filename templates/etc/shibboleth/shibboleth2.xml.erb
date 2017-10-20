@@ -61,7 +61,10 @@
                     <Rule require="<%= requiredattribute %>" />
                   <%- end -%>
                   <%- if @tou_enforced -%>
-                    <Rule require="dariahTermsOfUse">Terms_of_Use_germ_engl_v6.pdf</Rule>
+                    <OR>
+                      <Rule require="dariahTermsOfUse">Terms_of_Use_germ_engl_v6.pdf</Rule>
+                      <Rule require="dariahTermsOfUse">Terms_of_Use_v5.pdf</Rule>
+                    </OR>
                     <%- if @tou_sp_tou_name != nil -%>
                       <Rule require="dariahTermsOfUse"><%= @tou_sp_tou_name %></Rule>
                     <%- end -%>
