@@ -41,7 +41,7 @@ This will load the DARIAH IdP's metadata via eduGAIN.
 To improve performance you may want to use DFN-Basic instead:
 
 ```puppet
-class { 'dariahshibboleth': 
+class { 'dariahshibboleth':
   use_edugain   => false,
   use_dfn_basic => true,
 }
@@ -139,7 +139,7 @@ dariahshibboleth::FakeCredentials:
   lastname: 'Doe'
   mail: 'jane.doe@example.com'
   eppn: 'JaneDoe@dariah.eu'
-  isMemberOf: 'group1;group2'
+  ismemberof: 'group1;group2'
 ```
 
 You can access the relevant Apache lines from the variable `$::dariahshibboleth::fakeshibdata`, which defaults to the above.

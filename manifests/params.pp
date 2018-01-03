@@ -57,14 +57,14 @@ class dariahshibboleth::params {
   $_shibd_last       = pick($shibd_fakecredentials_hash['lastname'],'Doe')
   $_shibd_mail       = pick($shibd_fakecredentials_hash['mail'],'jane.doe@example.com')
   $_shibd_eppn       = pick($shibd_fakecredentials_hash['eppn'],'JaneDoe@dariah.eu')
-  $_shibd_isMemberOf = pick($shibd_fakecredentials_hash['isMemberOf'],'group1;group2')
+  $_shibd_ismemberof = pick($shibd_fakecredentials_hash['ismemberof'],'group1;group2')
 
   $fakeshibdata = "
     SetEnv cn \"${_shibd_first} ${_shibd_last}\"
     SetEnv eppn \"${_shibd_eppn}\"
     SetEnv givenName \"${_shibd_first}\"
     SetEnv mail \"${_shibd_mail}\"
-    SetEnv isMemberOf \"${_shibd_isMemberOf}\"
+    SetEnv isMemberOf \"${_shibd_ismemberof}\"
     SetEnv sn \"${_shibd_last}\"
     SetEnv REMOTE_USER \"${_shibd_eppn}\"
     SetEnv Shib-Session-Index \"_11223344556677889900aabbccddeeff\"
