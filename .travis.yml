@@ -1,11 +1,34 @@
 ---
 sudo: false
+dist: trusty
 language: ruby
+cache: bundler
+before_install:
+  - bundle -v
+  - rm Gemfile.lock || true
+  - gem update --system
+  - gem update bundler
+  - gem --version
+  - bundle -v
+script:
+  - 'bundle exec rake $CHECK'
 bundler_args: --without system_tests
-script: "bundle exec rake syntax && bundle exec rake metadata_lint && bundle exec rake unit SPEC_OPTS='--format documentation'"
+rvm:
+  - 2.4.1
+  - 2.1.9
+env:
+  - PUPPET_GEM_VERSION="~> 4.0" CHECK=spec
 matrix:
   fast_finish: true
   include:
-  - rvm: 2.3.1
-    env: PUPPET_GEM_VERSION="~> 4.0"      
+    -
+      env: CHECK=rubocop
+    -
+      env: CHECK="syntax lint"
+    -
+      env: CHECK=metadata_lint
+branches:
+  only:
+    - master
+    - /^v\d/
 
