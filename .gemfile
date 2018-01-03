@@ -1,0 +1,3 @@
+group :development, :tests do
+  gem 'puppet-strings',          :require => false
+end
