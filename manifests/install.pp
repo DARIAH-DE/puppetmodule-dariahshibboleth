@@ -38,8 +38,8 @@ class dariahshibboleth::install inherits dariahshibboleth {
     owner  => 'root',
     group  => 'root',
     mode   => '0755',
-  }->
-  file { '/opt/dariahshibboleth/accessdenied.html':
+  }
+  -> file { '/opt/dariahshibboleth/accessdenied.html':
     ensure => directory,
     owner  => 'root',
     group  => 'root',

@@ -63,11 +63,11 @@ class dariahshibboleth (
   Boolean $use_dfn_edugain                         = $dariahshibboleth::params::use_dfn_edugain,
 ) inherits dariahshibboleth::params {
 
-  anchor { 'dariahshibboleth::begin': } ->
-  class { '::dariahshibboleth::install':}->
-  class { '::dariahshibboleth::config': }~>
-  class { '::dariahshibboleth::service': }->
-  anchor { 'dariahshibboleth::end': }
+  anchor { 'dariahshibboleth::begin': }
+  -> class { '::dariahshibboleth::install': }
+  -> class { '::dariahshibboleth::config': }
+  ~> class { '::dariahshibboleth::service': }
+  -> anchor { 'dariahshibboleth::end': }
 
 }
 
