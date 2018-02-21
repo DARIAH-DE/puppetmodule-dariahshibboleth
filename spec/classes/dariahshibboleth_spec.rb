@@ -81,7 +81,7 @@ describe 'dariahshibboleth' do
           is_expected.to contain_file('/etc/shibboleth/shibboleth2.xml') \
             .with_content(%r{<Handler type="AttributeChecker"}) \
             .with_content(%r{AttributeResolver type="SimpleAggregation"}) \
-            .with_content(%r{sessionHook="\/Shibboleth.sso\/AttrChecker">}) \
+            .with_content(%r{sessionHook="\/Shibboleth.sso\/AttrChecker"}) \
             .with_content(%r{<SSO discoveryProtocol="SAMLDS" discoveryURL="barfoo">}) \
             .with_content(%r{flushSession="true"})
         end
@@ -94,6 +94,24 @@ describe 'dariahshibboleth' do
           is_expected.to contain_file('/etc/shibboleth/shibboleth2.xml') \
             .with_content(%r{<Handler type="AttributeChecker"}) \
             .with_content(%r{flushSession="false"})
+        end
+      end
+
+      context 'with attribute_checker enabled 'do
+        let(:params) { { disable_attribute_checker: false } }
+
+        it do
+          is_expected.to contain_file('/etc/shibboleth/shibboleth2.xml') \
+            .with_content(%r{<Handler type="AttributeChecker"})
+        end
+      end
+
+      context 'with attribute_checker disabled 'do
+        let(:params) { { disable_attribute_checker: true } }
+
+        it do
+          is_expected.to contain_file('/etc/shibboleth/shibboleth2.xml') \
+            .without_content(%r{<Handler type="AttributeChecker"})
         end
       end
 

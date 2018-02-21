@@ -10,6 +10,7 @@
 # @param custom_metadata_signature_cert Puppet file source containing the public cert to verify the metadata.
 # @param dariah_registration_url The URL where to send users to register with DARIAH and update their data.
 # @param discoveryurl The URL of the Discovery Service / WAYF, defaults to the DARIAH CDS.
+# @param disable_attribute_checker Whether to completely disable the AttributeChecker (use with care!)
 # @param fakeshibdata Hash of fake shibboleth session data.
 # @param federation_enabled Whether to enable full federation support.
 # @param handlerssl Whether to use SSL for the Shibboleth handler.
@@ -42,6 +43,7 @@ class dariahshibboleth (
   Optional[String] $custom_metadata_signature_cert = $dariahshibboleth::params::custom_metadata_signature_cert,
   String  $dariah_registration_url                 = $dariahshibboleth::params::dariah_registration_url,
   String  $discoveryurl                            = $dariahshibboleth::params::discoveryurl,
+  Boolean $disable_attribute_checker               = $dariahshibboleth::params::disable_attribute_checker,
   String  $fakeshibdata                            = $dariahshibboleth::params::fakeshibdata,
   Boolean $federation_enabled                      = $dariahshibboleth::params::federation_enabled,
   Boolean $handlerssl                              = $dariahshibboleth::params::handlerssl,

@@ -18,7 +18,10 @@
                          requireTransportAuth="false"
 <% end -%>
                          REMOTE_USER="<%= @remote_user_pref_list %>"
-                         sessionHook="<%= @handlerurl_prefix %>/Shibboleth.sso/AttrChecker">
+                     <%- if not @disable_attribute_checker -%>
+                         sessionHook="<%= @handlerurl_prefix %>/Shibboleth.sso/AttrChecker"
+                     <%- end -%>
+                         >
 
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
 <% if @handlerssl -%>
@@ -52,6 +55,7 @@
 
             <Handler type="DiscoveryFeed" Location="/DiscoFeed" cacheToDisk="false"/>
 
+            <%- if not @disable_attribute_checker -%>
             <%-# Make sure we have all attributes we need -- not all IdPs release them -%>
             <Handler type="AttributeChecker" Location="/AttrChecker"
                      template="attrChecker.html"
@@ -71,6 +75,7 @@
                   <%- end -%>
                 </AND>
             </Handler>
+            <%- end -%>
 
         </Sessions>
 
