@@ -97,7 +97,7 @@ describe 'dariahshibboleth' do
         end
       end
 
-      context 'with attribute_checker enabled 'do
+      context 'with attribute_checker enabled' do
         let(:params) { { disable_attribute_checker: false } }
 
         it do
@@ -106,7 +106,7 @@ describe 'dariahshibboleth' do
         end
       end
 
-      context 'with attribute_checker disabled 'do
+      context 'with attribute_checker disabled' do
         let(:params) { { disable_attribute_checker: true } }
 
         it do
