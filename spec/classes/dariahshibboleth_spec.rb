@@ -45,9 +45,6 @@ describe 'dariahshibboleth' do
           is_expected.to contain_file('/etc/shibboleth/attrChecker.html')
         end
         it do
-          is_expected.to contain_file('/etc/shibboleth/edugain-mds.pem')
-        end
-        it do
           is_expected.to contain_file('/etc/shibboleth/dfn-aai.pem')
         end
         it do

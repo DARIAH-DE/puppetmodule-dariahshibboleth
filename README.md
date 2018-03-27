@@ -37,21 +37,12 @@ To use the module with DARIAH Homeless IdP only, simply load as
 class { 'dariahshibboleth': }
 ```
 
-This will load the DARIAH IdP's metadata via eduGAIN.
-To improve performance you may want to use DFN-Basic instead:
-
-```puppet
-class { 'dariahshibboleth':
-  use_edugain   => false,
-  use_dfn_basic => true,
-}
-```
-
-To switch to **eduGAIN mode**, simply use
+To switch to **eduGAIN federation mode**, simply use
 
 ```puppet
 class { 'dariahshibboleth':
   federation_enabled => true,
+  use_dfn_edugain    => true,
 }
 ```
 
@@ -59,7 +50,6 @@ To configure the **Test IdP** do
 
 ```puppet
 class { 'dariahshibboleth':
-  use_edugain             => false,
   use_dfn_test            => true,
   idp_entityid            => 'https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth',
   federation_enabled      => false,

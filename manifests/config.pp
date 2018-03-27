@@ -108,14 +108,6 @@ class dariahshibboleth::config (
     }
   }
 
-  file { '/etc/shibboleth/edugain-mds.pem':
-    ensure => file,
-    owner  => '_shibd',
-    group  => 'root',
-    mode   => '0644',
-    source => 'puppet:///modules/dariahshibboleth/etc/shibboleth/edugain-mds-2014.cer',
-  }
-
   file { '/etc/shibboleth/dfn-aai.pem':
     ensure => file,
     owner  => '_shibd',

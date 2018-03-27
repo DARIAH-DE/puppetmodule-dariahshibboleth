@@ -33,7 +33,6 @@
 # @param use_dfn_basic Load the DFN-Basic AAI Metadata.
 # @param use_dfn_test Load the DFN-Test AAI Metadata.
 # @param use_dfn_edugain Load the eduGAIN Metadata from DFN (without DFN!).
-# @param use_edugain Load the eduGAIN Metadata directly.
 #
 class dariahshibboleth (
   Boolean $attribute_checker_flushsession          = $dariahshibboleth::params::attribute_checker_flushsession,
@@ -59,7 +58,6 @@ class dariahshibboleth (
   Boolean $tou_enforced                            = $dariahshibboleth::params::tou_enforced,
   Optional[String] $tou_sp_tou_group               = undef,
   Optional[String] $tou_sp_tou_name                = undef,
-  Boolean $use_edugain                             = $dariahshibboleth::params::use_edugain,
   Boolean $use_dfn_basic                           = $dariahshibboleth::params::use_dfn_basic,
   Boolean $use_dfn_test                            = $dariahshibboleth::params::use_dfn_test,
   Boolean $use_dfn_edugain                         = $dariahshibboleth::params::use_dfn_edugain,

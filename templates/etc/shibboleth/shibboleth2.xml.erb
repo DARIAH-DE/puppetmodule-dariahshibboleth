@@ -92,22 +92,6 @@
         </MetadataProvider>
 <% end -%> <%-# if @_with_custom_metadata_enabled -%>
 
-<% if @use_edugain -%>
-  <%-# eduGAIN -%>
-        <MetadataProvider type="XML" uri="http://mds.edugain.org/"
-                          backingFilePath="eduGAIN-mds.xml" reloadInterval="3600">
-          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-          <MetadataFilter type="Signature" certificate="/etc/shibboleth/edugain-mds.pem"/>
-
-  <%- if not @federation_enabled -%>
-    <%-# Whithout federation we need only our IdP, not all of them -%>
-          <MetadataFilter type="Whitelist">
-            <Include><%= @idp_entityid %></Include>
-          </MetadataFilter>
-  <%- end -%> <%-# if not @federation_enabled -%>
-        </MetadataProvider>
-<% end -%> <%-# if @use_edugain -%>
-
 <% if @use_dfn_basic -%>
   <%-# DFN Basic -%>
         <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Basic-metadata.xml"
