@@ -61,7 +61,8 @@ describe 'dariahshibboleth' do
         end
         it do
           is_expected.to contain_file('/etc/shibboleth/shibboleth2.xml') \
-            .with_content(%r{handlerSSL="true" cookieProps="https"})
+            .with_content(%r{handlerSSL="true" cookieProps="https"}) \
+            .with_content(%r{<AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"})
         end
       end
 

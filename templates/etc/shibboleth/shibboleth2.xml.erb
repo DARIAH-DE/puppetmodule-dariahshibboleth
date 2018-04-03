@@ -90,6 +90,7 @@
 
 <% if @use_proxy -%>
         <MetadataProvider type="XML" validate="true" file="dariah-proxy-idp.xml"/>
+        <AttributeResolver type="Query" subjectMatch="true"/>
 <% else -%> <%-# not using proxy -%>
 
   <% if @_with_custom_metadata_enabled %>
@@ -142,10 +143,6 @@
           </MetadataProvider>
   <% end -%> <%-# if @use_dfn_edugain-%>
 
-          <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
-
-          <AttributeResolver type="Query" subjectMatch="true"/>
-
   <% if @federation_enabled -%>
     <%-# Attribute Aggregation enforcing isMemberOf from DARIAH IdP -%>
           <AttributeResolver type="SimpleAggregation"
@@ -156,6 +153,8 @@
   <% end -%>
 
 <% end -%> <%-# if @use_proxy -%>
+
+        <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
 
         <AttributeFilter type="XML" validate="true" path="attribute-policy.xml"/>
 
