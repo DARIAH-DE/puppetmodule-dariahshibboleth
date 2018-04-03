@@ -167,8 +167,9 @@ describe 'dariahshibboleth' do
 
         it do
           is_expected.to contain_file('/etc/shibboleth/shibboleth2.xml') \
-            .with_content(%r{<MetadataProvider type="XML" validate="true" file="dariah-proxy-idp.xml"\/>})
+            .with_content(%r{<MetadataProvider type="XML" validate="true" file="dariah-proxy-idp.xml"\/>}) \
             .with_content(%r{<SSO entityID="https:\/\/aaiproxy.de.dariah.eu\/idp">})
+
         end
       end
 

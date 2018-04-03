@@ -18,7 +18,7 @@
                          requireTransportAuth="false"
 <% end -%>
                          REMOTE_USER="<%= @remote_user_pref_list %>"
-                     <%- if not @disable_attribute_checker -%>
+                     <%- if not @disable_attribute_checker and not @use_proxy -%>
                          sessionHook="<%= @handlerurl_prefix %>/Shibboleth.sso/AttrChecker"
                      <%- end -%>
                          >
