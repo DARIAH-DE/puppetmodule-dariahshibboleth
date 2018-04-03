@@ -12,7 +12,7 @@
     -->
 
     <ApplicationDefaults entityID="https://<%= @hostname %>/shibboleth"
-<% if @federation_enabled -%>
+<% if @federation_enabled and not @use_proxy -%>
   <%-# use signing for backchannel requests to DARIAH IdP -%>
                          signing="back"
                          requireTransportAuth="false"
@@ -33,14 +33,19 @@
 <% end -%> <%-# if @handlerssl -%>
                   handlerURL="<%= @handlerurl_prefix %>/Shibboleth.sso">
 
-<% if @federation_enabled %>
+<% if @federation_enabled and not @use_proxy %>
   <%-# Use discovery Service -%>
             <SSO discoveryProtocol="SAMLDS" discoveryURL="<%= @discoveryurl %>">
               SAML2
             </SSO>
 <% else -%>
   <%-# Just go to the IdP -%>
+    <% if not @use_proxy -%>
             <SSO entityID="<%= @idp_entityid %>">
+    <% else -%>
+            <SSO entityID="https://aaiproxy.de.dariah.eu/idp">
+    <% end -%>
+
               SAML2
             </SSO>
 <% end -%> <%-# if @federation_enabled -%>
@@ -55,7 +60,7 @@
 
             <Handler type="DiscoveryFeed" Location="/DiscoFeed" cacheToDisk="false"/>
 
-            <%- if not @disable_attribute_checker -%>
+            <%- if not @disable_attribute_checker and not @use_proxy -%>
             <%-# Make sure we have all attributes we need -- not all IdPs release them -%>
             <Handler type="AttributeChecker" Location="/AttrChecker"
                      template="attrChecker.html"
@@ -83,68 +88,74 @@
             helpLocation="/about.html"
             styleSheet="/shibboleth-sp/main.css"/>
 
-<% if @_with_custom_metadata_enabled %>
-  <%-# Add your own custom metadata -%>
-  <MetadataProvider type="XML" uri="<%= @custom_metadata_url %>"
-                          backingFilePath="custom_metadata.xml" reloadInterval="7200">
-          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-          <MetadataFilter type="Signature" certificate="/etc/shibboleth/custom_metadata_signature.pem"/>
-        </MetadataProvider>
-<% end -%> <%-# if @_with_custom_metadata_enabled -%>
+<% if @use_proxy -%>
+        <MetadataProvider type="XML" validate="true" file="dariah-proxy-idp.xml"/>
+<% else -%> <%-# not using proxy -%>
 
-<% if @use_dfn_basic -%>
-  <%-# DFN Basic -%>
-        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Basic-metadata.xml"
-                          backingFilePath="DFN-AAI-Basic-metadata.xml" reloadInterval="3600">
-          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
+  <% if @_with_custom_metadata_enabled %>
+    <%-# Add your own custom metadata -%>
+    <MetadataProvider type="XML" uri="<%= @custom_metadata_url %>"
+                            backingFilePath="custom_metadata.xml" reloadInterval="7200">
+            <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+            <MetadataFilter type="Signature" certificate="/etc/shibboleth/custom_metadata_signature.pem"/>
+          </MetadataProvider>
+  <% end -%> <%-# if @_with_custom_metadata_enabled -%>
 
-  <%- if not @federation_enabled -%>
-    <%-# Whithout federation we need only our IdP, not all of them -%>
-          <MetadataFilter type="Whitelist">
-            <Include><%= @idp_entityid %></Include>
-          </MetadataFilter>
-  <%- end -%> <%-# if not @federation_enabled -%>
-        </MetadataProvider>
-<% end -%> <%-# if @use_dfn_basic -%>
+  <% if @use_dfn_basic -%>
+    <%-# DFN Basic -%>
+          <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Basic-metadata.xml"
+                            backingFilePath="DFN-AAI-Basic-metadata.xml" reloadInterval="3600">
+            <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+            <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
 
-<% if @use_dfn_test -%>
-  <%-# DFN Test -%>
-        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Test-metadata.xml"
-                          backingFilePath="DFN-AAI-Test-metadata.xml" reloadInterval="3600">
-          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
+    <%- if not @federation_enabled -%>
+      <%-# Whithout federation we need only our IdP, not all of them -%>
+            <MetadataFilter type="Whitelist">
+              <Include><%= @idp_entityid %></Include>
+            </MetadataFilter>
+    <%- end -%> <%-# if not @federation_enabled -%>
+          </MetadataProvider>
+  <% end -%> <%-# if @use_dfn_basic -%>
 
-  <%- if not @federation_enabled -%>
-    <%-# Whithout federation we need only our IdP, not all of them -%>
-          <MetadataFilter type="Whitelist">
-            <Include><%= @idp_entityid %></Include>
-          </MetadataFilter>
-  <%- end -%> <%-# if not @federation_enabled -%>
-        </MetadataProvider>
-<% end -%> <%-# if @use_dfn_test -%>
+  <% if @use_dfn_test -%>
+    <%-# DFN Test -%>
+          <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Test-metadata.xml"
+                            backingFilePath="DFN-AAI-Test-metadata.xml" reloadInterval="3600">
+            <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+            <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
 
-<% if @use_dfn_edugain -%>
-  <%-# eduGAIN via DFN -%>
-        <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-eduGAIN+idp-metadata.xml"
-                          backingFilePath="DFN-AAI-eduGAIN-metadata.xml" reloadInterval="3600">
-          <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-          <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
-        </MetadataProvider>
-<% end -%> <%-# if @use_dfn_edugain-%>
+    <%- if not @federation_enabled -%>
+      <%-# Whithout federation we need only our IdP, not all of them -%>
+            <MetadataFilter type="Whitelist">
+              <Include><%= @idp_entityid %></Include>
+            </MetadataFilter>
+    <%- end -%> <%-# if not @federation_enabled -%>
+          </MetadataProvider>
+  <% end -%> <%-# if @use_dfn_test -%>
 
-        <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
+  <% if @use_dfn_edugain -%>
+    <%-# eduGAIN via DFN -%>
+          <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-eduGAIN+idp-metadata.xml"
+                            backingFilePath="DFN-AAI-eduGAIN-metadata.xml" reloadInterval="3600">
+            <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+            <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
+          </MetadataProvider>
+  <% end -%> <%-# if @use_dfn_edugain-%>
 
-        <AttributeResolver type="Query" subjectMatch="true"/>
+          <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
 
-<% if @federation_enabled -%>
-  <%-# Attribute Aggregation enforcing isMemberOf from DARIAH IdP -%>
-        <AttributeResolver type="SimpleAggregation"
-                           attributeId="eppn"
-                           format="urn:oid:1.3.6.1.4.1.5923.1.1.1.6">
-          <Entity><%= @idp_entityid %></Entity>
-        </AttributeResolver>
-<% end -%>
+          <AttributeResolver type="Query" subjectMatch="true"/>
+
+  <% if @federation_enabled -%>
+    <%-# Attribute Aggregation enforcing isMemberOf from DARIAH IdP -%>
+          <AttributeResolver type="SimpleAggregation"
+                            attributeId="eppn"
+                            format="urn:oid:1.3.6.1.4.1.5923.1.1.1.6">
+            <Entity><%= @idp_entityid %></Entity>
+          </AttributeResolver>
+  <% end -%>
+
+<% end -%> <%-# if @use_proxy -%>
 
         <AttributeFilter type="XML" validate="true" path="attribute-policy.xml"/>
 

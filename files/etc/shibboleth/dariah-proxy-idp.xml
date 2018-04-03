@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<md:EntitiesDescriptor xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xrd="http://docs.oasis-open.org/ns/xri/xrd-1.0" Name="/opt/pyff/dariah-proxy-idp" ID="_20180319T172950" validUntil="2018-04-18T17:29:50.835956" cacheDuration="PT5H"><ds:Signature><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><ds:Reference URI="#_20180319T172950"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#WithComments"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>A8SBHdojnIRhpYq3DKPsidxsUrFxSbC0pQCuSQB3KXI=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>fm8NMrDTRE5lb1WxOATlj6SBwI/Ng7XpBWWf4jz+BnQQwTZC2Vl3o5q88KY3+jxQ0lUxdFnYcIL/jP802Ww8fD0y6rVHqNfA+Z7eq+eQjH9RnfnQY2XxGqze2VxI/awtYhsGiD1PxRoVwBHNgVDohvzpIKvTSouOn9ZLuQLtDUOyvxmhj3zEexkTPlcVsM+LJe16m6dzv6bIJWRajN8hPkut9pxoKtQx07j10ifkeAIobB0TNQfv4TiUCYVmZXzBfFbd9zeE8pCVjNDC8CyjwHHja9SlUDpFauyIUUCrE/4uFLarPRSELIBTXchsHhLRrg0CqEZziCcW2G0gPGytBg==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIIGGjCCBQKgAwIBAgIMHiE1byCpX3EeevJiMA0GCSqGSIb3DQEBCwUAMIGNMQsw
+CQYDVQQGEwJERTFFMEMGA1UECgw8VmVyZWluIHp1ciBGb2VyZGVydW5nIGVpbmVz
+IERldXRzY2hlbiBGb3JzY2h1bmdzbmV0emVzIGUuIFYuMRAwDgYDVQQLDAdERk4t
+UEtJMSUwIwYDVQQDDBxERk4tVmVyZWluIEdsb2JhbCBJc3N1aW5nIENBMB4XDTE3
+MTEwNzEzNDA0N1oXDTIxMDIwMzEzNDA0N1owgZoxCzAJBgNVBAYTAkRFMRYwFAYD
+VQQIDA1OSUVERVJTQUNIU0VOMRMwEQYDVQQHDApHT0VUVElOR0VOMT4wPAYDVQQK
+DDVHZXNlbGxzY2hhZnQgZnVlciB3aXNzZW5zY2hhZnRsaWNoZSBEYXRlbnZlcmFy
+YmVpdHVuZzEeMBwGA1UEAwwVYWFpcHJveHkuZGUuZGFyaWFoLmV1MIIBIjANBgkq
+hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr0sX7kQPkeoyF175t+g09DXOHdK5Mgp7
+PDxDqkvrfu8ieU3JEAhqnGGS1piRJuoijm40wP0IECTmFQRnjRHiddCmRoH2azZf
+ch9+8w/fdq7oYynIrIW88hmaEKmbHRQ+5Y+PnMVdbvsZkdHFGXOjOCmYIiVZ/G6B
+2IM6dmA0zBoqmtREtPLtMt1luny1+CeCNYFQsFOMDjqZJJ1xfYENXhF7vDc4l9et
+f4dXdwrFJSWze5NgHOuK6k74QqrlmE48v/+WoBUDFHrccD3kTRffp2fu5oWJGLzP
+sk/f+y0SJb3hgu1eIv7XBI28SnttpfZl1ju/oYo4sVQVWUn2eS/2bwIDAQABo4IC
+aTCCAmUwWQYDVR0gBFIwUDAIBgZngQwBAgIwDQYLKwYBBAGBrSGCLB4wDwYNKwYB
+BAGBrSGCLAEBBDARBg8rBgEEAYGtIYIsAQEEAwYwEQYPKwYBBAGBrSGCLAIBBAMG
+MAkGA1UdEwQCMAAwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMB
+BggrBgEFBQcDAjAdBgNVHQ4EFgQU/FWIzVnSXSG/DWnzVL8aED4cWyUwHwYDVR0j
+BBgwFoAUazqYi/nyU4na4K2yMh4JH+iqO3QwIAYDVR0RBBkwF4IVYWFpcHJveHku
+ZGUuZGFyaWFoLmV1MIGNBgNVHR8EgYUwgYIwP6A9oDuGOWh0dHA6Ly9jZHAxLnBj
+YS5kZm4uZGUvZGZuLWNhLWdsb2JhbC1nMi9wdWIvY3JsL2NhY3JsLmNybDA/oD2g
+O4Y5aHR0cDovL2NkcDIucGNhLmRmbi5kZS9kZm4tY2EtZ2xvYmFsLWcyL3B1Yi9j
+cmwvY2FjcmwuY3JsMIHbBggrBgEFBQcBAQSBzjCByzAzBggrBgEFBQcwAYYnaHR0
+cDovL29jc3AucGNhLmRmbi5kZS9PQ1NQLVNlcnZlci9PQ1NQMEkGCCsGAQUFBzAC
+hj1odHRwOi8vY2RwMS5wY2EuZGZuLmRlL2Rmbi1jYS1nbG9iYWwtZzIvcHViL2Nh
+Y2VydC9jYWNlcnQuY3J0MEkGCCsGAQUFBzAChj1odHRwOi8vY2RwMi5wY2EuZGZu
+LmRlL2Rmbi1jYS1nbG9iYWwtZzIvcHViL2NhY2VydC9jYWNlcnQuY3J0MA0GCSqG
+SIb3DQEBCwUAA4IBAQAeXB6+xSqWvAPfLYSAp+gN2Fk4jxzQ7WKSJtSVSatJd6ug
+xKviVTIvV1YUYpNvp/WGL0dSrs0UrtXgRczxOhO8Bqi5Nb+GzgDH4C2xCsSIT5tp
+V4j/WQg5yBPw0ijesompmGh+1HmJFxssm3xnvc6whewiiKoe4BRMrZxIIBhzPdHT
+DqKXHAT7G3zWjuA+Uiw6p9mAY8o24y4P0oYZgSttvZUveFUaYhcELogfhsHs+mxB
+EPKC6qrpCUWKlURTHXmSCr407rpvOV1fZZvApigqlBD5eYYkjvwuOrfPMujgFWw3
+8F2M+Ozn6qs3OmxiIJ2tw87AVIRSPJnfuQRTpj5+</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature><md:EntityDescriptor xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" entityID="https://aaiproxy.de.dariah.eu/idp">
+
+    <md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+
+        <md:Extensions>
+            <shibmd:Scope regexp="false">dariah.eu</shibmd:Scope>
+        </md:Extensions>
+
+        <md:KeyDescriptor>
+            <ds:KeyInfo>
+                    <ds:X509Data>
+                        <ds:X509Certificate>
+MIIGGjCCBQKgAwIBAgIMHiE1byCpX3EeevJiMA0GCSqGSIb3DQEBCwUAMIGNMQsw
+CQYDVQQGEwJERTFFMEMGA1UECgw8VmVyZWluIHp1ciBGb2VyZGVydW5nIGVpbmVz
+IERldXRzY2hlbiBGb3JzY2h1bmdzbmV0emVzIGUuIFYuMRAwDgYDVQQLDAdERk4t
+UEtJMSUwIwYDVQQDDBxERk4tVmVyZWluIEdsb2JhbCBJc3N1aW5nIENBMB4XDTE3
+MTEwNzEzNDA0N1oXDTIxMDIwMzEzNDA0N1owgZoxCzAJBgNVBAYTAkRFMRYwFAYD
+VQQIDA1OSUVERVJTQUNIU0VOMRMwEQYDVQQHDApHT0VUVElOR0VOMT4wPAYDVQQK
+DDVHZXNlbGxzY2hhZnQgZnVlciB3aXNzZW5zY2hhZnRsaWNoZSBEYXRlbnZlcmFy
+YmVpdHVuZzEeMBwGA1UEAwwVYWFpcHJveHkuZGUuZGFyaWFoLmV1MIIBIjANBgkq
+hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr0sX7kQPkeoyF175t+g09DXOHdK5Mgp7
+PDxDqkvrfu8ieU3JEAhqnGGS1piRJuoijm40wP0IECTmFQRnjRHiddCmRoH2azZf
+ch9+8w/fdq7oYynIrIW88hmaEKmbHRQ+5Y+PnMVdbvsZkdHFGXOjOCmYIiVZ/G6B
+2IM6dmA0zBoqmtREtPLtMt1luny1+CeCNYFQsFOMDjqZJJ1xfYENXhF7vDc4l9et
+f4dXdwrFJSWze5NgHOuK6k74QqrlmE48v/+WoBUDFHrccD3kTRffp2fu5oWJGLzP
+sk/f+y0SJb3hgu1eIv7XBI28SnttpfZl1ju/oYo4sVQVWUn2eS/2bwIDAQABo4IC
+aTCCAmUwWQYDVR0gBFIwUDAIBgZngQwBAgIwDQYLKwYBBAGBrSGCLB4wDwYNKwYB
+BAGBrSGCLAEBBDARBg8rBgEEAYGtIYIsAQEEAwYwEQYPKwYBBAGBrSGCLAIBBAMG
+MAkGA1UdEwQCMAAwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMB
+BggrBgEFBQcDAjAdBgNVHQ4EFgQU/FWIzVnSXSG/DWnzVL8aED4cWyUwHwYDVR0j
+BBgwFoAUazqYi/nyU4na4K2yMh4JH+iqO3QwIAYDVR0RBBkwF4IVYWFpcHJveHku
+ZGUuZGFyaWFoLmV1MIGNBgNVHR8EgYUwgYIwP6A9oDuGOWh0dHA6Ly9jZHAxLnBj
+YS5kZm4uZGUvZGZuLWNhLWdsb2JhbC1nMi9wdWIvY3JsL2NhY3JsLmNybDA/oD2g
+O4Y5aHR0cDovL2NkcDIucGNhLmRmbi5kZS9kZm4tY2EtZ2xvYmFsLWcyL3B1Yi9j
+cmwvY2FjcmwuY3JsMIHbBggrBgEFBQcBAQSBzjCByzAzBggrBgEFBQcwAYYnaHR0
+cDovL29jc3AucGNhLmRmbi5kZS9PQ1NQLVNlcnZlci9PQ1NQMEkGCCsGAQUFBzAC
+hj1odHRwOi8vY2RwMS5wY2EuZGZuLmRlL2Rmbi1jYS1nbG9iYWwtZzIvcHViL2Nh
+Y2VydC9jYWNlcnQuY3J0MEkGCCsGAQUFBzAChj1odHRwOi8vY2RwMi5wY2EuZGZu
+LmRlL2Rmbi1jYS1nbG9iYWwtZzIvcHViL2NhY2VydC9jYWNlcnQuY3J0MA0GCSqG
+SIb3DQEBCwUAA4IBAQAeXB6+xSqWvAPfLYSAp+gN2Fk4jxzQ7WKSJtSVSatJd6ug
+xKviVTIvV1YUYpNvp/WGL0dSrs0UrtXgRczxOhO8Bqi5Nb+GzgDH4C2xCsSIT5tp
+V4j/WQg5yBPw0ijesompmGh+1HmJFxssm3xnvc6whewiiKoe4BRMrZxIIBhzPdHT
+DqKXHAT7G3zWjuA+Uiw6p9mAY8o24y4P0oYZgSttvZUveFUaYhcELogfhsHs+mxB
+EPKC6qrpCUWKlURTHXmSCr407rpvOV1fZZvApigqlBD5eYYkjvwuOrfPMujgFWw3
+8F2M+Ozn6qs3OmxiIJ2tw87AVIRSPJnfuQRTpj5+
+                        </ds:X509Certificate>
+                    </ds:X509Data>
+            </ds:KeyInfo>
+
+        </md:KeyDescriptor>
+
+        <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://aaiproxy.de.dariah.eu/idp/profile/SAML2/POST/SSO"/>
+        <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://aaiproxy.de.dariah.eu/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+        <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://aaiproxy.de.dariah.eu/idp/profile/SAML2/Redirect/SSO"/>
+
+    </md:IDPSSODescriptor>
+
+</md:EntityDescriptor></md:EntitiesDescriptor>

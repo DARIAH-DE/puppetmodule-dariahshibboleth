@@ -71,6 +71,7 @@
     <afp:AttributeFilterPolicy>
        <afp:PolicyRequirementRule xsi:type="NOT">
            <basic:Rule xsi:type="OR">
+               <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://aaiproxy.de.dariah.eu/idp" />
                <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://idp.de.dariah.eu/idp/shibboleth" />
                <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth" />
                <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth" />

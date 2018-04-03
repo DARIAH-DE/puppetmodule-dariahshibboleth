@@ -9,6 +9,7 @@ class dariahshibboleth::params {
   $federation_enabled      = false
 
   # defaults
+  $use_proxy                            = false
   $use_dfn_basic                        = true
   $use_dfn_test                         = false
   $use_dfn_edugain                      = false

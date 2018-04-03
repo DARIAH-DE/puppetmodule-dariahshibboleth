@@ -48,6 +48,9 @@ describe 'dariahshibboleth' do
           is_expected.to contain_file('/etc/shibboleth/dfn-aai.pem')
         end
         it do
+          is_expected.to contain_file('/etc/shibboleth/dariah-proxy-idp.xml')
+        end
+        it do
           is_expected.to contain_file('/etc/shibboleth/localLogout.html')
         end
         it do
@@ -159,6 +162,16 @@ describe 'dariahshibboleth' do
         end
       end
 
+      context 'with proxy enabled' do
+        let(:params) { { use_proxy: true, custom_metadata_signature_cert: 'puppet://my.file' } }
+
+        it do
+          is_expected.to contain_file('/etc/shibboleth/shibboleth2.xml') \
+            .with_content(%r{<MetadataProvider type="XML" validate="true" file="dariah-proxy-idp.xml"\/>})
+            .with_content(%r{<SSO entityID="https:\/\/aaiproxy.de.dariah.eu\/idp">})
+        end
+      end
+
       context 'serve SP not at root but add a prefex to handler' do
         let(:params) do
           {
@@ -259,7 +272,7 @@ describe 'dariahshibboleth' do
         end
       end
 
-      context ' with additonal tous' do
+      context 'with additonal tous' do
         let(:params) do
           {
             tou_enforced: true,

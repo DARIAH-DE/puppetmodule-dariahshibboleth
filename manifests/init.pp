@@ -33,6 +33,7 @@
 # @param use_dfn_basic Load the DFN-Basic AAI Metadata.
 # @param use_dfn_test Load the DFN-Test AAI Metadata.
 # @param use_dfn_edugain Load the eduGAIN Metadata from DFN (without DFN!).
+# @param use_proxy Switch to AAI Proxy mode
 #
 class dariahshibboleth (
   Boolean $attribute_checker_flushsession          = $dariahshibboleth::params::attribute_checker_flushsession,
@@ -61,6 +62,7 @@ class dariahshibboleth (
   Boolean $use_dfn_basic                           = $dariahshibboleth::params::use_dfn_basic,
   Boolean $use_dfn_test                            = $dariahshibboleth::params::use_dfn_test,
   Boolean $use_dfn_edugain                         = $dariahshibboleth::params::use_dfn_edugain,
+  Boolean $use_proxy                               = $dariahshibboleth::params::use_proxy,
 ) inherits dariahshibboleth::params {
 
   anchor { 'dariahshibboleth::begin': }
