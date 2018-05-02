@@ -89,7 +89,7 @@
             styleSheet="/shibboleth-sp/main.css"/>
 
 <% if @use_proxy -%>
-        <MetadataProvider type="XML" validate="true" file="dariah-proxy-idp.xml"/>
+        <MetadataProvider type="XML" validate="false" file="dariah-proxy-idp.xml"/>
         <AttributeResolver type="Query" subjectMatch="true"/>
 <% else -%> <%-# not using proxy -%>
 
