@@ -126,6 +126,15 @@ describe 'dariahshibboleth' do
         end
       end
 
+      context 'with syslog.logger' do
+        let(:params) { { loggersyslog: true } }
+
+        it do
+          is_expected.to contain_file('/etc/shibboleth/shibboleth2.xml') \
+            .with_content(%r{logger="syslog.logger"})
+        end
+      end
+
       context 'with dfn basic enabled' do
         let(:params) { { use_dfn_basic: true } }
 

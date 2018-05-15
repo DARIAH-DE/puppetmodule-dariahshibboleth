@@ -17,6 +17,8 @@ class dariahshibboleth::params {
 
   $mail_contact                         = 'root@localhost'
 
+  $loggersyslog                         = false
+
   $attribute_checker_requiredattributes = ['eppn','mail','givenName','sn']
   $disable_attribute_checker            = false
 

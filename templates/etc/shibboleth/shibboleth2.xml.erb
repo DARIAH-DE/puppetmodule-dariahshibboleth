@@ -3,6 +3,9 @@
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
     xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
     xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+<% if @loggersyslog -%>
+    logger="syslog.logger"
+<% end -%>
     clockSkew="180">
 
     <!--

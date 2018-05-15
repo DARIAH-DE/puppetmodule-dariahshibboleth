@@ -22,6 +22,7 @@
 #   This is used only if not in federation setup for whitelisting.
 # @param key Accepts the key file for the SP, as created by `shib-keygen`..
 # @param locallogout_headertags Additional header tags to insert into localLogout.html.
+# @param loggersyslog Switch to syslog logging
 # @param mail_contact The mail address to be used as contact address in the SP's metadata.
 # @param remote_user_pref_list Accepts a string containing the list of attributes in order of preference for setting the `REMOTE_USER` variable.
 #   Default to `eppn persistent-id targeted-id`.
@@ -52,6 +53,7 @@ class dariahshibboleth (
   String  $idp_entityid                            = $dariahshibboleth::params::idp_entityid,
   Optional[String] $key                            = undef,
   Optional[String] $locallogout_headertags         = undef,
+  Boolean $loggersyslog                            = $dariahshibboleth::params::loggersyslog,
   String  $mail_contact                            = $dariahshibboleth::params::mail_contact,
   String  $remote_user_pref_list                   = $dariahshibboleth::params::remote_user_pref_list,
   Optional[String] $standby_cert                   = undef,
