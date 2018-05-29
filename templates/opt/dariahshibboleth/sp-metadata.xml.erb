@@ -49,9 +49,9 @@
           </ds:X509Certificate>
         </ds:X509Data>
       </ds:KeyInfo>
-    </md:KeyDescriptor> 
+    </md:KeyDescriptor>
 <% end -%>
-    
+
     <md:ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/Artifact/SOAP" index="1"/>
     <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SLO/SOAP"/>
     <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://<%= scope.lookupvar('::dariahshibboleth::hostname') %><%= scope.lookupvar('::dariahshibboleth::handlerurl_prefix') %>/Shibboleth.sso/SLO/Redirect"/>
@@ -78,13 +78,21 @@
     </md:AttributeConsumingService>
   </md:SPSSODescriptor>
 
+<% if @shibd_metadata['md_org_name_en'] != 'NONE' -%>
+  <md:Organization>
+    <md:OrganizationName xml:lang="en"><%= @shibd_metadata['md_org_name_en'] %></md:OrganizationName>
+    <md:OrganizationDisplayName xml:lang="en"><%= @shibd_metadata['md_org_dn_en'] %></md:OrganizationDisplayName>
+    <md:OrganizationURL xml:lang="en"><%= @shibd_metadata['md_org_url_en'] %></md:OrganizationURL>
+  </md:Organization>
+<% end -%>
+
   <md:ContactPerson contactType="technical">
                 <md:GivenName><%= @shibd_metadata['md_t_gn'] %></md:GivenName>
                 <md:EmailAddress><%= @shibd_metadata['md_t_em'] %></md:EmailAddress>
   </md:ContactPerson>
-  <md:ContactPerson contactType="support"> 
-                <md:GivenName><%= @shibd_metadata['md_s_gn'] %></md:GivenName> 
-                <md:EmailAddress><%= @shibd_metadata['md_s_em'] %></md:EmailAddress> 
+  <md:ContactPerson contactType="support">
+                <md:GivenName><%= @shibd_metadata['md_s_gn'] %></md:GivenName>
+                <md:EmailAddress><%= @shibd_metadata['md_s_em'] %></md:EmailAddress>
   </md:ContactPerson>
 </md:EntityDescriptor>
 

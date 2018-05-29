@@ -37,19 +37,22 @@ class dariahshibboleth::params {
   $shibd_metadata_hash = hiera_hash('dariahshibboleth::MetaData',{no => 'data'})
 
   $shibd_metadata = {#
-    'md_dn_de'   => pick($shibd_metadata_hash['UIInfo_DisplayName_de'],$shibd_metadata_hash['UIInfo_DisplayName_en'],'DARIAH'),
-    'md_dn_en'   => pick($shibd_metadata_hash['UIInfo_DisplayName_en'],$shibd_metadata_hash['UIInfo_DisplayName_de'],'DARIAH'),
-    'md_des_de'  => pick($shibd_metadata_hash['UIInfo_Description_de'],$shibd_metadata_hash['UIInfo_Description_en'],'DARIAH'),
-    'md_des_en'  => pick($shibd_metadata_hash['UIInfo_Description_en'],$shibd_metadata_hash['UIInfo_Description_de'],'DARIAH'),
-    'md_logo_sm' => pick($shibd_metadata_hash['UIInfo_Logo_small'],'https://res.de.dariah.eu/aai/img/DARIAH_flower_icon.png'),
-    'md_logo_bi' => pick($shibd_metadata_hash['UIInfo_Logo_big'],'https://res.de.dariah.eu/aai/img/DARIAH_flower.png'),
-    'md_iu_de'   => pick($shibd_metadata_hash['UIInfo_InformationURL_de'],$shibd_metadata_hash['UIInfo_InformationURL_en'],'http://www.dariah.eu'),
-    'md_iu_en'   => pick($shibd_metadata_hash['UIInfo_InformationURL_en'],$shibd_metadata_hash['UIInfo_InformationURL_de'],'http://www.dariah.eu'),
-    'md_t_gn'    => pick($shibd_metadata_hash['ContactPerson_technical_GivenName'],$shibd_metadata_hash['ContactPerson_support_GivenName'],'DARIAH Support'),
-    'md_t_em'    => pick($shibd_metadata_hash['ContactPerson_technical_EmailAddress'],$shibd_metadata_hash['ContactPerson_support_EmailAddress'],'root@localhost'),
-    'md_s_gn'    => pick($shibd_metadata_hash['ContactPerson_support_GivenName'],$shibd_metadata_hash['ContactPerson_technical_GivenName'],'DARIAH Support'),
-    'md_s_em'    => pick($shibd_metadata_hash['ContactPerson_support_EmailAddress'],$shibd_metadata_hash['ContactPerson_technical_EmailAddress'],'root@localhost'),
-    'ACS_Hosts'  => pick($shibd_metadata_hash['ACS_Hosts'],[]),
+    'md_dn_de'       => pick($shibd_metadata_hash['UIInfo_DisplayName_de'],$shibd_metadata_hash['UIInfo_DisplayName_en'],'DARIAH'),
+    'md_dn_en'       => pick($shibd_metadata_hash['UIInfo_DisplayName_en'],$shibd_metadata_hash['UIInfo_DisplayName_de'],'DARIAH'),
+    'md_des_de'      => pick($shibd_metadata_hash['UIInfo_Description_de'],$shibd_metadata_hash['UIInfo_Description_en'],'DARIAH'),
+    'md_des_en'      => pick($shibd_metadata_hash['UIInfo_Description_en'],$shibd_metadata_hash['UIInfo_Description_de'],'DARIAH'),
+    'md_logo_sm'     => pick($shibd_metadata_hash['UIInfo_Logo_small'],'https://res.de.dariah.eu/aai/img/DARIAH_flower_icon.png'),
+    'md_logo_bi'     => pick($shibd_metadata_hash['UIInfo_Logo_big'],'https://res.de.dariah.eu/aai/img/DARIAH_flower.png'),
+    'md_iu_de'       => pick($shibd_metadata_hash['UIInfo_InformationURL_de'],$shibd_metadata_hash['UIInfo_InformationURL_en'],'http://www.dariah.eu'),
+    'md_iu_en'       => pick($shibd_metadata_hash['UIInfo_InformationURL_en'],$shibd_metadata_hash['UIInfo_InformationURL_de'],'http://www.dariah.eu'),
+    'md_t_gn'        => pick($shibd_metadata_hash['ContactPerson_technical_GivenName'],$shibd_metadata_hash['ContactPerson_support_GivenName'],'DARIAH Support'),
+    'md_t_em'        => pick($shibd_metadata_hash['ContactPerson_technical_EmailAddress'],$shibd_metadata_hash['ContactPerson_support_EmailAddress'],'root@localhost'),
+    'md_s_gn'        => pick($shibd_metadata_hash['ContactPerson_support_GivenName'],$shibd_metadata_hash['ContactPerson_technical_GivenName'],'DARIAH Support'),
+    'md_s_em'        => pick($shibd_metadata_hash['ContactPerson_support_EmailAddress'],$shibd_metadata_hash['ContactPerson_technical_EmailAddress'],'root@localhost'),
+    'md_org_name_en' => pick($shibd_metadata_hash['Organization_Name_en'],'NONE'),
+    'md_org_dn_en'   => pick($shibd_metadata_hash['Organization_DisplayName_en'],'NONE'),
+    'md_org_url_en'  => pick($shibd_metadata_hash['Organization_URL_en'],'NONE'),
+    'ACS_Hosts'      => pick($shibd_metadata_hash['ACS_Hosts'],[]),
   }
 
   # create fake shibboleth credentials for use in Apache, values optionally provided by hiera

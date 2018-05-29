@@ -4,6 +4,7 @@ UNRELEASED CHNAGES
 - add support for dariahTermsOfUse, DARIAH ToU always, more possible
 - drop edugain default, i.e. revert 0.3.0
 - Allow to log to syslog
+- Add Organization to metadata
 
 2016-10-18 Release 0.3.0
 - breaking changes: federation support trough new parameters
