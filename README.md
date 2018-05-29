@@ -113,9 +113,9 @@ dariahshibboleth::MetaData:
   UIInfo_Description_en: 'Description of my service'
   UIInfo_InformationURL_en: 'http://www.web.site'
   ContactPerson_support_GivenName: 'support'
-  Organization_OrganizationName_en: 'MyOrg'
-  Organization_OrganizationDisplayName_en: 'My Organisation'
-  Organization_OrganizationURL_en: 'http://www.my.org'
+  Organization_Name_en: 'MyOrg'
+  Organization_DisplayName_en: 'My Organisation'
+  Organization_URL_en: 'http://www.my.org'
   ACS_Hosts:
     - one.host.domain
     - two.host.domain
