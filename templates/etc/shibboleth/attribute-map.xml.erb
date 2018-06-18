@@ -55,7 +55,8 @@
 
     <!-- Third, the new version (note the OID-style name): -->
     <Attribute name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" id="persistent-id">
-        <AttributeDecoder xsi:type="NameIDAttributeDecoder" formatter="$NameQualifier!$SPNameQualifier!$Name" defaultQualifiers="true"/>
+      <!-- the proxy SP will have decoded the persistent-id already 
+<!--        <AttributeDecoder xsi:type="NameIDAttributeDecoder" formatter="$NameQualifier!$SPNameQualifier!$Name" defaultQualifiers="true"/> -->
     </Attribute>
 
     <!-- Fourth, the SAML 2.0 NameID Format: -->
@@ -118,7 +119,15 @@
     <Attribute name="urn:oid:1.3.6.1.4.1.10126.1.52.5.2" id="dariahRole"/>
     <Attribute name="urn:oid:1.3.6.1.4.1.10126.1.52.4.15" id="dariahTermsOfUse"/>
     <Attribute name="urn:oid:1.3.6.1.4.1.10126.1.52.4.20" id="dariahTextGridRbacId"/>
+   
+    <Attribute name="urn:oid:1.3.6.1.4.1.10126.1.52.6.2" id="dariahAuxiliaryAuthnIdP"/>
+    <Attribute name="urn:oid:1.3.6.1.4.1.5923.1.1.1.13" id="unique-id">
+        <AttributeDecoder xsi:type="ScopedAttributeDecoder"/>
+    </Attribute>
 
+
+
+    
     <!-- Some more LDAP-based attributes, uncomment to use these... -->
   <!--
 
