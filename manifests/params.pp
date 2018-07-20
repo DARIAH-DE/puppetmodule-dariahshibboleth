@@ -23,7 +23,7 @@ class dariahshibboleth::params {
   $disable_attribute_checker            = false
 
   #default REMOTE_USER preference list
-  $remote_user_pref_list          = 'eppn persistent-id targeted-id'
+  $remote_user_pref_list          = 'eppn persistent-id targeted-id unique-id'
 
   # custom metadata settings
   $custom_metadata_url            = undef
