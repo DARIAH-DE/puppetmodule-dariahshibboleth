@@ -275,13 +275,6 @@ describe 'dariahshibboleth' do
         end
       end
 
-      context 'tou enforced' do
-        it do
-          is_expected.to contain_file('/etc/shibboleth/shibboleth2.xml') \
-            .with_content(%r{<Rule require="dariahTermsOfUse">Terms_of_Use_germ_engl_v6.pdf<\/Rule>})
-        end
-      end
-
       context 'with additonal tous' do
         let(:params) do
           {

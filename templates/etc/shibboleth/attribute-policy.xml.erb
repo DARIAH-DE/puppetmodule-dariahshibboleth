@@ -35,8 +35,10 @@
         <!-- Filter out undefined affiliations and ensure only one primary. -->
         <afp:AttributeRule attributeID="affiliation">
 <% if @use_proxy -%>
+            <!-- make sure this policy accepts all scopes for (scoped)affiliation -->
             <afp:PermitValueRuleReference ref="eduPersonAffiliationValues"/>
 <% else -%>
+            <!-- Default scoping rules apply! -->
             <afp:PermitValueRule xsi:type="AND">
                 <RuleReference ref="eduPersonAffiliationValues"/>
                 <RuleReference ref="ScopingRules"/>
@@ -58,7 +60,7 @@
         <afp:AttributeRule attributeID="targeted-id">
             <afp:PermitValueRuleReference ref="ScopingRules"/>
         </afp:AttributeRule>
-	
+
         <!-- Require NameQualifier/SPNameQualifier match IdP and SP entityID respectively. -->
         <afp:AttributeRule attributeID="persistent-id">
             <afp:PermitValueRule xsi:type="saml:NameIDQualifierString"/>
@@ -66,13 +68,11 @@
 <% end -%>
 
         <!-- Catch-all that passes everything else through unmolested. -->
-        <afp:AttributeRule attributeID="*">
-            <afp:PermitValueRule xsi:type="ANY"/>
-        </afp:AttributeRule>
+        <afp:AttributeRule attributeID="*" permitAny="true"/>
 
     </afp:AttributeFilterPolicy>
 
-<% if @federation_enabled or @use_proxy -%>
+<% if @federation_enabled -%>
     <!-- deny every attribute except those from our IdP -->
     <afp:AttributeFilterPolicy>
        <afp:PolicyRequirementRule xsi:type="NOT">
@@ -81,6 +81,8 @@
                <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://idp.de.dariah.eu/idp/shibboleth" />
                <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth" />
                <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth" />
+               <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://aaiproxy-integration.de.dariah.eu/idp" />
+
            </basic:Rule>
        </afp:PolicyRequirementRule>
 
