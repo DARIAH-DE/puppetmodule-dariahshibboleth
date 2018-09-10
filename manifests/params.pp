@@ -10,7 +10,7 @@ class dariahshibboleth::params {
 
   # defaults
   $use_proxy                            = false
-  $proxy_integration                    = false
+  $integration_proxy                    = false
   $use_dfn_basic                        = true
   $use_dfn_test                         = false
   $use_dfn_edugain                      = false
