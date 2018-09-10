@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntityDescriptor  xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" entityID="https://aaiproxy-integration.de.dariah.eu/idp">
+
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+
+        <Extensions>
+            <shibmd:Scope regexp="false">dariah.eu</shibmd:Scope>
+        </Extensions>
+
+        <KeyDescriptor>
+            <ds:KeyInfo>
+                    <ds:X509Data>
+                        <ds:X509Certificate>
+MIIKCjCCCPKgAwIBAgIMH3VWBs2XQYrPBJtqMA0GCSqGSIb3DQEBCwUAMIGNMQsw
+CQYDVQQGEwJERTFFMEMGA1UECgw8VmVyZWluIHp1ciBGb2VyZGVydW5nIGVpbmVz
+IERldXRzY2hlbiBGb3JzY2h1bmdzbmV0emVzIGUuIFYuMRAwDgYDVQQLDAdERk4t
+UEtJMSUwIwYDVQQDDBxERk4tVmVyZWluIEdsb2JhbCBJc3N1aW5nIENBMB4XDTE4
+MDcyMzEzMzA0MloXDTIwMTAyNTEzMzA0MlowgaYxCzAJBgNVBAYTAkRFMRYwFAYD
+VQQIDA1OSUVERVJTQUNIU0VOMRMwEQYDVQQHDApHT0VUVElOR0VOMT4wPAYDVQQK
+DDVHZXNlbGxzY2hhZnQgZnVlciB3aXNzZW5zY2hhZnRsaWNoZSBEYXRlbnZlcmFy
+YmVpdHVuZzEqMCgGA1UEAwwhYWFpcHJveHktaW50ZWdyYXRpb24uZGUuZGFyaWFo
+LmV1MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtHM5enLZOSbBTgg3
+YZHQny/azBptDCqp4Vfwy4j3G1lbe7wwvqsEfU5pXfFDGURZsMYkkzsMQCmbAC9j
+1FgjQrKOMQwb0vwJTYKAa6a2JuOaN3dX1ciUxKdiiWCb9ws1gITdIGA85/sTV1F/
+koktQbJkuRVKFZNH5nlvExgXTqupMn0tm8SuvzFWp0W2UdXkhsya/UGg/YxtsmSp
++jwEWKq8uMTALiH8ud4qjOeK0doAzIDPSsFFe4C6oHRVfEHd5HNx8u514mFUIJ5F
+cdjAXvFdk3cku/YqShNQsevCYcGUxK6tEO3kduf6wKhG7O3Zy8ZsvmZ1FF7uVg9F
+tQ2HXQIDAQABo4IGTTCCBkkwWQYDVR0gBFIwUDAIBgZngQwBAgIwDQYLKwYBBAGB
+rSGCLB4wDwYNKwYBBAGBrSGCLAEBBDARBg8rBgEEAYGtIYIsAQEEAwgwEQYPKwYB
+BAGBrSGCLAIBBAMIMAkGA1UdEwQCMAAwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQW
+MBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQUK21v9PEJQ9yDDGHy28DL
+HC0v22EwHwYDVR0jBBgwFoAUazqYi/nyU4na4K2yMh4JH+iqO3QwLAYDVR0RBCUw
+I4IhYWFpcHJveHktaW50ZWdyYXRpb24uZGUuZGFyaWFoLmV1MIGNBgNVHR8EgYUw
+gYIwP6A9oDuGOWh0dHA6Ly9jZHAxLnBjYS5kZm4uZGUvZGZuLWNhLWdsb2JhbC1n
+Mi9wdWIvY3JsL2NhY3JsLmNybDA/oD2gO4Y5aHR0cDovL2NkcDIucGNhLmRmbi5k
+ZS9kZm4tY2EtZ2xvYmFsLWcyL3B1Yi9jcmwvY2FjcmwuY3JsMIHbBggrBgEFBQcB
+AQSBzjCByzAzBggrBgEFBQcwAYYnaHR0cDovL29jc3AucGNhLmRmbi5kZS9PQ1NQ
+LVNlcnZlci9PQ1NQMEkGCCsGAQUFBzAChj1odHRwOi8vY2RwMS5wY2EuZGZuLmRl
+L2Rmbi1jYS1nbG9iYWwtZzIvcHViL2NhY2VydC9jYWNlcnQuY3J0MEkGCCsGAQUF
+BzAChj1odHRwOi8vY2RwMi5wY2EuZGZuLmRlL2Rmbi1jYS1nbG9iYWwtZzIvcHVi
+L2NhY2VydC9jYWNlcnQuY3J0MIID1AYKKwYBBAHWeQIEAgSCA8QEggPAA74AdQBv
+U3asMfAxGdiZAKRRFf93FRwR2QLBACkGjbIImjfZEwAAAWTHVdyDAAAEAwBGMEQC
+IAHKlCDq6PNEx/2b3Dr4E25dbmDOAUnh76IAYyaYBmZxAiB61NtDPgkhwDeuc1u0
+vI1v8jyiXj0OmYxYBYpynRT1aQB2AO5Lvbd1zmC64UJpH6vhnmajD35fsHLYgwDE
+e4l6qP3LAAABZMdV3GUAAAQDAEcwRQIhANtJoFLPR/NJmTJ97tSOB78c+R9w3ZHR
+IM/b7tYBN+4UAiAjKPcXFu8oqRisffGge9paq7FVeyEYuYkVeeyl/SRFDwB1AKrn
+C388uNVmyGwvFpecn0RfaasOtFNVibL3egMBBPPNAAABZMdV3M4AAAQDAEYwRAIg
+HRjyq+/dacJTvYpYnAcC/jeW6JZ3s6bfKfTKHSNu2e8CIAUIAPezCQDqUV5S0Mnu
+0hAZf8Pg+w34JNv4fo9BL65PAHYAVYHUwhaQNgFK6gubVzxT8MDkOHhwJQgXL6Oq
+HQcT0wwAAAFkx1XdcwAABAMARzBFAiBRULUo0JjRda2qSrw/4ycuYHY7ivJZohE2
+CucRCVirbQIhAMcydBy0N6rvFsCxXqtz7MYz4DKB21ZO9MzqG9/8452BAHYAu9nf
+vB+KcbWTlCOXqpJ7RzhXlQqrUugakJZkNo4e0YUAAAFkx1XepQAABAMARzBFAiAO
+ofHSefyyw7CQJtgol5Me0/JJ32PVTB77p0yGBqx9XwIhAKj6i0HyWXWGvAVsoCAv
+qbHwu3b5StzQGOOPndwdNGdvAHUApLkJkLQYWBSHuxOizGdwCjw1mAT5G9+443fN
+DsgN3BAAAAFkx1XewAAABAMARjBEAiBhZBCdl5cFQ1/vYKRrBIMcvOpimK4CELFp
+Vcxms8y7KAIgSMamCgmZ1UqkNwJYn0uzQi9gLbK5DrzDKBTdFICuEdoAdwBep3P5
+31bA57U2SH3QSeAyepGaDIShEhKEGHWWgXFFWAAAAWTHVeBZAAAEAwBIMEYCIQC0
+/0ddJ9qaiyN3tgIYDYUcb8515pMgesrjtIRNKL4xzQIhAKlJvWhcMAZIaR64sGdN
+eUTqz+7DccnJIydhzHP2UBOEAHYAsh4FzIuizYogTodm+Su5iiUgZ2va+nDnsklT
+Le+LkF4AAAFkx1XfcAAABAMARzBFAiBZMfD7pvbNKWpmlTLBcdFZFjw0ZnEBdxKI
+YCkC6Au2PAIhAJsTXruhWGrTCY++WW+4V2pJQGRgRjebjDYxaEZ/Y6rHMA0GCSqG
+SIb3DQEBCwUAA4IBAQAUZyIWI0nvyXqZQUDKIEt0GBVKihPocHSbDerFLj2ArlXy
+0k4kSUAzv5PreTGOpdn+tbUzSTYzzcIecVjTKRtuW2SMF8zYs3FN9LVUeYAAf/rE
+fx1YZ6pdoK2c51qwi4Cg89762iH5EEvOafeOMdNljGWRRj8ovHGOimfuou3janbZ
+Vftf5///+uIbgQvxUutWcW1mHeGN7VOKaSE0VMYKGAa9KFp0qsioHy0tVF15u+Gb
+8o0W0pk/XP9frtWAs2AvaVvaUy54Y8V6ZT9+hHjeCwvvmieForv7CVdBSJoqLve2
+Kz49Zx3rP5d1YDmbydVDJ3KuEPz3q6AZVl2/ddSf
+                        </ds:X509Certificate>
+                    </ds:X509Data>
+            </ds:KeyInfo>
+
+        </KeyDescriptor>
+
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://aaiproxy-integration.de.dariah.eu/idp/profile/SAML2/POST/SSO"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://aaiproxy-integration.de.dariah.eu/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://aaiproxy-integration.de.dariah.eu/idp/profile/SAML2/Redirect/SSO"/>
+
+    </IDPSSODescriptor>
+
+</EntityDescriptor>

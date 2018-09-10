@@ -124,6 +124,14 @@ class dariahshibboleth::config (
     source => 'puppet:///modules/dariahshibboleth/etc/shibboleth/dariah-proxy-idp.xml',
   }
 
+  file { '/etc/shibboleth/dariah-proxy-idp-integration.xml':
+    ensure => file,
+    owner  => '_shibd',
+    group  => 'root',
+    mode   => '0644',
+    source => 'puppet:///modules/dariahshibboleth/etc/shibboleth/dariah-proxy-idp-integration.xml',
+  }
+
   if ($::dariahshibboleth::custom_metadata_url != undef) and ($::dariahshibboleth::custom_metadata_signature_cert != undef) {
     $_with_custom_metadata_enabled = true
     file { '/etc/shibboleth/custom_metadata_signature.pem':

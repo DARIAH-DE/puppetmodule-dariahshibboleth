@@ -35,6 +35,7 @@
 # @param use_dfn_test Load the DFN-Test AAI Metadata.
 # @param use_dfn_edugain Load the eduGAIN Metadata from DFN (without DFN!).
 # @param use_proxy Switch to AAI Proxy mode
+# @param proxy_integration To be used with `use_proxy`: Use the AAI Integration Proxy environment
 #
 class dariahshibboleth (
   Boolean $attribute_checker_flushsession          = $dariahshibboleth::params::attribute_checker_flushsession,
@@ -65,6 +66,7 @@ class dariahshibboleth (
   Boolean $use_dfn_test                            = $dariahshibboleth::params::use_dfn_test,
   Boolean $use_dfn_edugain                         = $dariahshibboleth::params::use_dfn_edugain,
   Boolean $use_proxy                               = $dariahshibboleth::params::use_proxy,
+  Boolean $proxy_integration                       = $dariahshibboleth::params::proxy_integration,
 ) inherits dariahshibboleth::params {
 
   anchor { 'dariahshibboleth::begin': }

@@ -172,13 +172,23 @@ describe 'dariahshibboleth' do
         end
       end
 
-      context 'with proxy enabled' do
-        let(:params) { { use_proxy: true, custom_metadata_signature_cert: 'puppet://my.file' } }
+      context 'with production proxy enabled' do
+        let(:params) { { use_proxy: true, integration_proxy: false, custom_metadata_signature_cert: 'puppet://my.file' } }
 
         it do
           is_expected.to contain_file('/etc/shibboleth/shibboleth2.xml') \
             .with_content(%r{<MetadataProvider type="XML" validate="false" file="dariah-proxy-idp.xml"\/>}) \
             .with_content(%r{<SSO entityID="https:\/\/aaiproxy.de.dariah.eu\/idp">})
+        end
+      end
+
+      context 'with integration proxy enabled' do
+        let(:params) { { use_proxy: true, integration_proxy: true, custom_metadata_signature_cert: 'puppet://my.file' } }
+
+        it do
+          is_expected.to contain_file('/etc/shibboleth/shibboleth2.xml') \
+            .with_content(%r{<MetadataProvider type="XML" validate="false" file="dariah-proxy-idp-integration.xml"\/>}) \
+            .with_content(%r{<SSO entityID="https:\/\/aaiproxy-integration.de.dariah.eu\/idp">})
         end
       end
 

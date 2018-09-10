@@ -46,7 +46,11 @@
     <% if not @use_proxy -%>
             <SSO entityID="<%= @idp_entityid %>">
     <% else -%>
-            <SSO entityID="https://aaiproxy.de.dariah.eu/idp">
+       	<% if @integration_proxy -%>
+            <SSO entityID="https://aaiproxy-integration.de.dariah.eu/idp">
+        <% else -%>
+       	    <SSO entityID="https://aaiproxy.de.dariah.eu/idp">
+	<% end -%>    
     <% end -%>
 
               SAML2
@@ -90,7 +94,11 @@
             styleSheet="/shibboleth-sp/main.css"/>
 
 <% if @use_proxy -%>
-        <MetadataProvider type="XML" validate="false" file="dariah-proxy-idp.xml"/>
+       	<% if @integration_proxy -%>
+      	<MetadataProvider type="XML" validate="false" file="dariah-proxy-idp-integration.xml"/>
+        <% else -%>
+      	<MetadataProvider type="XML" validate="false" file="dariah-proxy-idp.xml"/>
+	<% end -%>    
         <AttributeResolver type="Query" subjectMatch="true"/>
 <% else -%> <%-# not using proxy -%>
 
