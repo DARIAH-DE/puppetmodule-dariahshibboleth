@@ -113,10 +113,10 @@
 
   <% if @use_dfn_basic -%>
     <%-# DFN Basic -%>
-          <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Basic-metadata.xml"
-                            backingFilePath="DFN-AAI-Basic-metadata.xml" reloadInterval="3600">
+          <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/dfn-aai-basic-metadata.xml"
+                            backingFilePath="dfn-aai-basic-metadata.xml" reloadInterval="3600">
             <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-            <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
+            <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.g2.pem"/>
 
     <%- if not @federation_enabled -%>
       <%-# Whithout federation we need only our IdP, not all of them -%>
@@ -129,10 +129,10 @@
 
   <% if @use_dfn_test -%>
     <%-# DFN Test -%>
-          <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-Test-metadata.xml"
-                            backingFilePath="DFN-AAI-Test-metadata.xml" reloadInterval="3600">
+          <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/dfn-aai-test-metadata.xml"
+                            backingFilePath="dfn-aai-test-metadata.xml" reloadInterval="3600">
             <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-            <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
+            <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.g2.pem"/>
 
     <%- if not @federation_enabled -%>
       <%-# Whithout federation we need only our IdP, not all of them -%>
@@ -145,10 +145,10 @@
 
   <% if @use_dfn_edugain -%>
     <%-# eduGAIN via DFN -%>
-          <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/DFN-AAI-eduGAIN+idp-metadata.xml"
-                            backingFilePath="DFN-AAI-eduGAIN-metadata.xml" reloadInterval="3600">
+          <MetadataProvider type="XML" uri="https://www.aai.dfn.de/fileadmin/metadata/dfn-aai-edugain+idp-metadata.xml"
+                            backingFilePath="dfn-aai-edugain-metadata.xml" reloadInterval="3600">
             <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-            <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.pem"/>
+            <MetadataFilter type="Signature" certificate="/etc/shibboleth/dfn-aai.g2.pem"/>
           </MetadataProvider>
   <% end -%> <%-# if @use_dfn_edugain-%>
 

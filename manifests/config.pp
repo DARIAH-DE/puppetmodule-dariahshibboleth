@@ -108,12 +108,12 @@ class dariahshibboleth::config (
     }
   }
 
-  file { '/etc/shibboleth/dfn-aai.pem':
+  file { '/etc/shibboleth/dfn-aai.g2.pem':
     ensure => file,
     owner  => '_shibd',
     group  => 'root',
     mode   => '0644',
-    source => 'puppet:///modules/dariahshibboleth/etc/shibboleth/dfn-aai.pem',
+    source => 'puppet:///modules/dariahshibboleth/etc/shibboleth/dfn-aai.g2.pem',
   }
 
   file { '/etc/shibboleth/dariah-proxy-idp.xml':
