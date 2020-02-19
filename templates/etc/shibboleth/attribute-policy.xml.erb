@@ -78,10 +78,11 @@
        <afp:PolicyRequirementRule xsi:type="NOT">
            <basic:Rule xsi:type="OR">
                <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://aaiproxy.de.dariah.eu/idp" />
+               <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://dev.aaiproxy.de.dariah.eu/idp" />
+               <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://stage.aaiproxy.de.dariah.eu/idp" />
                <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://idp.de.dariah.eu/idp/shibboleth" />
-               <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://ldap-dariah.esc.rzg.mpg.de/idp/shibboleth" />
-               <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth" />
-               <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://aaiproxy-integration.de.dariah.eu/idp" />
+               <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://stage.idp.de.dariah.eu/simplesaml/saml2/idp/metadata.php" />
+               <basic:Rule xsi:type="basic:AttributeIssuerString" value="https://dev.idp.de.dariah.eu/simplesaml/saml2/idp/metadata.php" />
            </basic:Rule>
        </afp:PolicyRequirementRule>
 

@@ -11,6 +11,8 @@ The module sets up a shibboleth service provider configured for DARIAH services.
 By default, the module will configure the SP to authenticate against the DARIAH Homeless IdP.
 Alternatively, you can set it up against the DARIAH Test IdP or switch fo full federation setup within DFN AAI.
 
+TODO describe AAI Proxy mode
+
 ## Setup
 
 The module will configure your system to use the SWITCH AAI repository and installs and configures the shib deamon.
@@ -51,7 +53,7 @@ To configure the **Test IdP** do
 ```puppet
 class { 'dariahshibboleth':
   use_dfn_test            => true,
-  idp_entityid            => 'https://ldap-dariah-clone.esc.rzg.mpg.de/idp/shibboleth',
+  idp_entityid            => 'https://stage.idp.de.dariah.eu/simplesaml/saml2/idp/metadata.php',
   federation_enabled      => false,
   discoveryurl            => 'https://auth-integration.de.dariah.eu/CDS/WAYF',
   dariah_registration_url => 'https://auth-integration.de.dariah.eu/Shibboleth.sso/Login?target=/cgi-bin/selfservice/ldapportal.pl%3Fmode%3Dauthenticate%3Bshibboleth%3D1%3Bnextpage%3Dregistration'
