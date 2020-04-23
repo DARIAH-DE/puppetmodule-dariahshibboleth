@@ -18,10 +18,10 @@
         </ds:X509Data>
       </ds:KeyInfo>
     </md:KeyDescriptor>
-    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://aaiproxy.de.dariah.eu/simplesaml/saml2/idp/SingleLogoutService.php"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://aaiproxy.de.dariah.eu/simplesaml/saml2/idp/SingleLogoutService.php"/>
     <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</md:NameIDFormat>
-    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://aaiproxy.de.dariah.eu/simplesaml/saml2/idp/SSOService.php"/>
-    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://aaiproxy.de.dariah.eu/simplesaml/saml2/idp/SSOService.php"/>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://aaiproxy.de.dariah.eu/simplesaml/saml2/idp/SSOService.php"/>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://aaiproxy.de.dariah.eu/simplesaml/saml2/idp/SSOService.php"/>
   </md:IDPSSODescriptor>
   <md:Organization>
     <md:OrganizationName xml:lang="de">DARIAH</md:OrganizationName>
