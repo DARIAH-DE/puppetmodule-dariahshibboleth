@@ -67,6 +67,7 @@ class dariahshibboleth (
   Boolean $use_dfn_edugain                         = $dariahshibboleth::params::use_dfn_edugain,
   Boolean $use_proxy                               = $dariahshibboleth::params::use_proxy,
   Boolean $integration_proxy                       = $dariahshibboleth::params::integration_proxy,
+  Optional[String] $proxy_metadata_url             = $dariahshibboleth::params::proxy_metadata_url,
 ) inherits dariahshibboleth::params {
 
   anchor { 'dariahshibboleth::begin': }

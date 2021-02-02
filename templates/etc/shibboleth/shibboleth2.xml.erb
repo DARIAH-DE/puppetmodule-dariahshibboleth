@@ -97,7 +97,11 @@
        	<% if @integration_proxy -%>
       	<MetadataProvider type="XML" validate="false" file="dariah-proxy-idp-integration.xml"/>
         <% else -%>
-      	<MetadataProvider type="XML" validate="false" file="dariah-proxy-idp.xml"/>
+        <!-- custom_metadata.xml will end up in /var/cache/shibboleth -->
+        <MetadataProvider type="XML" validate="false"
+            uri="<%= @proxy_metadata_url %>"
+            backingFilePath="custom_metadata.xml"
+            reloadInterval="7200"/>
 	<% end -%>    
         <AttributeResolver type="Query" subjectMatch="true"/>
 <% else -%> <%-# not using proxy -%>

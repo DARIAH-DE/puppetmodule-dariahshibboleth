@@ -22,6 +22,7 @@ class dariahshibboleth::params {
 
   $attribute_checker_requiredattributes = ['eppn','mail','givenName','sn']
   $disable_attribute_checker            = false
+  $proxy_metadata_url                   = "https://aaiproxy.de.dariah.eu/idp/shibboleth"
 
   #default REMOTE_USER preference list
   $remote_user_pref_list          = 'eppn persistent-id targeted-id unique-id'
