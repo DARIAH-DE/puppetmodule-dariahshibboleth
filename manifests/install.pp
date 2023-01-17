@@ -4,7 +4,8 @@ class dariahshibboleth::install inherits dariahshibboleth {
 
   case $facts['os']['family'] {
     'Debian': {
-      if ($::lsbdistcodename != 'jammy') {
+      if ($::lsbdistcodename == 'bionic' or $::lsbdistcodename == 'focal'
+      or $::lsbdistcodename == 'xenial') {
       $switch_repo_location = $facts['os']['name'] ?
       {
         'Ubuntu' => 'http://pkg.switch.ch/switchaai/ubuntu',
