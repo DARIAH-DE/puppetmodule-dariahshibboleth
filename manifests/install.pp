@@ -4,6 +4,7 @@ class dariahshibboleth::install inherits dariahshibboleth {
 
   case $facts['os']['family'] {
     'Debian': {
+      if ($::lsbdistcodename != 'jammy') {
       $switch_repo_location = $facts['os']['name'] ?
       {
         'Ubuntu' => 'http://pkg.switch.ch/switchaai/ubuntu',
@@ -23,6 +24,7 @@ class dariahshibboleth::install inherits dariahshibboleth {
         },
         before   => Package['shibboleth'],
       }
+    }
     }
     default: {
       fail("Module dariahshibboleth does not support ${facts['os']['family']}!")
