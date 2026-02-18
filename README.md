@@ -2,6 +2,10 @@
 
 [![Build Status](https://api.travis-ci.org/DARIAH-DE/puppetmodule-dariahshibboleth.png?branch=master)](https://travis-ci.org/DARIAH-DE/puppetmodule-dariahshibboleth)
 
+## Troubleshooting
+
+In case of metadata or certificate changes, please adapt the metadata URL here: <https://github.com/DARIAH-DE/puppetmodule-dariahshibboleth/blob/ab8839d9f72e0e6cb2ee0bc5f61512852acf86e1/manifests/params.pp#L25C1-L25C108>, see also <https://github.com/DARIAH-DE/puppetmodule-dariahshibboleth/commit/81cd585a8fa99386b13b92e3fb1a75511a06d515>.
+
 ## Description
 
 The module provides the setup and configuration of a Shibboleth Service Provider,
